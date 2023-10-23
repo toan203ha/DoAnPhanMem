@@ -1,0 +1,113 @@
+﻿@model Doanphanmem.Models.SanPham
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>SanPham</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TenSP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenSP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GiaSp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GiaSp)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GiaGiam)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GiaGiam)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Hinh1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hinh1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Hinh2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hinh2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Hinh3)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hinh3)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Hinh4)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hinh4)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mota)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mota)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Thongso)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Thongso)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mau.Tenmau)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mau.Tenmau)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PhanLoai.Tenloai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhanLoai.Tenloai)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

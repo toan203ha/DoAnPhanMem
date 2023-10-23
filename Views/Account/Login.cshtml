@@ -1,0 +1,33 @@
+﻿@model Doanphanmem.Models.UserModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";}
+
+@using (Html.BeginForm("Login", "Account", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="login">
+        <div class="form">
+            <h2 style="color:white" style="position:relative; top: -40px;">ĐĂNG NHẬP</h2>
+            <div class="place">
+                <p>Tài Khoản</p>
+                @Html.TextBoxFor(model => model.TK, new { @placeholder = "Nhập Tài Khoản", style = "field-validation-error" })
+                @Html.ValidationMessageFor(model => model.TK)
+            </div>
+
+            <div class="place">
+                <p>Nhập Mật Khẩu</p>
+                @Html.PasswordFor(model => model.Pass)
+                @Html.ValidationMessageFor(model => model.Pass)
+                @if (ViewBag.ErrorInfo == null)
+                {
+                    <p>@ViewBag.ErrorInfo</p>
+                }
+            </div>
+            <input type="submit" value="Đăng Nhập" class="submit" id="sub">
+        </div>
+    </div>
+}
+
+

@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
+        <div class="container">
+            @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            @RenderSection("UserInformation", required: false)
+
+            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1">
+                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>
+                        @if (Session["UserID"] != null)
+                        {
+                             
+                            <h1 style="color:white">@Session["UserName"]</h1>
+                            //var user = (Doanphanmem.Models.KhachHang)System.Web.HttpContext.Current.Session["UserName"];
+                           
+                        <li>
+                            @Html.Action("GiohangPartial", "GioHang");
+                        </li>
+                        <li>
+                            @Html.Action("YeuThichPartial", "YeuThich");
+                        </li>
+                    }
+                    else
+                    {
+                        <p style="color:white">Bạn chưa đăng nhập</p>
+                        @*<h1 style="font-size:100px">@Session["ID"]</h1>*@
+                        <div style="display:flex; margin-left:500px;">
+                        <li class="nav-item_">
+                            <a class="nav-link" href="@Url.Action("Login", "Account")">Đăng nhập</a>
+                        </li>
+                        <li class="nav-item_">
+                            <a class="nav-link" href="#">Đăng ký</a>
+                        </li>
+                </div>
+            }
+
+
+                        </li>
+                        </ul>
+                    </div>
+            </div>
+    </nav>
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
