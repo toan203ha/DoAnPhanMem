@@ -126,6 +126,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\Controllers\AdminController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -184,6 +185,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Admin\admin.css" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
@@ -213,6 +215,7 @@
       <DependentUpon>QL_CHDT.edmx</DependentUpon>
       <LastGenOutput>QL_CHDT.cs</LastGenOutput>
     </Content>
+    <Content Include="Scripts\ADMIN.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -226,6 +229,7 @@
     <Content Include="Models\QL_CHDT.edmx.diagram">
       <DependentUpon>QL_CHDT.edmx</DependentUpon>
     </Content>
+    <Content Include="Admin\Layout\_LayoutPage1.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -273,11 +277,10 @@
     <Content Include="Views\SanPhams\Index.cshtml" />
     <Content Include="Views\SanPhams\SP_giamgia.cshtml" />
     <Content Include="Views\SanPhams\DonHangKH.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\Index_.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Admin\Controller\" />
-    <Folder Include="Admin\NewFolder1\" />
-    <Folder Include="Admin\View\" />
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
