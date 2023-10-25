@@ -39,7 +39,6 @@ namespace Doanphanmem.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CTDATHANG> CTDATHANGs { get; set; }
         public virtual Mau Mau { get; set; }
-        public virtual Mau Mau1 { get; set; }
         public virtual PhanLoai PhanLoai { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Vourcher> Vourchers { get; set; }

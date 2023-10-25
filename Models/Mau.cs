@@ -18,7 +18,6 @@ namespace Doanphanmem.Models
         public Mau()
         {
             this.SanPhams = new HashSet<SanPham>();
-            this.SanPhams1 = new HashSet<SanPham>();
         }
     
         public string Tenmau { get; set; }
@@ -26,7 +25,5 @@ namespace Doanphanmem.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SanPham> SanPhams { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SanPham> SanPhams1 { get; set; }
     }
 }

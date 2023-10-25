@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="QL_CHDTModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="QL_CHDTModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CTDATHANG">
           <Key>
             <PropertyRef Name="SODH" />
@@ -60,7 +60,7 @@
           </Key>
           <Property Name="Tenloai" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="MaLoai" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="HinhLoai" Type="nchar" MaxLength="400" />
+          <Property Name="HinhLoai" Type="nvarchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <EntityType Name="SanPham">
           <Key>
@@ -110,18 +110,6 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__SanPham__Mamau__5629CD9C">
-          <End Role="Mau" Type="Self.Mau" Multiplicity="0..1" />
-          <End Role="SanPham" Type="Self.SanPham" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Mau">
-              <PropertyRef Name="Mamau" />
-            </Principal>
-            <Dependent Role="SanPham">
-              <PropertyRef Name="Mamau" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__SanPham__Mamau__619B8048">
           <End Role="Mau" Type="Self.Mau" Multiplicity="0..1" />
           <End Role="SanPham" Type="Self.SanPham" Multiplicity="*" />
           <ReferentialConstraint>
@@ -222,10 +210,6 @@
             <End Role="Mau" EntitySet="Mau" />
             <End Role="SanPham" EntitySet="SanPham" />
           </AssociationSet>
-          <AssociationSet Name="FK__SanPham__Mamau__619B8048" Association="Self.FK__SanPham__Mamau__619B8048">
-            <End Role="Mau" EntitySet="Mau" />
-            <End Role="SanPham" EntitySet="SanPham" />
-          </AssociationSet>
           <AssociationSet Name="FK__Vourcher__MaSP__60A75C0F" Association="Self.FK__Vourcher__MaSP__60A75C0F">
             <End Role="SanPham" EntitySet="SanPham" />
             <End Role="Vourcher" EntitySet="Vourcher" />
@@ -251,56 +235,11 @@
             <End Role="DONDATHANG" EntitySet="DONDATHANG" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="QL_CHDTModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="QL_CHDTEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="CTDATHANGs" EntityType="QL_CHDTModel.CTDATHANG" />
-          <EntitySet Name="DONDATHANGs" EntityType="QL_CHDTModel.DONDATHANG" />
-          <EntitySet Name="KhachHangs" EntityType="QL_CHDTModel.KhachHang" />
-          <EntitySet Name="Maus" EntityType="QL_CHDTModel.Mau" />
-          <EntitySet Name="PhanLoais" EntityType="QL_CHDTModel.PhanLoai" />
-          <EntitySet Name="SanPhams" EntityType="QL_CHDTModel.SanPham" />
-          <EntitySet Name="Vourchers" EntityType="QL_CHDTModel.Vourcher" />
-          <EntitySet Name="YeuThiches" EntityType="QL_CHDTModel.YeuThich" />
-          <AssociationSet Name="FK_CTDatHang_DonDatHang" Association="QL_CHDTModel.FK_CTDatHang_DonDatHang">
-            <End Role="DONDATHANG" EntitySet="DONDATHANGs" />
-            <End Role="CTDATHANG" EntitySet="CTDATHANGs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CTDatHang_Sach" Association="QL_CHDTModel.FK_CTDatHang_Sach">
-            <End Role="SanPham" EntitySet="SanPhams" />
-            <End Role="CTDATHANG" EntitySet="CTDATHANGs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_DonDatHang_KhachHang" Association="QL_CHDTModel.FK_DonDatHang_KhachHang">
-            <End Role="KhachHang" EntitySet="KhachHangs" />
-            <End Role="DONDATHANG" EntitySet="DONDATHANGs" />
-          </AssociationSet>
-          <AssociationSet Name="FK__YeuThich__MaKH__5DCAEF64" Association="QL_CHDTModel.FK__YeuThich__MaKH__5DCAEF64">
-            <End Role="KhachHang" EntitySet="KhachHangs" />
-            <End Role="YeuThich" EntitySet="YeuThiches" />
-          </AssociationSet>
-          <AssociationSet Name="FK__SanPham__Mamau__5629CD9C" Association="QL_CHDTModel.FK__SanPham__Mamau__5629CD9C">
-            <End Role="Mau" EntitySet="Maus" />
-            <End Role="SanPham" EntitySet="SanPhams" />
-          </AssociationSet>
-          <AssociationSet Name="FK__SanPham__Mamau__619B8048" Association="QL_CHDTModel.FK__SanPham__Mamau__619B8048">
-            <End Role="Mau" EntitySet="Maus" />
-            <End Role="SanPham" EntitySet="SanPhams" />
-          </AssociationSet>
-          <AssociationSet Name="FK__SanPham__MaLoai__5535A963" Association="QL_CHDTModel.FK__SanPham__MaLoai__5535A963">
-            <End Role="PhanLoai" EntitySet="PhanLoais" />
-            <End Role="SanPham" EntitySet="SanPhams" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Vourcher__MaSP__60A75C0F" Association="QL_CHDTModel.FK__Vourcher__MaSP__60A75C0F">
-            <End Role="SanPham" EntitySet="SanPhams" />
-            <End Role="Vourcher" EntitySet="Vourchers" />
-          </AssociationSet>
-          <AssociationSet Name="FK__YeuThich__MaSP__5CD6CB2B" Association="QL_CHDTModel.FK__YeuThich__MaSP__5CD6CB2B">
-            <End Role="SanPham" EntitySet="SanPhams" />
-            <End Role="YeuThich" EntitySet="YeuThiches" />
-          </AssociationSet>
-        </EntityContainer>
         <EntityType Name="CTDATHANG">
           <Key>
             <PropertyRef Name="SODH" />
@@ -311,8 +250,8 @@
           <Property Name="MaSP" Type="Int32" Nullable="false" />
           <Property Name="Dongia" Type="Decimal" Precision="9" Scale="2" />
           <Property Name="Thanhtien" Type="Decimal" Precision="20" Scale="2" annotation:StoreGeneratedPattern="Computed" />
-          <NavigationProperty Name="DONDATHANG" Relationship="QL_CHDTModel.FK_CTDatHang_DonDatHang" FromRole="CTDATHANG" ToRole="DONDATHANG" />
-          <NavigationProperty Name="SanPham" Relationship="QL_CHDTModel.FK_CTDatHang_Sach" FromRole="CTDATHANG" ToRole="SanPham" />
+          <NavigationProperty Name="DONDATHANG" Relationship="Self.FK_CTDatHang_DonDatHang" FromRole="CTDATHANG" ToRole="DONDATHANG" />
+          <NavigationProperty Name="SanPham" Relationship="Self.FK_CTDatHang_Sach" FromRole="CTDATHANG" ToRole="SanPham" />
         </EntityType>
         <EntityType Name="DONDATHANG">
           <Key>
@@ -329,43 +268,42 @@
           <Property Name="Dienthoainhan" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="HTThanhtoan" Type="Boolean" />
           <Property Name="HTGiaohang" Type="Boolean" />
-          <NavigationProperty Name="CTDATHANGs" Relationship="QL_CHDTModel.FK_CTDatHang_DonDatHang" FromRole="DONDATHANG" ToRole="CTDATHANG" />
-          <NavigationProperty Name="KhachHang" Relationship="QL_CHDTModel.FK_DonDatHang_KhachHang" FromRole="DONDATHANG" ToRole="KhachHang" />
+          <NavigationProperty Name="CTDATHANGs" Relationship="Self.FK_CTDatHang_DonDatHang" FromRole="DONDATHANG" ToRole="CTDATHANG" />
+          <NavigationProperty Name="KhachHang" Relationship="Self.FK_DonDatHang_KhachHang" FromRole="DONDATHANG" ToRole="KhachHang" />
         </EntityType>
         <EntityType Name="KhachHang">
           <Key>
             <PropertyRef Name="MaKH" />
           </Key>
           <Property Name="MaKH" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TenKH" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="TenKH" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="sdt" Type="Int32" Nullable="false" />
           <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="DiaChi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="NgaySinh" Type="DateTime" Precision="0" />
-          <Property Name="TK" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="Pass" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="TK" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Pass" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Roleuser" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="Hinh" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="DONDATHANGs" Relationship="QL_CHDTModel.FK_DonDatHang_KhachHang" FromRole="KhachHang" ToRole="DONDATHANG" />
-          <NavigationProperty Name="YeuThiches" Relationship="QL_CHDTModel.FK__YeuThich__MaKH__5DCAEF64" FromRole="KhachHang" ToRole="YeuThich" />
+          <NavigationProperty Name="DONDATHANGs" Relationship="Self.FK_DonDatHang_KhachHang" FromRole="KhachHang" ToRole="DONDATHANG" />
+          <NavigationProperty Name="YeuThiches" Relationship="Self.FK__YeuThich__MaKH__5DCAEF64" FromRole="KhachHang" ToRole="YeuThich" />
         </EntityType>
         <EntityType Name="Mau">
           <Key>
             <PropertyRef Name="Mamau" />
           </Key>
-          <Property Name="Tenmau" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Tenmau" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Mamau" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="SanPhams" Relationship="QL_CHDTModel.FK__SanPham__Mamau__5629CD9C" FromRole="Mau" ToRole="SanPham" />
-          <NavigationProperty Name="SanPhams1" Relationship="QL_CHDTModel.FK__SanPham__Mamau__619B8048" FromRole="Mau" ToRole="SanPham" />
+          <NavigationProperty Name="SanPhams" Relationship="Self.FK__SanPham__Mamau__5629CD9C" FromRole="Mau" ToRole="SanPham" />
         </EntityType>
         <EntityType Name="PhanLoai">
           <Key>
             <PropertyRef Name="MaLoai" />
           </Key>
-          <Property Name="Tenloai" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Tenloai" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="MaLoai" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="HinhLoai" Type="String" MaxLength="400" FixedLength="true" Unicode="true" />
-          <NavigationProperty Name="SanPhams" Relationship="QL_CHDTModel.FK__SanPham__MaLoai__5535A963" FromRole="PhanLoai" ToRole="SanPham" />
+          <Property Name="HinhLoai" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="SanPhams" Relationship="Self.FK__SanPham__MaLoai__5535A963" FromRole="PhanLoai" ToRole="SanPham" />
         </EntityType>
         <EntityType Name="SanPham">
           <Key>
@@ -384,12 +322,11 @@
           <Property Name="Soluongton" Type="Int32" />
           <Property Name="MaLoai" Type="Int32" Nullable="false" />
           <Property Name="Mamau" Type="Int32" />
-          <NavigationProperty Name="CTDATHANGs" Relationship="QL_CHDTModel.FK_CTDatHang_Sach" FromRole="SanPham" ToRole="CTDATHANG" />
-          <NavigationProperty Name="Mau" Relationship="QL_CHDTModel.FK__SanPham__Mamau__5629CD9C" FromRole="SanPham" ToRole="Mau" />
-          <NavigationProperty Name="Mau1" Relationship="QL_CHDTModel.FK__SanPham__Mamau__619B8048" FromRole="SanPham" ToRole="Mau" />
-          <NavigationProperty Name="PhanLoai" Relationship="QL_CHDTModel.FK__SanPham__MaLoai__5535A963" FromRole="SanPham" ToRole="PhanLoai" />
-          <NavigationProperty Name="Vourchers" Relationship="QL_CHDTModel.FK__Vourcher__MaSP__60A75C0F" FromRole="SanPham" ToRole="Vourcher" />
-          <NavigationProperty Name="YeuThiches" Relationship="QL_CHDTModel.FK__YeuThich__MaSP__5CD6CB2B" FromRole="SanPham" ToRole="YeuThich" />
+          <NavigationProperty Name="CTDATHANGs" Relationship="Self.FK_CTDatHang_Sach" FromRole="SanPham" ToRole="CTDATHANG" />
+          <NavigationProperty Name="Mau" Relationship="Self.FK__SanPham__Mamau__5629CD9C" FromRole="SanPham" ToRole="Mau" />
+          <NavigationProperty Name="PhanLoai" Relationship="Self.FK__SanPham__MaLoai__5535A963" FromRole="SanPham" ToRole="PhanLoai" />
+          <NavigationProperty Name="Vourchers" Relationship="Self.FK__Vourcher__MaSP__60A75C0F" FromRole="SanPham" ToRole="Vourcher" />
+          <NavigationProperty Name="YeuThiches" Relationship="Self.FK__YeuThich__MaSP__5CD6CB2B" FromRole="SanPham" ToRole="YeuThich" />
         </EntityType>
         <EntityType Name="Vourcher">
           <Key>
@@ -399,7 +336,7 @@
           <Property Name="Uudai" Type="Int32" />
           <Property Name="ThongTinUuDai" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="MaSP" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="SanPham" Relationship="QL_CHDTModel.FK__Vourcher__MaSP__60A75C0F" FromRole="Vourcher" ToRole="SanPham" />
+          <NavigationProperty Name="SanPham" Relationship="Self.FK__Vourcher__MaSP__60A75C0F" FromRole="Vourcher" ToRole="SanPham" />
         </EntityType>
         <EntityType Name="YeuThich">
           <Key>
@@ -408,12 +345,12 @@
           <Property Name="MaYT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="MaSP" Type="Int32" Nullable="false" />
           <Property Name="MaKH" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="KhachHang" Relationship="QL_CHDTModel.FK__YeuThich__MaKH__5DCAEF64" FromRole="YeuThich" ToRole="KhachHang" />
-          <NavigationProperty Name="SanPham" Relationship="QL_CHDTModel.FK__YeuThich__MaSP__5CD6CB2B" FromRole="YeuThich" ToRole="SanPham" />
+          <NavigationProperty Name="KhachHang" Relationship="Self.FK__YeuThich__MaKH__5DCAEF64" FromRole="YeuThich" ToRole="KhachHang" />
+          <NavigationProperty Name="SanPham" Relationship="Self.FK__YeuThich__MaSP__5CD6CB2B" FromRole="YeuThich" ToRole="SanPham" />
         </EntityType>
         <Association Name="FK_CTDatHang_DonDatHang">
-          <End Type="QL_CHDTModel.DONDATHANG" Role="DONDATHANG" Multiplicity="1" />
-          <End Type="QL_CHDTModel.CTDATHANG" Role="CTDATHANG" Multiplicity="*" />
+          <End Role="DONDATHANG" Type="Self.DONDATHANG" Multiplicity="1" />
+          <End Role="CTDATHANG" Type="Self.CTDATHANG" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DONDATHANG">
               <PropertyRef Name="SODH" />
@@ -424,8 +361,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CTDatHang_Sach">
-          <End Type="QL_CHDTModel.SanPham" Role="SanPham" Multiplicity="1" />
-          <End Type="QL_CHDTModel.CTDATHANG" Role="CTDATHANG" Multiplicity="*" />
+          <End Role="SanPham" Type="Self.SanPham" Multiplicity="1" />
+          <End Role="CTDATHANG" Type="Self.CTDATHANG" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="SanPham">
               <PropertyRef Name="MaSP" />
@@ -436,8 +373,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_DonDatHang_KhachHang">
-          <End Type="QL_CHDTModel.KhachHang" Role="KhachHang" Multiplicity="0..1" />
-          <End Type="QL_CHDTModel.DONDATHANG" Role="DONDATHANG" Multiplicity="*" />
+          <End Role="KhachHang" Type="Self.KhachHang" Multiplicity="0..1" />
+          <End Role="DONDATHANG" Type="Self.DONDATHANG" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="KhachHang">
               <PropertyRef Name="MaKH" />
@@ -448,8 +385,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__YeuThich__MaKH__5DCAEF64">
-          <End Type="QL_CHDTModel.KhachHang" Role="KhachHang" Multiplicity="1" />
-          <End Type="QL_CHDTModel.YeuThich" Role="YeuThich" Multiplicity="*" />
+          <End Role="KhachHang" Type="Self.KhachHang" Multiplicity="1" />
+          <End Role="YeuThich" Type="Self.YeuThich" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="KhachHang">
               <PropertyRef Name="MaKH" />
@@ -460,20 +397,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__SanPham__Mamau__5629CD9C">
-          <End Type="QL_CHDTModel.Mau" Role="Mau" Multiplicity="0..1" />
-          <End Type="QL_CHDTModel.SanPham" Role="SanPham" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Mau">
-              <PropertyRef Name="Mamau" />
-            </Principal>
-            <Dependent Role="SanPham">
-              <PropertyRef Name="Mamau" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__SanPham__Mamau__619B8048">
-          <End Type="QL_CHDTModel.Mau" Role="Mau" Multiplicity="0..1" />
-          <End Type="QL_CHDTModel.SanPham" Role="SanPham" Multiplicity="*" />
+          <End Role="Mau" Type="Self.Mau" Multiplicity="0..1" />
+          <End Role="SanPham" Type="Self.SanPham" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Mau">
               <PropertyRef Name="Mamau" />
@@ -484,8 +409,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__SanPham__MaLoai__5535A963">
-          <End Type="QL_CHDTModel.PhanLoai" Role="PhanLoai" Multiplicity="1" />
-          <End Type="QL_CHDTModel.SanPham" Role="SanPham" Multiplicity="*" />
+          <End Role="PhanLoai" Type="Self.PhanLoai" Multiplicity="1" />
+          <End Role="SanPham" Type="Self.SanPham" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PhanLoai">
               <PropertyRef Name="MaLoai" />
@@ -496,8 +421,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Vourcher__MaSP__60A75C0F">
-          <End Type="QL_CHDTModel.SanPham" Role="SanPham" Multiplicity="1" />
-          <End Type="QL_CHDTModel.Vourcher" Role="Vourcher" Multiplicity="*" />
+          <End Role="SanPham" Type="Self.SanPham" Multiplicity="1" />
+          <End Role="Vourcher" Type="Self.Vourcher" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="SanPham">
               <PropertyRef Name="MaSP" />
@@ -508,8 +433,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__YeuThich__MaSP__5CD6CB2B">
-          <End Type="QL_CHDTModel.SanPham" Role="SanPham" Multiplicity="1" />
-          <End Type="QL_CHDTModel.YeuThich" Role="YeuThich" Multiplicity="*" />
+          <End Role="SanPham" Type="Self.SanPham" Multiplicity="1" />
+          <End Role="YeuThich" Type="Self.YeuThich" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="SanPham">
               <PropertyRef Name="MaSP" />
@@ -519,7 +444,49 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        </Schema>
+        <EntityContainer Name="QL_CHDTEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CTDATHANGs" EntityType="Self.CTDATHANG" />
+          <EntitySet Name="DONDATHANGs" EntityType="Self.DONDATHANG" />
+          <EntitySet Name="KhachHangs" EntityType="Self.KhachHang" />
+          <EntitySet Name="Maus" EntityType="Self.Mau" />
+          <EntitySet Name="PhanLoais" EntityType="Self.PhanLoai" />
+          <EntitySet Name="SanPhams" EntityType="Self.SanPham" />
+          <EntitySet Name="Vourchers" EntityType="Self.Vourcher" />
+          <EntitySet Name="YeuThiches" EntityType="Self.YeuThich" />
+          <AssociationSet Name="FK_CTDatHang_DonDatHang" Association="Self.FK_CTDatHang_DonDatHang">
+            <End Role="DONDATHANG" EntitySet="DONDATHANGs" />
+            <End Role="CTDATHANG" EntitySet="CTDATHANGs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CTDatHang_Sach" Association="Self.FK_CTDatHang_Sach">
+            <End Role="SanPham" EntitySet="SanPhams" />
+            <End Role="CTDATHANG" EntitySet="CTDATHANGs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DonDatHang_KhachHang" Association="Self.FK_DonDatHang_KhachHang">
+            <End Role="KhachHang" EntitySet="KhachHangs" />
+            <End Role="DONDATHANG" EntitySet="DONDATHANGs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__YeuThich__MaKH__5DCAEF64" Association="Self.FK__YeuThich__MaKH__5DCAEF64">
+            <End Role="KhachHang" EntitySet="KhachHangs" />
+            <End Role="YeuThich" EntitySet="YeuThiches" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SanPham__Mamau__5629CD9C" Association="Self.FK__SanPham__Mamau__5629CD9C">
+            <End Role="Mau" EntitySet="Maus" />
+            <End Role="SanPham" EntitySet="SanPhams" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SanPham__MaLoai__5535A963" Association="Self.FK__SanPham__MaLoai__5535A963">
+            <End Role="PhanLoai" EntitySet="PhanLoais" />
+            <End Role="SanPham" EntitySet="SanPhams" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Vourcher__MaSP__60A75C0F" Association="Self.FK__Vourcher__MaSP__60A75C0F">
+            <End Role="SanPham" EntitySet="SanPhams" />
+            <End Role="Vourcher" EntitySet="Vourchers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__YeuThich__MaSP__5CD6CB2B" Association="Self.FK__YeuThich__MaSP__5CD6CB2B">
+            <End Role="SanPham" EntitySet="SanPhams" />
+            <End Role="YeuThich" EntitySet="YeuThiches" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -528,99 +495,99 @@
           <EntitySetMapping Name="CTDATHANGs">
             <EntityTypeMapping TypeName="QL_CHDTModel.CTDATHANG">
               <MappingFragment StoreEntitySet="CTDATHANG">
-                <ScalarProperty Name="Thanhtien" ColumnName="Thanhtien" />
-                <ScalarProperty Name="Dongia" ColumnName="Dongia" />
-                <ScalarProperty Name="MaSP" ColumnName="MaSP" />
-                <ScalarProperty Name="Soluong" ColumnName="Soluong" />
                 <ScalarProperty Name="SODH" ColumnName="SODH" />
+                <ScalarProperty Name="Soluong" ColumnName="Soluong" />
+                <ScalarProperty Name="MaSP" ColumnName="MaSP" />
+                <ScalarProperty Name="Dongia" ColumnName="Dongia" />
+                <ScalarProperty Name="Thanhtien" ColumnName="Thanhtien" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="DONDATHANGs">
             <EntityTypeMapping TypeName="QL_CHDTModel.DONDATHANG">
               <MappingFragment StoreEntitySet="DONDATHANG">
-                <ScalarProperty Name="HTGiaohang" ColumnName="HTGiaohang" />
-                <ScalarProperty Name="HTThanhtoan" ColumnName="HTThanhtoan" />
-                <ScalarProperty Name="Dienthoainhan" ColumnName="Dienthoainhan" />
-                <ScalarProperty Name="Trigia" ColumnName="Trigia" />
-                <ScalarProperty Name="Diachinhan" ColumnName="Diachinhan" />
-                <ScalarProperty Name="Tennguoinhan" ColumnName="Tennguoinhan" />
-                <ScalarProperty Name="Ngaygiaohang" ColumnName="Ngaygiaohang" />
-                <ScalarProperty Name="Dagiao" ColumnName="Dagiao" />
-                <ScalarProperty Name="NgayDH" ColumnName="NgayDH" />
-                <ScalarProperty Name="MaKH" ColumnName="MaKH" />
                 <ScalarProperty Name="SODH" ColumnName="SODH" />
+                <ScalarProperty Name="MaKH" ColumnName="MaKH" />
+                <ScalarProperty Name="NgayDH" ColumnName="NgayDH" />
+                <ScalarProperty Name="Dagiao" ColumnName="Dagiao" />
+                <ScalarProperty Name="Ngaygiaohang" ColumnName="Ngaygiaohang" />
+                <ScalarProperty Name="Tennguoinhan" ColumnName="Tennguoinhan" />
+                <ScalarProperty Name="Diachinhan" ColumnName="Diachinhan" />
+                <ScalarProperty Name="Trigia" ColumnName="Trigia" />
+                <ScalarProperty Name="Dienthoainhan" ColumnName="Dienthoainhan" />
+                <ScalarProperty Name="HTThanhtoan" ColumnName="HTThanhtoan" />
+                <ScalarProperty Name="HTGiaohang" ColumnName="HTGiaohang" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="KhachHangs">
             <EntityTypeMapping TypeName="QL_CHDTModel.KhachHang">
               <MappingFragment StoreEntitySet="KhachHang">
-                <ScalarProperty Name="Hinh" ColumnName="Hinh" />
-                <ScalarProperty Name="Roleuser" ColumnName="Roleuser" />
-                <ScalarProperty Name="Pass" ColumnName="Pass" />
-                <ScalarProperty Name="TK" ColumnName="TK" />
-                <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
-                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="sdt" ColumnName="sdt" />
-                <ScalarProperty Name="TenKH" ColumnName="TenKH" />
                 <ScalarProperty Name="MaKH" ColumnName="MaKH" />
+                <ScalarProperty Name="TenKH" ColumnName="TenKH" />
+                <ScalarProperty Name="sdt" ColumnName="sdt" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+                <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
+                <ScalarProperty Name="TK" ColumnName="TK" />
+                <ScalarProperty Name="Pass" ColumnName="Pass" />
+                <ScalarProperty Name="Roleuser" ColumnName="Roleuser" />
+                <ScalarProperty Name="Hinh" ColumnName="Hinh" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Maus">
             <EntityTypeMapping TypeName="QL_CHDTModel.Mau">
               <MappingFragment StoreEntitySet="Mau">
-                <ScalarProperty Name="Mamau" ColumnName="Mamau" />
                 <ScalarProperty Name="Tenmau" ColumnName="Tenmau" />
+                <ScalarProperty Name="Mamau" ColumnName="Mamau" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PhanLoais">
             <EntityTypeMapping TypeName="QL_CHDTModel.PhanLoai">
               <MappingFragment StoreEntitySet="PhanLoai">
-                <ScalarProperty Name="HinhLoai" ColumnName="HinhLoai" />
-                <ScalarProperty Name="MaLoai" ColumnName="MaLoai" />
                 <ScalarProperty Name="Tenloai" ColumnName="Tenloai" />
+                <ScalarProperty Name="MaLoai" ColumnName="MaLoai" />
+                <ScalarProperty Name="HinhLoai" ColumnName="HinhLoai" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SanPhams">
             <EntityTypeMapping TypeName="QL_CHDTModel.SanPham">
               <MappingFragment StoreEntitySet="SanPham">
-                <ScalarProperty Name="Mamau" ColumnName="Mamau" />
-                <ScalarProperty Name="MaLoai" ColumnName="MaLoai" />
-                <ScalarProperty Name="Soluongton" ColumnName="Soluongton" />
-                <ScalarProperty Name="Thongso" ColumnName="Thongso" />
-                <ScalarProperty Name="Mota" ColumnName="Mota" />
-                <ScalarProperty Name="Hinh4" ColumnName="Hinh4" />
-                <ScalarProperty Name="Hinh3" ColumnName="Hinh3" />
-                <ScalarProperty Name="Hinh2" ColumnName="Hinh2" />
-                <ScalarProperty Name="Hinh1" ColumnName="Hinh1" />
-                <ScalarProperty Name="GiaGiam" ColumnName="GiaGiam" />
-                <ScalarProperty Name="GiaSp" ColumnName="GiaSp" />
-                <ScalarProperty Name="TenSP" ColumnName="TenSP" />
                 <ScalarProperty Name="MaSP" ColumnName="MaSP" />
+                <ScalarProperty Name="TenSP" ColumnName="TenSP" />
+                <ScalarProperty Name="GiaSp" ColumnName="GiaSp" />
+                <ScalarProperty Name="GiaGiam" ColumnName="GiaGiam" />
+                <ScalarProperty Name="Hinh1" ColumnName="Hinh1" />
+                <ScalarProperty Name="Hinh2" ColumnName="Hinh2" />
+                <ScalarProperty Name="Hinh3" ColumnName="Hinh3" />
+                <ScalarProperty Name="Hinh4" ColumnName="Hinh4" />
+                <ScalarProperty Name="Mota" ColumnName="Mota" />
+                <ScalarProperty Name="Thongso" ColumnName="Thongso" />
+                <ScalarProperty Name="Soluongton" ColumnName="Soluongton" />
+                <ScalarProperty Name="MaLoai" ColumnName="MaLoai" />
+                <ScalarProperty Name="Mamau" ColumnName="Mamau" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Vourchers">
             <EntityTypeMapping TypeName="QL_CHDTModel.Vourcher">
               <MappingFragment StoreEntitySet="Vourcher">
-                <ScalarProperty Name="MaSP" ColumnName="MaSP" />
-                <ScalarProperty Name="ThongTinUuDai" ColumnName="ThongTinUuDai" />
-                <ScalarProperty Name="Uudai" ColumnName="Uudai" />
                 <ScalarProperty Name="MaKM" ColumnName="MaKM" />
+                <ScalarProperty Name="Uudai" ColumnName="Uudai" />
+                <ScalarProperty Name="ThongTinUuDai" ColumnName="ThongTinUuDai" />
+                <ScalarProperty Name="MaSP" ColumnName="MaSP" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="YeuThiches">
             <EntityTypeMapping TypeName="QL_CHDTModel.YeuThich">
               <MappingFragment StoreEntitySet="YeuThich">
-                <ScalarProperty Name="MaKH" ColumnName="MaKH" />
-                <ScalarProperty Name="MaSP" ColumnName="MaSP" />
                 <ScalarProperty Name="MaYT" ColumnName="MaYT" />
+                <ScalarProperty Name="MaSP" ColumnName="MaSP" />
+                <ScalarProperty Name="MaKH" ColumnName="MaKH" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
