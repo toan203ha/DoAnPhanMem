@@ -25,15 +25,17 @@
                     <li>
                         @if (Session["UserID"] != null)
                         {
-                             
+
                             <h1 style="color:white">@Session["UserName"]</h1>
-                            //var user = (Doanphanmem.Models.KhachHang)System.Web.HttpContext.Current.Session["UserName"];
-                           
                         <li>
                             @Html.Action("GiohangPartial", "GioHang");
                         </li>
                         <li>
                             @Html.Action("YeuThichPartial", "YeuThich");
+                        </li>
+                        <li>
+                            <a> @Html.ActionLink("Đơn mua", "DonHangKH", "SanPhams", new { IDCus = @HttpContext.Current.Session["UserID"].ToString() }, null)</a>
+
                         </li>
                     }
                     else
@@ -47,10 +49,14 @@
                         <li class="nav-item_">
                             <a class="nav-link" href="#">Đăng ký</a>
                         </li>
-                </div>
-            }
+                        <li class="nav-link">
+                        <li>
+                            @Html.Action("GiohangPartial", "GioHang");
+                        </li>
+                        </li>
+</div>
 
-
+                    }
                         </li>
                         </ul>
                     </div>

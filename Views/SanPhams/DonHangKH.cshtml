@@ -1,0 +1,52 @@
+﻿@model List<Doanphanmem.Models.DONDATHANG>
+@using Doanphanmem.Models
+@{
+    ViewBag.Title = "Danh sách ĐƠN HÀNG đã đặt";
+    Layout = null;
+    var db = new QL_CHDTEntities();
+
+}
+
+
+<p style="text-align:center;margin-top:0;padding-top:20px;font-size:30px; font-weight:bold">Danh sách phòng đã đặt</p>
+
+<style>
+    #layout_order {
+        display: flex;
+    }
+</style>
+
+@foreach (var order in Model)
+{
+    <div style="margin:100px; font-size:22px">
+        @foreach (var detail in order.CTDATHANG)
+        {
+
+            var cus = db.SanPham.Where(s => s.MaSP == detail.MaSP).Select(s => s.TenSP).FirstOrDefault();
+
+            <div id="layout_order">
+                <p>
+                    Tên : @cus
+                </p>
+                <p>
+                    HTGH : @order.HTGiaohang
+                </p>
+                <p>
+                    HTTT : @order.HTThanhtoan
+                </p>
+                <p>
+                    TTDH : @order.Dagiao
+                </p>
+                <p>
+                    Date Order: @order.NgayDH
+                </p>
+                <p>
+                    Address Delivery: @order.Diachinhan
+                </p>
+                <p> Số lượng: @detail.Soluong</p>
+                <p>@detail.Dongia</p>
+            </div>
+        }
+    </div>
+}
+

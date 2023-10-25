@@ -23,11 +23,9 @@ namespace Doanphanmem.Controllers
         // GET: Cart
         public List<MatHangMua> Index()
         {
-
             List<MatHangMua> gioHang = Session["GioHang"] as List<MatHangMua>;
             if (gioHang == null || gioHang.Count == 0)
             {
-
                 gioHang = new List<MatHangMua>();
                 Session["GioHang"] = gioHang;
                 //return View("CartNoProduct");
@@ -73,10 +71,22 @@ namespace Doanphanmem.Controllers
         {
             List<MatHangMua> giohang = Index();
             MatHangMua sanpham = giohang.FirstOrDefault(s => s.MaDT == MaSP);
+            Vourcher exit = db.Vourcher.Find(MaSP);
             if (sanpham == null)
             {
                 sanpham = new MatHangMua(MaSP);
-                giohang.Add(sanpham);
+                if (exit != null)
+                {
+                    // Lấy thông tin giảm giá từ voucher
+                    int giamGia = (int)(sanpham.Dongia * exit.Uudai / 100);
+                    // Tính giá sản phẩm với giảm giá
+                    int giaSauGiamGia = (int)(sanpham.Dongia - giamGia);
+                    // Truyền giá sản phẩm đã giảm giá vào view để hiển thị
+                    ViewBag.GiaSauGiamGia = giaSauGiamGia;
+                    sanpham.Dongia = giaSauGiamGia;
+                }             
+                    giohang.Add(sanpham);
+                
             }
             else
             {

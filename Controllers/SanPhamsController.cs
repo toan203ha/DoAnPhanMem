@@ -14,6 +14,63 @@ namespace Doanphanmem.Controllers
     {
         private QL_CHDTEntities db = new QL_CHDTEntities();
 
+
+        //Bộ lọc
+        //public ActionResult Filter(string ten,int gia)
+        //{
+ 
+        //}
+
+        // danh sách đơn hàng của khách hàng
+        public ActionResult DonHangKH(int IDCus)
+        {
+            // Truy vấn dữ liệu từ cơ sở dữ liệu dựa trên IDCus
+            IDCus = (int)Session["UserID"];
+            var orders = db.DONDATHANG
+                .Where(o => o.MaKH == IDCus)
+                .Include(o => o.CTDATHANG)  
+                .ToList();
+            return View(orders);
+        }
+ 
+        public ActionResult getCus(int ID)
+        {
+            var cus = db.SanPham
+                  .Where(s => s.MaSP == ID)
+                  .Select(s => s.TenSP)
+                  .FirstOrDefault();
+            return View(cus);
+        }
+
+
+        //giảm giá sản phẩm
+        public ActionResult SP_giamgia(int? id)
+        {
+            // Lấy thông tin sản phẩm từ bảng SanPham
+            //var sanPham = db.SanPham.FirstOrDefault(s => s.MaSP == maSanPham);
+            SanPham sanPham = db.SanPham.Find(id);
+            if (sanPham != null)
+            {
+                // Kiểm tra xem sản phẩm có trong bảng Voucher không
+                Vourcher voucher = db.Vourcher.Find(id);
+
+                if (voucher != null)
+                {
+                    // Lấy thông tin giảm giá từ voucher
+                    int giamGia = (int)(sanPham.GiaSp * voucher.Uudai /100);
+                    // Tính giá sản phẩm với giảm giá
+                    int giaSauGiamGia = (int)(sanPham.GiaSp - giamGia);
+                    // Truyền giá sản phẩm đã giảm giá vào view để hiển thị
+                    ViewBag.GiaSauGiamGia = giaSauGiamGia;
+                }
+
+                return View(sanPham);
+            }
+            // Xử lý khi sản phẩm không tồn tại
+            return RedirectToAction("Index");
+        }
+
+
         // GET: SanPhams
         public ActionResult Index()
         {

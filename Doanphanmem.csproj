@@ -271,8 +271,13 @@
     <Content Include="Views\SanPhams\Details.cshtml" />
     <Content Include="Views\SanPhams\Edit.cshtml" />
     <Content Include="Views\SanPhams\Index.cshtml" />
+    <Content Include="Views\SanPhams\SP_giamgia.cshtml" />
+    <Content Include="Views\SanPhams\DonHangKH.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Admin\Controller\" />
+    <Folder Include="Admin\NewFolder1\" />
+    <Folder Include="Admin\View\" />
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>

@@ -1,0 +1,30 @@
+﻿@model Doanphanmem.Models.SanPham
+<div>
+    <h2>@Model.TenSP</h2>
+    <p>Mô tả: @Model.Mota</p>
+
+    @if (ViewBag.GiaSauGiamGia != null)
+    {
+        <p>Giá: <del>@Model.GiaSp</del> Giá sau giảm giá: @ViewBag.GiaSauGiamGia</p>
+    }
+    else
+    {
+        <p>Giá: @Model.GiaSp</p>
+    }
+
+</div>
+
+<a href="@Url.Action("Index", "SanPhams")">Quay lại danh sách sản phẩm</a>
+<a class="btn btn-primary" href="@Url.Action("AddProduct", "GioHang", new
+{ MaSP = Model.MaSP })">
+    Đặt mua
+</a>
+
+@if (Session["UserID"] != null)
+{
+    @Html.ActionLink("Thêm vào danh sách yêu thích", "AddToFavorite", "YeuThich", new { productId = Model.MaSP }, new { @class = "btn btn-primary" })
+}
+else
+{
+    <p>Hãy đăng nhập để thêm sản phẩm vào danh sách yêu thích.</p>
+}

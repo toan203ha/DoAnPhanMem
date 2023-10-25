@@ -87,3 +87,17 @@
         </tr>
     </tbody>
 </table>
+
+<script>
+    function updateCart(MaSP, SoLuong) {
+        $.ajax({
+            url: '@Url.Action("UpdateCart", "GioHang")',
+            type: 'POST',
+            data: { MaSP: MaSP, SoLuong: SoLuong },
+            success: function () {
+                // Refresh giỏ hàng sau khi cập nhật
+                window.location.href = '@Url.Action("HienThiGioHang", "GioHang")';
+            }
+        });
+    }
+</script>
