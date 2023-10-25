@@ -17,7 +17,7 @@ namespace Doanphanmem.Controllers
         // GET: Vourchers
         public ActionResult Index()
         {
-            var vourcher = db.Vourcher.Include(v => v.SanPham);
+            var vourcher = db.Vourchers.Include(v => v.SanPham);
             return View(vourcher.ToList());
         }
 
@@ -28,7 +28,7 @@ namespace Doanphanmem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Vourcher vourcher = db.Vourcher.Find(id);
+            Vourcher vourcher = db.Vourchers.Find(id);
             if (vourcher == null)
             {
                 return HttpNotFound();
@@ -39,7 +39,7 @@ namespace Doanphanmem.Controllers
         // GET: Vourchers/Create
         public ActionResult Create()
         {
-            ViewBag.MaSP = new SelectList(db.SanPham, "MaSP", "TenSP");
+            ViewBag.MaSP = new SelectList(db.SanPhams, "MaSP", "TenSP");
             return View();
         }
 
@@ -52,12 +52,12 @@ namespace Doanphanmem.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Vourcher.Add(vourcher);
+                db.Vourchers.Add(vourcher);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.MaSP = new SelectList(db.SanPham, "MaSP", "TenSP", vourcher.MaSP);
+            ViewBag.MaSP = new SelectList(db.SanPhams, "MaSP", "TenSP", vourcher.MaSP);
             return View(vourcher);
         }
 
@@ -68,12 +68,12 @@ namespace Doanphanmem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Vourcher vourcher = db.Vourcher.Find(id);
+            Vourcher vourcher = db.Vourchers.Find(id);
             if (vourcher == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.MaSP = new SelectList(db.SanPham, "MaSP", "TenSP", vourcher.MaSP);
+            ViewBag.MaSP = new SelectList(db.SanPhams, "MaSP", "TenSP", vourcher.MaSP);
             return View(vourcher);
         }
 
@@ -90,7 +90,7 @@ namespace Doanphanmem.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.MaSP = new SelectList(db.SanPham, "MaSP", "TenSP", vourcher.MaSP);
+            ViewBag.MaSP = new SelectList(db.SanPhams, "MaSP", "TenSP", vourcher.MaSP);
             return View(vourcher);
         }
 
@@ -101,7 +101,7 @@ namespace Doanphanmem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Vourcher vourcher = db.Vourcher.Find(id);
+            Vourcher vourcher = db.Vourchers.Find(id);
             if (vourcher == null)
             {
                 return HttpNotFound();
@@ -114,8 +114,8 @@ namespace Doanphanmem.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Vourcher vourcher = db.Vourcher.Find(id);
-            db.Vourcher.Remove(vourcher);
+            Vourcher vourcher = db.Vourchers.Find(id);
+            db.Vourchers.Remove(vourcher);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

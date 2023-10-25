@@ -17,8 +17,8 @@ namespace Doanphanmem.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public KhachHang()
         {
-            this.DONDATHANG = new HashSet<DONDATHANG>();
-            this.YeuThich = new HashSet<YeuThich>();
+            this.DONDATHANGs = new HashSet<DONDATHANG>();
+            this.YeuThiches = new HashSet<YeuThich>();
         }
     
         public int MaKH { get; set; }
@@ -33,8 +33,8 @@ namespace Doanphanmem.Models
         public string Hinh { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DONDATHANG> DONDATHANG { get; set; }
+        public virtual ICollection<DONDATHANG> DONDATHANGs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<YeuThich> YeuThich { get; set; }
+        public virtual ICollection<YeuThich> YeuThiches { get; set; }
     }
 }

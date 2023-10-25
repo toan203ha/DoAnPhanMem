@@ -25,13 +25,13 @@ namespace Doanphanmem.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<CTDATHANG> CTDATHANG { get; set; }
-        public virtual DbSet<DONDATHANG> DONDATHANG { get; set; }
-        public virtual DbSet<KhachHang> KhachHang { get; set; }
-        public virtual DbSet<Mau> Mau { get; set; }
-        public virtual DbSet<PhanLoai> PhanLoai { get; set; }
-        public virtual DbSet<SanPham> SanPham { get; set; }
-        public virtual DbSet<Vourcher> Vourcher { get; set; }
-        public virtual DbSet<YeuThich> YeuThich { get; set; }
+        public virtual DbSet<CTDATHANG> CTDATHANGs { get; set; }
+        public virtual DbSet<DONDATHANG> DONDATHANGs { get; set; }
+        public virtual DbSet<KhachHang> KhachHangs { get; set; }
+        public virtual DbSet<Mau> Maus { get; set; }
+        public virtual DbSet<PhanLoai> PhanLoais { get; set; }
+        public virtual DbSet<SanPham> SanPhams { get; set; }
+        public virtual DbSet<Vourcher> Vourchers { get; set; }
+        public virtual DbSet<YeuThich> YeuThiches { get; set; }
     }
 }

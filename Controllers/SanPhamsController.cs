@@ -26,16 +26,16 @@ namespace Doanphanmem.Controllers
         {
             // Truy vấn dữ liệu từ cơ sở dữ liệu dựa trên IDCus
             IDCus = (int)Session["UserID"];
-            var orders = db.DONDATHANG
+            var orders = db.DONDATHANGs
                 .Where(o => o.MaKH == IDCus)
-                .Include(o => o.CTDATHANG)  
+                .Include(o => o.CTDATHANGs)  
                 .ToList();
             return View(orders);
         }
  
         public ActionResult getCus(int ID)
         {
-            var cus = db.SanPham
+            var cus = db.SanPhams
                   .Where(s => s.MaSP == ID)
                   .Select(s => s.TenSP)
                   .FirstOrDefault();
@@ -48,11 +48,11 @@ namespace Doanphanmem.Controllers
         {
             // Lấy thông tin sản phẩm từ bảng SanPham
             //var sanPham = db.SanPham.FirstOrDefault(s => s.MaSP == maSanPham);
-            SanPham sanPham = db.SanPham.Find(id);
+            SanPham sanPham = db.SanPhams.Find(id);
             if (sanPham != null)
             {
                 // Kiểm tra xem sản phẩm có trong bảng Voucher không
-                Vourcher voucher = db.Vourcher.Find(id);
+                Vourcher voucher = db.Vourchers.Find(id);
 
                 if (voucher != null)
                 {
@@ -74,7 +74,7 @@ namespace Doanphanmem.Controllers
         // GET: SanPhams
         public ActionResult Index()
         {
-            var sanPham = db.SanPham.Include(s => s.Mau).Include(s => s.PhanLoai);
+            var sanPham = db.SanPhams.Include(s => s.Mau).Include(s => s.PhanLoai);
             return View(sanPham.ToList());
         }
 
@@ -85,7 +85,7 @@ namespace Doanphanmem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SanPham sanPham = db.SanPham.Find(id);
+            SanPham sanPham = db.SanPhams.Find(id);
             if (sanPham == null)
             {
                 return HttpNotFound();
@@ -96,8 +96,8 @@ namespace Doanphanmem.Controllers
         // GET: SanPhams/Create
         public ActionResult Create()
         {
-            ViewBag.MaMau = new SelectList(db.Mau, "Mamau", "Tenmau");
-            ViewBag.MaLoai = new SelectList(db.PhanLoai, "MaLoai", "Tenloai");
+            ViewBag.MaMau = new SelectList(db.Maus, "Mamau", "Tenmau");
+            ViewBag.MaLoai = new SelectList(db.PhanLoais, "MaLoai", "Tenloai");
             return View();
         }
 
@@ -110,13 +110,13 @@ namespace Doanphanmem.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.SanPham.Add(sanPham);
+                db.SanPhams.Add(sanPham);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.MaMau = new SelectList(db.Mau, "Mamau", "Tenmau", sanPham.MaMau);
-            ViewBag.MaLoai = new SelectList(db.PhanLoai, "MaLoai", "Tenloai", sanPham.MaLoai);
+            ViewBag.MaMau = new SelectList(db.Maus, "Mamau", "Tenmau", sanPham.Mamau);
+            ViewBag.MaLoai = new SelectList(db.PhanLoais, "MaLoai", "Tenloai", sanPham.MaLoai);
             return View(sanPham);
         }
 
@@ -127,13 +127,13 @@ namespace Doanphanmem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SanPham sanPham = db.SanPham.Find(id);
+            SanPham sanPham = db.SanPhams.Find(id);
             if (sanPham == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.MaMau = new SelectList(db.Mau, "Mamau", "Tenmau", sanPham.MaMau);
-            ViewBag.MaLoai = new SelectList(db.PhanLoai, "MaLoai", "Tenloai", sanPham.MaLoai);
+            ViewBag.MaMau = new SelectList(db.Maus, "Mamau", "Tenmau", sanPham.Mamau);
+            ViewBag.MaLoai = new SelectList(db.PhanLoais, "MaLoai", "Tenloai", sanPham.MaLoai);
             return View(sanPham);
         }
 
@@ -150,8 +150,8 @@ namespace Doanphanmem.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.MaMau = new SelectList(db.Mau, "Mamau", "Tenmau", sanPham.MaMau);
-            ViewBag.MaLoai = new SelectList(db.PhanLoai, "MaLoai", "Tenloai", sanPham.MaLoai);
+            ViewBag.MaMau = new SelectList(db.Maus, "Mamau", "Tenmau", sanPham.Mamau);
+            ViewBag.MaLoai = new SelectList(db.PhanLoais, "MaLoai", "Tenloai", sanPham.MaLoai);
             return View(sanPham);
         }
 
@@ -162,7 +162,7 @@ namespace Doanphanmem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SanPham sanPham = db.SanPham.Find(id);
+            SanPham sanPham = db.SanPhams.Find(id);
             if (sanPham == null)
             {
                 return HttpNotFound();
@@ -175,8 +175,8 @@ namespace Doanphanmem.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            SanPham sanPham = db.SanPham.Find(id);
-            db.SanPham.Remove(sanPham);
+            SanPham sanPham = db.SanPhams.Find(id);
+            db.SanPhams.Remove(sanPham);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
