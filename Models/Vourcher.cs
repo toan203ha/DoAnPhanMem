@@ -18,6 +18,7 @@ namespace Doanphanmem.Models
         public Nullable<int> Uudai { get; set; }
         public string ThongTinUuDai { get; set; }
         public int MaSP { get; set; }
+    
         public virtual SanPham SanPham { get; set; }
     }
 }

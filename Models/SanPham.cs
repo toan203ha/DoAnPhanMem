@@ -17,8 +17,9 @@ namespace Doanphanmem.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public SanPham()
         {
-            this.Vourcher = new HashSet<Vourcher>();
-            this.YeuThich = new HashSet<YeuThich>();
+            this.CTDATHANGs = new HashSet<CTDATHANG>();
+            this.Vourchers = new HashSet<Vourcher>();
+            this.YeuThiches = new HashSet<YeuThich>();
         }
     
         public int MaSP { get; set; }
@@ -31,14 +32,18 @@ namespace Doanphanmem.Models
         public string Hinh4 { get; set; }
         public string Mota { get; set; }
         public string Thongso { get; set; }
+        public Nullable<int> Soluongton { get; set; }
         public int MaLoai { get; set; }
-        public int MaMau { get; set; }
+        public Nullable<int> Mamau { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CTDATHANG> CTDATHANGs { get; set; }
         public virtual Mau Mau { get; set; }
+        public virtual Mau Mau1 { get; set; }
         public virtual PhanLoai PhanLoai { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Vourcher> Vourcher { get; set; }
+        public virtual ICollection<Vourcher> Vourchers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<YeuThich> YeuThich { get; set; }
+        public virtual ICollection<YeuThich> YeuThiches { get; set; }
     }
 }

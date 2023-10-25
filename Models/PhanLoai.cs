@@ -17,13 +17,14 @@ namespace Doanphanmem.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public PhanLoai()
         {
-            this.SanPham = new HashSet<SanPham>();
+            this.SanPhams = new HashSet<SanPham>();
         }
     
         public string Tenloai { get; set; }
         public int MaLoai { get; set; }
+        public string HinhLoai { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SanPham> SanPham { get; set; }
+        public virtual ICollection<SanPham> SanPhams { get; set; }
     }
 }

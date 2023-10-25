@@ -20,7 +20,7 @@ namespace Doanphanmem.Controllers
         [HttpPost]
         public ActionResult Login(UserModel model)
         {
-            var user = db.KhachHang.FirstOrDefault(u => u.TK == model.TK && u.Pass == model.Pass);
+            var user = db.KhachHangs.FirstOrDefault(u => u.TK == model.TK && u.Pass == model.Pass);
 
             if (user != null)
             {
