@@ -71,7 +71,7 @@ namespace Doanphanmem.Controllers
         {
             List<MatHangMua> giohang = Index();
             MatHangMua sanpham = giohang.FirstOrDefault(s => s.MaDT == MaSP);
-            Vourcher exit = db.Vourcher.Find(MaSP);
+            Vourcher exit = db.Vourchers.Find(MaSP);
             if (sanpham == null)
             {
                 sanpham = new MatHangMua(MaSP);
@@ -156,7 +156,7 @@ namespace Doanphanmem.Controllers
             donhang.Dienthoainhan = kh.sdt.ToString();
             donhang.HTThanhtoan = false;
             donhang.HTGiaohang = false;
-            db.DONDATHANG.Add(donhang);
+            db.DONDATHANGs.Add(donhang);
             db.SaveChanges();
   
 
@@ -168,7 +168,7 @@ namespace Doanphanmem.Controllers
                 ct.MaSP = sanpham.MaDT;
                 ct.Soluong = sanpham.Soluong;
                 ct.Dongia = (decimal)TinhTongTien();
-                db.CTDATHANG.Add(ct);
+                db.CTDATHANGs.Add(ct);
             }
             db.SaveChanges();
             //xóa giỏ hàng

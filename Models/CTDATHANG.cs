@@ -21,5 +21,6 @@ namespace Doanphanmem.Models
         public Nullable<decimal> Thanhtien { get; set; }
     
         public virtual DONDATHANG DONDATHANG { get; set; }
+        public virtual SanPham SanPham { get; set; }
     }
 }

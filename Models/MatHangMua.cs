@@ -25,7 +25,7 @@ namespace Doanphanmem.Models
         public MatHangMua(int MaDT)
         {
             this.MaDT= MaDT;
-            var getSP = db.SanPham.FirstOrDefault(x => x.MaSP == this.MaDT);
+            var getSP = db.SanPhams.FirstOrDefault(x => x.MaSP == this.MaDT);
             this.Ten = getSP.TenSP;
             this.AnhBia = getSP.Hinh1;
             this.Dongia = int.Parse(getSP.GiaSp.ToString());
