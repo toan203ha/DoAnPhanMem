@@ -21,9 +21,10 @@
     <tbody>
         @foreach (var dt in Model)
         {
+
             <tr>
                 <td>@dt.MaDT</td>
-                <td>@dt.</td>
+                <td>@dt.Ten</td>
                 <td><img src="~/Images/@dt.AnhBia" style="width:100%" /></td>
                 <td>@dt.Soluong</td>
                 <td>@String.Format("{0:0,0}", dt.Dongia)</td>
