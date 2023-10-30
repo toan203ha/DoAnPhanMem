@@ -203,6 +203,20 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Image\bg2.png" />
+    <Content Include="Image\bg3.png" />
+    <Content Include="Image\bg5.png" />
+    <Content Include="Image\iphone-14-pro-max-den.png" />
+    <Content Include="Image\Loai\huawai.png" />
+    <Content Include="Image\Loai\ip.jpg" />
+    <Content Include="Image\Loai\ip1.png" />
+    <Content Include="Image\Loai\lg.jpg" />
+    <Content Include="Image\Loai\oppo.png" />
+    <Content Include="Image\Loai\sony.png" />
+    <Content Include="Image\Loai\ss.png" />
+    <Content Include="Image\Loai\vivo.png" />
+    <Content Include="Image\Loai\xiaomi.png" />
+    <Content Include="Image\Xám và Đen Ghi chú Mềm mại Hữu cơ Âm nhạc Biểu trưng.png" />
     <Content Include="Models\QL_CHDT.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>QL_CHDT.edmx</DependentUpon>
@@ -273,6 +287,10 @@
     <Content Include="Views\SanPhams\Index.cshtml" />
     <Content Include="Views\SanPhams\SP_giamgia.cshtml" />
     <Content Include="Views\SanPhams\DonHangKH.cshtml" />
+    <Content Include="Views\SanPhams\laychitietsp.cshtml" />
+    <Content Include="Views\SanPhams\layloaisp.cshtml" />
+    <Content Include="Views\SanPhams\laysanphamtt.cshtml" />
+    <Content Include="Views\SanPhams\locgia.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Admin\Controller\" />

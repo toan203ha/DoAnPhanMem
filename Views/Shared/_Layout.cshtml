@@ -6,71 +6,89 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
-        <div class="container">
-            @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
+    <style>
+        /* CSS cho footer */
+        .footer {
+            padding-top: 60px;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: black;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .header {
+            position: sticky;
+            top: 0;
+            background-color: #ffffff; /* Màu nền của header */
+            color: #fff; /* Màu chữ trong header */
+            padding: 10px; /* Khoảng cách giữa nội dung và viền của header */
+            z-index: 100; /* Đảm bảo header hiển thị trên cùng khi kéo trang */
+        }
+    </style>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary header">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><img src="~/Image/Xám và Đen Ghi chú Mềm mại Hữu cơ Âm nhạc Biểu trưng.png" style="width:150px"/></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            @RenderSection("UserInformation", required: false)
-
-            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
-                <ul class="navbar-nav flex-grow-1">
-                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>
-                        @if (Session["UserID"] != null)
-                        {
-
-                            <h1 style="color:white">@Session["UserName"]</h1>
-                        <li>
-                            @Html.Action("GiohangPartial", "GioHang");
-                        </li>
-                        <li>
-                            @Html.Action("YeuThichPartial", "YeuThich");
-                        </li>
-                        <li>
-                            <a> @Html.ActionLink("Đơn mua", "DonHangKH", "SanPhams", new { IDCus = @HttpContext.Current.Session["UserID"].ToString() }, null)</a>
-
-                        </li>
-                    }
-                    else
-                    {
-                        <p style="color:white">Bạn chưa đăng nhập</p>
-                        @*<h1 style="font-size:100px">@Session["ID"]</h1>*@
-                        <div style="display:flex; margin-left:500px;">
-                        <li class="nav-item_">
-                            <a class="nav-link" href="@Url.Action("Login", "Account")">Đăng nhập</a>
-                        </li>
-                        <li class="nav-item_">
-                            <a class="nav-link" href="#">Đăng ký</a>
-                        </li>
-                        <li class="nav-link">
-                        <li>
-                            @Html.Action("GiohangPartial", "GioHang");
-                        </li>
-                        </li>
-</div>
-
-                    }
-                        </li>
-                        </ul>
-                    </div>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Trang chủ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Điện thoại</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Hãng 
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">SamSung</a>
+                            <a class="dropdown-item" href="#">Apple</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+                    </li>
+                </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Nhập từ khoá ">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
             </div>
+        </div>
     </nav>
+    @RenderBody()
 
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year</p>
-        </footer>
+    <div class="footer">
+        <p>
+            Liên hệ chúng tôi:
+            <br>
+            Địa chỉ: 123 Đường Phố Hạnh Phúc, Thành phố Hạnh Phúc, Việt Nam
+            <br>
+            Số điện thoại: (0123) 456-7890
+            <br>
+            Email: info@yourwebsite.com
+
+            <br>
+            Về chúng tôi:
+            <br>
+            Chúng tôi là một công ty đa dịch vụ chuyên cung cấp các giải pháp sáng tạo và chất lượng cho khách hàng trên khắp thế giới. Chúng tôi cam kết mang lại giá trị tốt nhất cho bạn và xây dựng mối quan hệ bền vững.
+            <br>
+            Theo dõi chúng tôi:
+            <br>
+            Facebook | Twitter | Instagram | LinkedIn
+        </p>
     </div>
-
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)

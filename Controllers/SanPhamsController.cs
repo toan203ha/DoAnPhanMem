@@ -189,5 +189,39 @@ namespace Doanphanmem.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public ActionResult laychitietsp(int id)
+        {
+           var sp = db.SanPhams.FirstOrDefault(s=>s.MaSP ==  id);
+            laysanphamtt(sp.MaLoai);
+            return View(sp);
+        }
+        public ActionResult laysanphamtt(int id)
+        {
+            var sp = db.SanPhams.Where(s=>s.MaLoai == id).ToList();
+            return PartialView(sp);
+        }
+        public ActionResult layloaisp()
+        {
+            var loaisp = db.PhanLoais.ToList();
+            return PartialView(loaisp);
+        }
+        public ActionResult locgia(int gia)
+        {
+            var sp = db.SanPhams.Where(s => s.GiaSp > 0 && s.GiaSp <= gia).ToList();
+
+            if (sp != null)
+            {
+                return View(sp);
+            }
+            else
+            {
+                return View("NoProductsFound");
+            }
+        }
+       
+
     }
+
 }
+

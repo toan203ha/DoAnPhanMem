@@ -5,90 +5,114 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.TenSP)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.GiaSp)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.GiaGiam)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Hinh1)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Hinh2)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Hinh3)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Hinh4)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Mota)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Thongso)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Mau.Tenmau)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PhanLoai.Tenloai)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.TenSP)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.GiaSp)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.GiaGiam)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Hinh1)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Hinh2)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Hinh3)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Hinh4)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Mota)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Thongso)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Mau.Tenmau)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PhanLoai.Tenloai)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.MaSP }) |
-            @Html.ActionLink("Details", "SP_giamgia", new { id=item.MaSP }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.MaSP })
-        </td>
-    </tr>
-}
 
-</table>
+
+<style>
+    :root {
+        --maudo: RGB(255, 205, 210);
+    }
+</style>
+
+
+<div id="demo" class="carousel slide" data-bs-ride="carousel">
+
+    
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
+        <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
+        <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+    </div>
+
+   
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="~/Image/bg2.png" alt="" class="d-block w-100" style="height: 750px; object-position: center;">
+        </div>
+        <div class="carousel-item active">
+            <img src="~/Image/bg3.png" alt="" class="d-block w-100" style="height: 750px; object-position: center;">
+        </div>
+        <div class="carousel-item active">
+            <img src="~/Image/bg5.png" alt="" class="d-block w-100" style="height: 750px; object-position: center;">
+        </div>
+    </div>
+
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </button>
+</div>
+
+
+
+@*danh mục sản phâm*@
+@Html.Action("layloaisp", "SanPhams")
+
+@* loc san pham*@
+<a href="@Url.Action("locgia", "SanPhams", new { gia = 100 } )"><div class="btn">san pham duoi 2 trieu </div></a>
+<a href="@Url.Action("locgia", "SanPhams", new { gia = 22000000 } )"><div class="btn">san pham duoi 4 trieu </div></a>
+@*san pham dd*@
+<div class="container-fluid mt-5">
+    <div class="text-center" style="background-color: var(--maudo); padding: 10px;">Sản phẩm</div>
+
+    <div class="row mt-3 p-5">
+        @foreach (var sp in Model)
+        {
+            <div class="col-sm-3 mb-4">
+                <div class="card">
+                    <a href="@Url.Action("laychitietsp", "SanPhams", new {id = sp.MaSP })"> <img src="~/Image/@sp.Hinh1" class="card-img-top" alt="Iphone"></a>
+                    <div class="card-body">
+                        <h5 class="card-title">@sp.TenSP</h5>
+                        <p class="card-text">@sp.Mota</p>
+                        <p class="card-text">@sp.GiaSp</p>
+                        <p class="card-text">Giá</p>
+                        <div class="row">
+                            <a href="#" class="btn btn-primary ">Đặt hàng</a>
+                            <a href="#" class="btn btn-success" style="margin-top: 10px">Thêm vào giỏ hàng</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+
+    @*bai báo*@
+    <div class="container-fluid bg-light text-center " style="background-color:var(--maudo);">Cửa hàng chuyên cung cấp các loại điện thoại mới nhất </div>
+
+    <div class="container pt-5">
+        <div class="row mt-4">
+            <div class="col-sm-6 ">
+                <div class="card">
+                    <img src="~/Image/iphone-14-pro-max-den.png" class="card-img-top" />
+                    <div class="card-body">
+                        <a href="https://vnexpress.net/iphone-15-pro-max-thua-galaxy-s23-ultra-khi-tha-roi-4660100.html" class="card-title ">iPhone 15 Pro Max thua Galaxy S23 Ultra khi thả rơi</a>
+                        <p>iPhone 15 Pro Max bị hư hại nhiều hơn Galaxy S23 Ultra sau bốn lần thả rơi ở các góc khác nhau xuống bề mặt bê tông và thép...</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 ">
+                <div class="card">
+                    <img src="~/Image/iphone-14-pro-max-den.png" class="card-img-top"> </img>
+                    <div class="card-body">
+                        <a href="https://vnexpress.net/iphone-15-pro-max-thua-galaxy-s23-ultra-khi-tha-roi-4660100.html" class="card-title ">iPhone 15 Pro Max thua Galaxy S23 Ultra khi thả rơi</a>
+                        <p>iPhone 15 Pro Max bị hư hại nhiều hơn Galaxy S23 Ultra sau bốn lần thả rơi ở các góc khác nhau xuống bề mặt bê tông và thép...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+</div>
+
+<div class="p-5"></div>
+
