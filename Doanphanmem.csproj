@@ -53,6 +53,9 @@
       <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PayPal, Version=1.9.1.0, Culture=neutral, PublicKeyToken=5b4afc1ccaef40fb, processorArchitecture=MSIL">
+      <HintPath>packages\PayPal.1.9.1\lib\net451\PayPal.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -133,6 +136,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\GioHangController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\KhachHangController.cs" />
     <Compile Include="Controllers\SanPhamsController.cs" />
     <Compile Include="Controllers\VourchersController.cs" />
     <Compile Include="Controllers\YeuThichController.cs" />
@@ -152,6 +156,7 @@
     <Compile Include="Models\Mau.cs">
       <DependentUpon>QL_CHDT.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\PaypalConfiguration.cs" />
     <Compile Include="Models\PhanLoai.cs">
       <DependentUpon>QL_CHDT.tt</DependentUpon>
     </Compile>
@@ -291,15 +296,14 @@
     <Content Include="Views\SanPhams\Index.cshtml" />
     <Content Include="Views\SanPhams\SP_giamgia.cshtml" />
     <Content Include="Views\SanPhams\DonHangKH.cshtml" />
-<<<<<<< HEAD
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\Index_.cshtml" />
-=======
     <Content Include="Views\SanPhams\laychitietsp.cshtml" />
     <Content Include="Views\SanPhams\layloaisp.cshtml" />
     <Content Include="Views\SanPhams\laysanphamtt.cshtml" />
     <Content Include="Views\SanPhams\locgia.cshtml" />
->>>>>>> khoa
+    <Content Include="Views\KhachHang\Edit.cshtml" />
+    <Content Include="Views\GioHang\Paypal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

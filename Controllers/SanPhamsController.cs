@@ -44,6 +44,7 @@ namespace Doanphanmem.Controllers
 
 
         //giảm giá sản phẩm
+        // thông tin chi tiết sản phẩm
         public ActionResult SP_giamgia(int? id)
         {
             // Lấy thông tin sản phẩm từ bảng SanPham
@@ -190,12 +191,12 @@ namespace Doanphanmem.Controllers
             base.Dispose(disposing);
         }
 
-        public ActionResult laychitietsp(int id)
-        {
-           var sp = db.SanPhams.FirstOrDefault(s=>s.MaSP ==  id);
-            laysanphamtt(sp.MaLoai);
-            return View(sp);
-        }
+        //public ActionResult laychitietsp(int id)
+        //{
+        //   var sp = db.SanPhams.FirstOrDefault(s=>s.MaSP ==  id);
+        //    laysanphamtt(sp.MaLoai);
+        //    return View(sp);
+        //}
         public ActionResult laysanphamtt(int id)
         {
             var sp = db.SanPhams.Where(s=>s.MaLoai == id).ToList();

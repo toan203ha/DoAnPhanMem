@@ -12,9 +12,9 @@
         var soLuong = document.getElementById("SoLuong").value;
         if (soLuong < 1) {
             alert("Số lượng không hợp lệ. Vui lòng nhập một số lớn hơn 0.");
-            return false; 
+            return false;
         }
-        return true; 
+        return true;
     }
 </script>
 <h2 style="text-align:center">THÔNG TIN GIỎ HÀNG</h2>
@@ -35,7 +35,7 @@
     <tbody>
         @foreach (var sach in Model)
         {
-            var cus = db.SanPham.Where(s => s.MaSP == sach.MaDT).Select(s => s.TenSP).FirstOrDefault();
+            var cus = db.SanPhams.Where(s => s.MaSP == sach.MaDT).Select(s => s.TenSP).FirstOrDefault();
 
             <tr>
                 <td>@sach.MaDT</td>
@@ -90,6 +90,7 @@
         </tr>
     </tbody>
 </table>
+<a href="/GioHang/PaymentWithPayPal">paypal</a>
 
 <script>
     function updateCart(MaSP, SoLuong) {

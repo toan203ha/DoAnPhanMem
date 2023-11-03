@@ -11,6 +11,7 @@
 <body>
     <style>
         /* CSS cho footer */
+
         .footer {
             padding-top: 60px;
             bottom: 0;
@@ -42,23 +43,42 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#">Trang chủ</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Điện thoại</a>
-                    </li>
+
+
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Hãng 
+                            Hãng
                         </a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">SamSung</a>
-                            <a class="dropdown-item" href="#">Apple</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
+          
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+                    <li>
+                        @Html.Action("GiohangPartial", "GioHang");
                     </li>
+                    @if (Session["UserID"] != null)
+                    {
+
+                        <li class="nav-item">
+                            @Html.Action("YeuThichPartial", "YeuThich");
+                        </li>
+                        <li class="nav-item">
+                            <a> @Html.ActionLink("Đơn mua", "DonHangKH", "SanPhams", new { IDCus = @HttpContext.Current.Session["UserID"].ToString() }, null)</a>
+
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="KhachHang/Edit/@HttpContext.Current.Session["UserID"].ToString()">Thông tin người dùng</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Login", "Account")">Đăng nhập</a>
+                        </li>
+                        <li class="nav-item_">
+                            <a class="nav-link" href="#">Đăng ký</a>
+                        </li>
+                    }
+
+
                 </ul>
                 <form class="d-flex" role="search">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Nhập từ khoá ">
@@ -67,7 +87,10 @@
             </div>
         </div>
     </nav>
-    @RenderBody()
+    <div style="margin-right:150px; margin-left:150px">
+        @RenderBody()
+    </div>
+ 
 
     <div class="footer">
         <p>
