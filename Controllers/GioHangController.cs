@@ -1,4 +1,5 @@
 ﻿using Doanphanmem.Models;
+using PayPal.Api;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -139,47 +140,198 @@ namespace Doanphanmem.Controllers
             return View(giohang);
         }
         // xử lý đặt hàng
-        public ActionResult DongYDatHang()
+        public ActionResult DongYDatHang(bool isDirectPayment)
         {
-
-            KhachHang kh = Session["taikhoan"] as KhachHang;
-            List<MatHangMua> giohang = Index();
-
-            // thêm dữ liệu vào đơn hàng
-            DONDATHANG donhang = new DONDATHANG();
-            donhang.MaKH = kh.MaKH;
-            donhang.NgayDH = DateTime.Now;
-            donhang.Trigia = (Decimal)TinhTongTien();
-            donhang.Dagiao = false;
-            donhang.Tennguoinhan = kh.TenKH;
-            donhang.Diachinhan = kh.DiaChi;
-            donhang.Dienthoainhan = kh.sdt.ToString();
-            donhang.HTThanhtoan = false;
-            donhang.HTGiaohang = false;
-            db.DONDATHANGs.Add(donhang);
-            db.SaveChanges();
-  
-
-            // thêm vào chi tiết đơn hàng
-            foreach (var sanpham in giohang)
+            // thanh toán trực tiếp
+            if (isDirectPayment)
             {
-                CTDATHANG ct = new CTDATHANG();
-                ct.SODH = donhang.SODH;
-                ct.MaSP = sanpham.MaDT;
-                ct.Soluong = sanpham.Soluong;
-                ct.Dongia = (decimal)TinhTongTien();
-                db.CTDATHANGs.Add(ct);
+                KhachHang kh = Session["taikhoan"] as KhachHang;
+                List<MatHangMua> giohang = Index();
+
+                // thêm dữ liệu vào đơn hàng
+                DONDATHANG donhang = new DONDATHANG();
+                donhang.MaKH = kh.MaKH;
+                donhang.NgayDH = DateTime.Now;
+                donhang.Trigia = (Decimal)TinhTongTien();
+                donhang.Dagiao = false;
+                donhang.Tennguoinhan = kh.TenKH;
+                donhang.Diachinhan = kh.DiaChi;
+                donhang.Dienthoainhan = kh.sdt.ToString();
+                donhang.HTThanhtoan = true;
+                donhang.HTGiaohang = false;
+                db.DONDATHANGs.Add(donhang);
+                db.SaveChanges();
+                // thêm vào chi tiết đơn hàng
+                foreach (var sanpham in giohang)
+                {
+                    CTDATHANG ct = new CTDATHANG();
+                    ct.SODH = donhang.SODH;
+                    ct.MaSP = sanpham.MaDT;
+                    ct.Soluong = sanpham.Soluong;
+                    ct.Dongia = (decimal)TinhTongTien();
+                    db.CTDATHANGs.Add(ct);
+                }
+                db.SaveChanges();
+                //xóa giỏ hàng
+                Session["GioHang"] = null;
+                return RedirectToAction("HoanThanhDonHang");
+
             }
-            db.SaveChanges();
-            //xóa giỏ hàng
-            Session["GioHang"] = null;
-            return RedirectToAction("HoanThanhDonHang");
+            else
+            {
+                    return View("Paypal");
+            }
         }
 
         public ActionResult HoanThanhDonHang()
         {
             return View();
         }
+        // xử lý thanh toán qua paypal
+        public ActionResult Paypal()
+        {
+            // thanh toán thành công
+            return View();
+        }
+
+
+
+        public ActionResult PaymentWithPaypal()
+        {
+            // Cấu hình APIContext
+            APIContext apiContext = PaypalConfiguration.GetAPIContext();
+
+            try
+            {
+                string payerId = Request.Params["PayerID"];
+                if (string.IsNullOrEmpty(payerId))
+                {
+                    // Tạo thanh toán PayPal
+                    var createdPayment = this.CreatePayment(apiContext, Url.Action("PaymentWithPaypal", "PayPal", null, Request.Url.Scheme));
+                    var links = createdPayment.links.GetEnumerator();
+                    string paypalRedirectUrl = null;
+
+                    while (links.MoveNext())
+                    {
+                        Links lnk = links.Current;
+                        if (lnk.rel.ToLower().Trim().Equals("approval_url"))
+                        {
+                            paypalRedirectUrl = lnk.href;
+                        }
+                    }
+
+                    // Lưu paymentID vào Session
+                    Session.Add("paymentId", createdPayment.id);
+
+                    return Redirect(paypalRedirectUrl);
+                }
+                else
+                {
+                    // Thực hiện thanh toán PayPal
+                    var paymentId = Session["paymentId"] as string;
+                    var executedPayment = ExecutePayment(apiContext, payerId, paymentId);
+
+                    if (executedPayment.state.ToLower() == "approved")
+                    {
+                        // Thanh toán thành công
+                        return View("SuccessView");
+                    }
+                    else
+                    {
+                        return View("FailureView");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return View("FailureView");
+            }
+        }
+
+        private Payment CreatePayment(APIContext apiContext, string redirectUrl)
+        {
+            
+
+            var itemList = new ItemList
+            {
+                items = new List<Item>
+                {
+                    new Item
+                    {
+                        
+                        name = "Item Name",
+                        currency = "USD",
+                        price = TinhTongTien().ToString(),
+                        quantity = TinhTongSL().ToString(),
+                        sku = "sku"
+                    }
+                }
+            };
+
+            var payer = new Payer
+            {
+                payment_method = "paypal"
+            };
+
+            var redirUrls = new RedirectUrls
+            {
+                cancel_url = redirectUrl + "&Cancel=true",
+                return_url = redirectUrl
+            };
+
+            var details = new Details
+            {
+                tax = "0", // Thay đổi nếu bạn có thuế
+                shipping = "0", // Thay đổi nếu bạn có phí vận chuyển
+                subtotal = TinhTongTien().ToString() // Tổng giá trị sản phẩm trong USD
+            };
+
+            var amount = new Amount
+            {
+                currency = "USD",
+                total = TinhTongTien().ToString(), // Tổng giá trị thanh toán trong USD
+                details = details
+            };
+
+            var transactionList = new List<Transaction>
+            {
+                new Transaction
+                {
+                    description = "Invoice",
+                    invoice_number = Guid.NewGuid().ToString(),
+                    amount = amount,
+                    item_list = itemList
+                }
+            };
+
+            var payment = new Payment
+            {
+                intent = "sale",
+                payer = payer,
+                transactions = transactionList,
+                redirect_urls = redirUrls
+            };
+
+            return payment.Create(apiContext);
+        }
+
+        private Payment ExecutePayment(APIContext apiContext, string payerId, string paymentId)
+        {
+            var paymentExecution = new PaymentExecution
+            {
+                payer_id = payerId
+            };
+
+            var payment = new Payment
+            {
+                id = paymentId
+            };
+
+            return payment.Execute(apiContext, paymentExecution);
+        }
+
+
+
     }
 
 }

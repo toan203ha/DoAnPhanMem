@@ -61,10 +61,21 @@
     </tr>
     <tr>
         <td colspan="2" style="text-align: center;">
-            @Html.ActionLink("ĐỒNG Ý ĐẶT HÀNG", "DongYDatHang", null, new
+            @using (Html.BeginForm("DongYDatHang", "GioHang", FormMethod.Post))
             {
-                @class = "btn btn - primary"
-            })
+                <label for="directPayment">Thanh Toán Khi Nhận Hàng</label>
+                <input type="radio" name="isDirectPayment" value="true" />
+
+                <label for="paypalPayment">Thanh Toán Qua PayPal</label>
+                <input type="radio" name="isDirectPayment" value="false" />
+
+
+
+                <input type="submit" value="Đặt hàng" />
+            }
         </td>
-    </tr>
+        </tr>
+
+    
+
 </table>
