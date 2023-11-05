@@ -85,9 +85,9 @@ namespace Doanphanmem.Controllers
                     // Truyền giá sản phẩm đã giảm giá vào view để hiển thị
                     ViewBag.GiaSauGiamGia = giaSauGiamGia;
                     sanpham.Dongia = giaSauGiamGia;
-                }             
-                    giohang.Add(sanpham);
-                
+                }
+                giohang.Add(sanpham);
+
             }
             else
             {
@@ -103,7 +103,7 @@ namespace Doanphanmem.Controllers
             if (sanpham != null)
             {
                 sanpham.Soluong = SoLuong;
-           
+
             }
             return RedirectToAction("HienThiGioHang"); ;
         }
@@ -179,10 +179,9 @@ namespace Doanphanmem.Controllers
             }
             else
             {
-                    return View("Paypal");
+                return RedirectToAction("PaymentWithPaypal", "GioHang");
             }
         }
-
         public ActionResult HoanThanhDonHang()
         {
             return View();
@@ -194,49 +193,43 @@ namespace Doanphanmem.Controllers
             return View();
         }
 
-
-
-        public ActionResult PaymentWithPaypal()
+        public ActionResult PaymentWithPaypal(string Cancel = null)
         {
-            // Cấu hình APIContext
+            //getting the apiContext  
             APIContext apiContext = PaypalConfiguration.GetAPIContext();
-
             try
             {
+                //A resource representing a Payer that funds a payment Payment Method as paypal  
+                //Payer Id will be returned when payment proceeds or click to pay  
                 string payerId = Request.Params["PayerID"];
                 if (string.IsNullOrEmpty(payerId))
                 {
-                    // Tạo thanh toán PayPal
-                    var createdPayment = this.CreatePayment(apiContext, Url.Action("PaymentWithPaypal", "PayPal", null, Request.Url.Scheme));
+                    string baseURI = Request.Url.Scheme + "://" + Request.Url.Authority + "/GioHang/PaymentWithPayPal?";
+                    var guid = Convert.ToString((new Random()).Next(100000));
+                    var createdPayment = this.CreatePayment(apiContext, baseURI + "guid=" + guid);
+                    //get links returned from paypal in response to Create function call  
                     var links = createdPayment.links.GetEnumerator();
                     string paypalRedirectUrl = null;
-
                     while (links.MoveNext())
                     {
                         Links lnk = links.Current;
                         if (lnk.rel.ToLower().Trim().Equals("approval_url"))
                         {
+                            //saving the payapalredirect URL to which user will be redirected for payment  
                             paypalRedirectUrl = lnk.href;
                         }
                     }
-
-                    // Lưu paymentID vào Session
-                    Session.Add("paymentId", createdPayment.id);
-
+                    // saving the paymentID in the key guid  
+                    Session.Add(guid, createdPayment.id);
                     return Redirect(paypalRedirectUrl);
                 }
                 else
                 {
-                    // Thực hiện thanh toán PayPal
-                    var paymentId = Session["paymentId"] as string;
-                    var executedPayment = ExecutePayment(apiContext, payerId, paymentId);
-
-                    if (executedPayment.state.ToLower() == "approved")
-                    {
-                        // Thanh toán thành công
-                        return View("SuccessView");
-                    }
-                    else
+                    // This function exectues after receving all parameters for the payment  
+                    var guid = Request.Params["guid"];
+                    var executedPayment = ExecutePayment(apiContext, payerId, Session[guid] as string);
+                    //If executed payment failed then we will show payment failure message to user  
+                    if (executedPayment.state.ToLower() != "approved")
                     {
                         return View("FailureView");
                     }
@@ -246,11 +239,25 @@ namespace Doanphanmem.Controllers
             {
                 return View("FailureView");
             }
+            //on successful payment, show success page to user.  
+            return View("HoanThanhDonHang");
         }
-
+        private PayPal.Api.Payment payment;
+        private Payment ExecutePayment(APIContext apiContext, string payerId, string paymentId)
+        {
+            var paymentExecution = new PaymentExecution()
+            {
+                payer_id = payerId
+            };
+            this.payment = new Payment()
+            {
+                id = paymentId
+            };
+            return this.payment.Execute(apiContext, paymentExecution);
+        }
         private Payment CreatePayment(APIContext apiContext, string redirectUrl)
         {
-            
+
 
             var itemList = new ItemList
             {
@@ -258,7 +265,7 @@ namespace Doanphanmem.Controllers
                 {
                     new Item
                     {
-                        
+
                         name = "Item Name",
                         currency = "USD",
                         price = TinhTongTien().ToString(),
@@ -315,23 +322,5 @@ namespace Doanphanmem.Controllers
             return payment.Create(apiContext);
         }
 
-        private Payment ExecutePayment(APIContext apiContext, string payerId, string paymentId)
-        {
-            var paymentExecution = new PaymentExecution
-            {
-                payer_id = payerId
-            };
-
-            var payment = new Payment
-            {
-                id = paymentId
-            };
-
-            return payment.Execute(apiContext, paymentExecution);
-        }
-
-
-
     }
-
 }
