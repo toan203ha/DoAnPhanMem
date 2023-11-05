@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Doanphanmem.Models.PhanLoai>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Admin/Layout/_LayoutPage1.cshtml";
+}
+
+<style>
+    p {
+        margin: 10px 0 0 50px;
+    }
+
+    p:hover {
+        color: aqua;
+    }
+</style>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Tenloai)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HinhLoai)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tenloai)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HinhLoai)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.MaLoai }) |
+            @Html.ActionLink("Details", "Details", new { id=item.MaLoai }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.MaLoai })
+        </td>
+    </tr>
+}
+
+</table>

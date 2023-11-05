@@ -1,0 +1,34 @@
+﻿@model Doanphanmem.Models.PhanLoai
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Admin/Layout/_LayoutPage1.cshtml";
+}
+
+
+<div>
+    <h4>PhanLoai</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Tenloai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tenloai)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HinhLoai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HinhLoai)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MaLoai }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
