@@ -137,6 +137,17 @@ namespace Doanphanmem.Controllers
                 return RedirectToAction("Index", "SanPhams");
             ViewBag.TongSL = TinhTongSL();
             ViewBag.TongTien = TinhTongTien();
+            foreach (var sanpham in giohang)
+            {
+                // Tìm sản phẩm trong cơ sở dữ liệu dựa trên sanpham.MaDT (ID sản phẩm)
+                var productInDB = db.SanPhams.FirstOrDefault(p => p.MaSP == sanpham.MaDT);
+                if (productInDB != null)
+                {
+                    // Giảm số lượng tồn kho đi số lượng sản phẩm đã đặt hàng
+                    productInDB.Soluongton = productInDB.Soluongton-sanpham.Soluong;
+                }
+            }
+            db.SaveChanges();
             return View(giohang);
         }
         // xử lý đặt hàng

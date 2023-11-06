@@ -2,32 +2,44 @@
 
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";}
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}﻿
 
-@using (Html.BeginForm("Login", "Account", FormMethod.Post))
-{
-    @Html.AntiForgeryToken()
-    <div class="login">
-        <div class="form">
-            <h2 style="color:white" style="position:relative; top: -40px;">ĐĂNG NHẬP</h2>
-            <div class="place">
-                <p>Tài Khoản</p>
-                @Html.TextBoxFor(model => model.TK, new { @placeholder = "Nhập Tài Khoản", style = "field-validation-error" })
-                @Html.ValidationMessageFor(model => model.TK)
-            </div>
+    <div class="container" id="container">
+        <div class="form-container sign-up-container">
+            <form action="#">
+                <h1>Tạo Tài Khoản</h1>
+                <div class="social-container">
+                </div>
+                <input type="text" placeholder="Tên Đăng nhập" name="TK" />
+                <input type="password" placeholder="Pass" name="Pass" />
+                <button>Đăng Ký</button>
+            </form>
+        </div>
 
-            <div class="place">
-                <p>Nhập Mật Khẩu</p>
-                @Html.PasswordFor(model => model.Pass)
-                @Html.ValidationMessageFor(model => model.Pass)
-                @if (ViewBag.ErrorInfo == null)
-                {
-                    <p>@ViewBag.ErrorInfo</p>
-                }
+        <div class="form-container sign-in-container">        
+            <form action="Login" name="Account" Method="post">
+                <h1>Đăng Nhập</h1>
+                <div class="social-container">
+                </div>
+                <input type="text" placeholder="Tên Đăng nhập" name="TK" />
+                <input type="password" placeholder="Pass" name="Pass" />
+                <button>Đăng Nhập</button>
+            </form>
+         </div>
+
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>Xin Chào!</h1>
+                    <button class="ghost" id="signIn">Đăng Nhập</button>
+                    <a style="color:white; font-weight:bold;" class="ghost"  href="~/SanPhams/Index">Về Trang Chủ</a>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1>Xin Chào!</h1>
+                    <button class="ghost" id="signUp">Đăng Ký</button>
+                    <a style="color: white; font-weight: bold;" class="ghost" href="~/SanPhams/Index">Về Trang Chủ</a>
+                </div>
             </div>
-            <input type="submit" value="Đăng Nhập" class="submit" id="sub">
         </div>
     </div>
-}
-
-

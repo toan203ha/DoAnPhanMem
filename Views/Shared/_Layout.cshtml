@@ -12,6 +12,11 @@
     <style>
         /* CSS cho footer */
 
+
+        a{
+            text-decoration:none;
+        }
+
         .footer {
             padding-top: 60px;
             bottom: 0;
@@ -22,14 +27,21 @@
             padding: 10px;
             text-align: center;
         }
-
+ 
         .header {
             position: sticky;
             top: 0;
-            background-color: #ffffff; /* Màu nền của header */
-            color: #fff; /* Màu chữ trong header */
-            padding: 10px; /* Khoảng cách giữa nội dung và viền của header */
-            z-index: 100; /* Đảm bảo header hiển thị trên cùng khi kéo trang */
+            background-color: #ffffff;
+            color: #fff;
+            height: 120px;
+            z-index: 100;
+            box-shadow: 2px 4px 4px lightblue;
+        }
+        .nav-item {
+            color: #007aff;
+            font-size: 18px;
+            font-style: normal;
+            font-weight: bold;
         }
 
 
@@ -71,10 +83,13 @@
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Trang chủ</a>
+
+                    <li class="nav-item" style="color: #1A6DFF">
+                        <a class="nav-link active" aria-current="page" href="~/SanPhams/Index">Trang chủ</a>
                     </li>
 <<<<<<< HEAD
 
@@ -83,8 +98,9 @@
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Hãng
                         </a>
-          
+
                     </li>
+<<<<<<< HEAD
                     <li>
                         @Html.Action("GiohangPartial", "GioHang");
 =======
@@ -120,37 +136,57 @@
                     <li class="nav-item">
                         <a class="nav-link disabled" aria-disabled="true">Disabled</a>
 >>>>>>> TuanHoang
+=======
+                    <li class="nav-item" ">
+                        <p class="nav-link"> Hỏi Đáp</p>
+
+                    </li>
+                    @*<li class="nav-item" style="width:150px;">
+                        <p class="nav-link"> </p>
+                    </li>*@
+                    <li class="nav-item">
+                        <form class="d-flex" role="search">
+                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Nhập từ khoá ">
+                            <button class="btn btn-outline-success" type="submit">Search</button>
+                        </form>
+                    </li>
+
+                    <li class="nav-item">
+                        <p class="nav-link"> @Html.Action("GiohangPartial", "GioHang")</p>
+>>>>>>> Toan
                     </li>
                     @if (Session["UserID"] != null)
                     {
 
                         <li class="nav-item">
-                            @Html.Action("YeuThichPartial", "YeuThich");
+                            <p class="nav-link"> @Html.Action("YeuThichPartial", "YeuThich")</p>
                         </li>
                         <li class="nav-item">
-                            <a> @Html.ActionLink("Đơn mua", "DonHangKH", "SanPhams", new { IDCus = @HttpContext.Current.Session["UserID"].ToString() }, null)</a>
-
+                            <p class="nav-link" style="text-decoration:none;"> @Html.ActionLink("Đơn mua", "DonHangKH", "SanPhams", new { IDCus = @HttpContext.Current.Session["UserID"].ToString() }, null)</p>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="KhachHang/Edit/@HttpContext.Current.Session["UserID"].ToString()">Thông tin người dùng</a>
+                            <a class="nav-link" style="color: #1A6DFF" href="KhachHang/Edit/@HttpContext.Current.Session["UserID"].ToString()">Thông tin người dùng</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" style="color: #1A6DFF" href="#">Đăng Xuất</a>
                         </li>
                     }
                     else
                     {
                         <li class="nav-item">
-                            <a class="nav-link" href="@Url.Action("Login", "Account")">Đăng nhập</a>
+                            <a class="nav-link" style="color: #1A6DFF" href="@Url.Action("Login", "Account")">Đăng nhập</a>
                         </li>
-                        <li class="nav-item_">
-                            <a class="nav-link" href="#">Đăng ký</a>
-                        </li>
+
                     }
-
-
                 </ul>
+<<<<<<< HEAD
                 <form class="d-flex" role="search">
                     <input class="form-control me-2" type="text" name="SearchString" placeholder="Search" aria-label="Nhập từ khoá ">
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
+=======
+    
+>>>>>>> Toan
             </div>
         </div>
     </nav>

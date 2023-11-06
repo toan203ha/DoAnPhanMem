@@ -15,13 +15,6 @@ namespace Doanphanmem.Controllers
     {
         private QL_CHDTEntities db = new QL_CHDTEntities();
 
-
-        //Bộ lọc
-        //public ActionResult Filter(string ten,int gia)
-        //{
- 
-        //}
-
         // danh sách đơn hàng của khách hàng
         public ActionResult DonHangKH(int IDCus)
         {
@@ -34,6 +27,8 @@ namespace Doanphanmem.Controllers
             return View(orders);
         }
  
+
+
         public ActionResult getCus(int ID)
         {
             var cus = db.SanPhams
@@ -41,6 +36,14 @@ namespace Doanphanmem.Controllers
                   .Select(s => s.TenSP)
                   .FirstOrDefault();
             return View(cus);
+        }
+
+        public ActionResult getDanhsachLoaiSP(int ID)
+        {
+            var orders = db.SanPhams
+                .Where(o => o.MaLoai == ID)
+                .ToList();
+            return View(orders);
         }
 
 
@@ -90,6 +93,9 @@ namespace Doanphanmem.Controllers
             }
             return View(sanPham.ToList());
         }
+
+
+
 
         // GET: SanPhams/Details/5
         public ActionResult Details(int? id)
@@ -234,11 +240,17 @@ namespace Doanphanmem.Controllers
         //    laysanphamtt(sp.MaLoai);
         //    return View(sp);
         //}
-        public ActionResult laysanphamtt(int id)
+
+        // top 5 sản phẩm bán chạy nhất 
+        public ActionResult laysanphamtt()
         {
-            var sp = db.SanPhams.Where(s=>s.MaLoai == id).ToList();
-            return PartialView(sp);
+            var sanpham = db.SanPhams
+                .OrderBy(p => p.Soluongton) // Sắp xếp sản phẩm theo số lượng tồn tăng dần
+                .Take(5) // Lấy 5 sản phẩm có số lượng tồn thấp nhất
+                .ToList();
+            return PartialView(sanpham);
         }
+
         public ActionResult layloaisp()
         {
             var loaisp = db.PhanLoais.ToList();
