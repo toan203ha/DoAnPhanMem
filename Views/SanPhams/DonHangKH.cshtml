@@ -2,65 +2,152 @@
 @using Doanphanmem.Models
 @{
     ViewBag.Title = "Danh sách ĐƠN HÀNG đã đặt";
-    Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
     var db = new QL_CHDTEntities();
-
 }
 
-
-<p style="text-align:center;margin-top:0;padding-top:20px;font-size:30px; font-weight:bold">Danh sách đơn hàng đã đặt</p>
-
 <style>
-    #layout_order {
+    body {
+       
+        font-family: Arial, sans-serif;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        margin-top:20px;
+    }
+
+    .order-card {
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        margin: 20px 0;
+        padding: 20px;
+        border-radius: 5px;
+        position: relative;
+    }
+
+    .order-details {
         display: flex;
+        flex-wrap: wrap;
+    }
+
+        .order-details > div {
+            flex: 1;
+            margin: 10px;
+        }
+
+        .order-details p {
+            margin: 5px 0;
+        }
+
+    .confirm-button {
+        position: absolute;
+        top: 30px;
+        right: 20px;
+        background-color: #4CAF50;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 155px;
+        height: 44px;
+    }
+    .wait-button {
+        position: absolute;
+        top: 30px;
+        right: 20px;
+        background-color: red;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 155px;
+        height: 44px;
+    }
+    .paypal-button {
+        position: absolute;
+        top: 80px;
+        right: 20px;
+        background-color:cornflowerblue;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 155px;
+        height: 44px;
+    }
+    .payment_tm{
+        color:blue;
+    }
+    .payment_pp{
+        color:blueviolet;
     }
 </style>
 
-@foreach (var order in Model)
-{
-    <div style="margin:100px; font-size:22px">
-        @foreach (var detail in order.CTDATHANGs)
-        {
+<div class="container">
+    <h1 style="text-align: center; font-size: 30px; font-weight: bold;">Danh sách đơn hàng đã đặt</h1>
 
-            var cus = db.SanPhams.Where(s => s.MaSP == detail.MaSP).Select(s => s.TenSP).FirstOrDefault();
+    @foreach (var order in Model)
+    {
+        <div class="order-card">
+          
+            @foreach (var detail in order.CTDATHANGs)
+            {
+                var cus = db.SanPhams.Where(s => s.MaSP == detail.MaSP).Select(s => s.TenSP).FirstOrDefault();
 
-            <div id="layout_order">
-                <p>
-                    Tên : @cus
-                </p>
-                <p>
-                    HTGH : @order.HTGiaohang
-                </p>
-                <p>
-                    HTTT : @if (@order.HTThanhtoan == false)
-                    {
-                    <p>Thanh Toán Bằng Tiền Mặt</p>
-                }
-                else
-                {
-                    <p>Thanh Toán Bằng PayPal</p>
-                }
-                    </p>
-                    <p>
-                        TTDH :@if (@order.Dagiao == false)
-                        {
-                        <p>Đơn Hàng Đang Chờ Duyệt</p>
-                    }
-                    else
-                    {
-                        <p>Đơn Hàng Đang Giao Đến Bạn</p>
-                    }
+                <div class="order-details">
+                    <div>
+                        <p><strong>Tên:</strong> @cus</p>
+                        <p>
+                            <strong>HTGH:</strong>
+                          @if (order.HTGiaohang == false)
+                          {
+                                <span>Giao Hàng Trực Tiếp</span>
+                            }
+                            else
+                            {
+                                <span>Giao Hàng Trực Tiếp</span>
+                            }
                         </p>
                         <p>
-                            Date Order: @order.NgayDH
+                            <strong>HTTT:</strong> @if (order.HTThanhtoan == false)
+                            {
+                                <span class="payment_tm">Thanh Toán Bằng Tiền Mặt</span>
+                            }
+                            else
+                            {
+                                <span  class="payment_pp">Thanh Toán Bằng PayPal</span>
+                                <button class="paypal-button">Đã Thanh Toán</button>
+
+                            }
                         </p>
-                        <p>
-                            Address Delivery: @order.Diachinhan
-                        </p>
-                        <p> Số lượng: @detail.Soluong</p>
-                        <p>@detail.Dongia</p>
                     </div>
-        }
-    </div>
-}
-
+                    <div>
+                        <p>
+                            <strong>TTDH:</strong> @if (order.Dagiao == false)
+                            {
+                                <span>Đơn Hàng Đang Chờ Duyệt</span>
+                                <button class="wait-button">Chưa xác nhận</button>
+                            }
+                            else
+                            {
+                                <button class="confirm-button">Đã xác nhận</button>
+                                <span>Đơn Hàng Đang Giao Đến Bạn</span>
+                            }
+                        </p>
+                        <p><strong>Date Order:</strong> @order.NgayDH</p>
+                        <p><strong>Address Delivery:</strong> @order.Diachinhan</p>
+                    </div>
+                    <div>
+                        <p><strong>Số lượng:</strong> @detail.Soluong</p>
+                        <p><strong>Đơn giá:</strong> @detail.Dongia VNĐ</p>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>

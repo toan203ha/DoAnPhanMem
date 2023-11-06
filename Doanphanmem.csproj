@@ -207,6 +207,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\login\Style.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -214,6 +215,7 @@
     <Content Include="Image\bg3.png" />
     <Content Include="Image\bg5.png" />
     <Content Include="Image\iphone-14-pro-max-den.png" />
+    <Content Include="Image\Loai\cart.jpeg" />
     <Content Include="Image\Loai\huawai.png" />
     <Content Include="Image\Loai\ip.jpg" />
     <Content Include="Image\Loai\ip1.png" />
@@ -259,6 +261,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\login.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -304,6 +307,9 @@
     <Content Include="Views\SanPhams\locgia.cshtml" />
     <Content Include="Views\KhachHang\Edit.cshtml" />
     <Content Include="Views\GioHang\Paypal.cshtml" />
+    <Content Include="Views\SanPhams\getDanhsachLoaiSP.cshtml" />
+    <Content Include="Views\Shared\_LayoutLogin.cshtml" />
+    <Content Include="Views\SanPhams\Index_.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

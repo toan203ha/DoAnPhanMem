@@ -15,14 +15,14 @@
 
 <div id="demo" class="carousel slide" data-bs-ride="carousel">
 
-    
+
     <div class="carousel-indicators">
         <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
         <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
         <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
     </div>
 
-   
+
     <div class="carousel-inner">
         <div class="carousel-item active">
             <img src="~/Image/bg2.png" alt="" class="d-block w-100" style="height: 750px; object-position: center;">
@@ -51,42 +51,42 @@
 
 @* loc san pham*@
 
- 
+
 <div class="container-fluid mt-5">
     <div class="container-fluid  p-3 text-center mt-4" style="background-color: #1A6DFF; color: white; font-size: 20px; font-weight: bold; ">Sản Phẩm</div>
     <div style="margin-right:50px;margin-top:20px;margin-left:20px;">
         <button>
-            <a href="@Url.Action("locgia", "SanPhams", new { gia = 4000 } )"><div class="btn">Dưới 4 triệu </div></a>
+            <a href="@Url.Action("locgia", "SanPhams", new { gia = 100 } )"><div class="btn">Dưới 2 triệu </div></a>
         </button>
         <button>
-            <a href="@Url.Action("locgia", "SanPhams", new { gia = 2000 } )"><div class="btn">Dưới 2 triệu </div></a>
+            <a href="@Url.Action("locgia", "SanPhams", new { gia = 22000000 } )"><div class="btn">Dưới 4 triệu </div></a>
 
         </button>
     </div>
     <div class="row mt-3 p-5">
         @foreach (var sp in Model)
         {
-            <div class="col-sm-3 mb-4">
-                <div class="card">
-                    <a href="@Url.Action("SP_giamgia", "SanPhams", new { id = sp.MaSP })">
-                        <img src="~/Image/@sp.Hinh1" class="card-img-top" alt="Iphone">
-
-                        <div class="card-body">
-                            <h5 class="card-title">@sp.TenSP</h5>
-                            <p class="card-text">@sp.Mota</p>
-                            <p class="card-text">@sp.GiaSp</p>
-                            <p class="card-text">Giá</p>
-                            <div class="row">
-                                <a href="#" class="btn btn-success" style="margin-top: 10px">Thêm vào giỏ hàng</a>
+                <div class="col-sm-3 mb-4">
+                    <div class="card">
+                        <a href="@Url.Action("SP_giamgia", "SanPhams", new {id = sp.MaSP })">
+                            <img src="~/Image/@sp.Hinh1" class="card-img-top" alt="Iphone">
+                            <div class="card-body">
+                                <h5 class="card-title">@sp.TenSP</h5>
+                                <p class="card-text">@sp.Mota</p>
+                                <p class="card-text">@sp.GiaSp</p>
+                                <p class="card-text">Giá</p>
+                                <div class="row">
+                                    <a href="#" class="btn btn-success" style="margin-top: 10px">Thêm vào giỏ hàng</a>
+                                </div>
                             </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
+                        </a>
+                    </div>
+                </div>       
         }
+
     </div>
 
-    @*bai báo*@
+    @*bài báo*@
     <div class="container-fluid bg-light text-center " style="background-color: #1A6DFF;">Cửa hàng chuyên cung cấp các loại điện thoại mới nhất </div>
 
     <div class="container pt-5">
@@ -111,7 +111,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>q
 </div>
 
 <div class="p-5"></div>

@@ -86,14 +86,14 @@
         <div class="bg-light p-4 " style="border-radius: 5px;border: 1px solid #e5e7eb">
             <h3>Thông tin sản phẩm</h3>
             <ul>
-                <li>Mô tả: @Model.Mau.Tenmau</li>
+                <li>Mô tả: @Model.Mau.Tenmau, sản phẩm còn lại: @Model.Soluongton cái</li>
             </ul>
         </div>
         <hr />
     </div>
 
     @*gioithieu*@
-    <div class="container-fluid " style="background-color: red;text-align:center ;display:block"><p class="p-3">Thông tin chi tiết sản phẩm</p> </div>
+    <div class="container-fluid  p-3 text-center mt-4" style="background-color: #1A6DFF; color: white; font-size: 20px; font-weight: bold; ">Thông Tin Chi Tiết Sản Phẩm</div>
 
     <style>
         body {
@@ -102,6 +102,7 @@
             padding: 0;
             background-color: #f5f5f5;
         }
+
         .container {
             max-width: 1200px;
             margin: 20px auto;
@@ -114,42 +115,18 @@
 
 
     <div class="container ">
-        <h1>Đánh giá Samsung Galaxy S22 Ultra 5G</h1>
+        <h1>Đánh giá @Model.TenSP</h1>
         <p>Những nâng cấp lớn về hiệu năng, dung lượng pin, và trên hết là camera sau chính là những điểm khiến nó trở thành siêu phẩm trong phân khúc cao cấp. Dưới đây là những thông tin cần biết về dòng điện thoại vừa ra mắt của Samsung.</p>
 
         <h2>Thiết kế nguyên khối - kính sang trọng với độ bền tối ưu</h2>
         <p>Samsung Galaxy S22 Ultra đi theo ngôn ngữ thiết kế nguyên khối - kính cao cấp và sang trọng, vốn đã làm nên sự thành công của model tiền nhiệm. Chiếc máy có thiết kế mặt lưng đơn sắc tối giản nhưng không kém phần tinh tế, và màn hình tràn viền bao phủ gần như toàn bộ mặt trước, tạo nên trải nghiệm quan sát rộng rãi trên một thiết bị di động nhỏ gọn vừa tay cầm.</p>
         <p>Độ bền của máy được đảm bảo tối ưu không chỉ qua lớp vỏ nhôm nguyên khối Amor đánh bóng, mà còn qua kính cường lực Corning Gorilla Glass Victus+ bao phủ hai mặt trước và sau. Khung nhôm và kính hoạt động như bộ giáp bảo vệ điện thoại an toàn. Chiếc máy còn có khả năng chống bụi/nước đạt chuẩn IP68 giúp người dùng luôn an tâm khi dùng máy trong những điều kiện môi trường khác nhau.</p>
         <p><img src="~/Image/ip5.jpg" style="max-height:400px" class="w-100"></p>
-
-        <h2>Ống kính 108MP mang lại khả năng chụp ảnh không giới hạn</h2>
-        <p>Ống kính chính trên Samsung S22 Ultra với độ phân giải lên đến 108MP, với những khả năng chụp ảnh đêm, chụp chân dung, chụp góc siêu rộng, và zoom quang học 100x đều hiện diện. Chi tiết ảnh và màu sắc tốt nằm trong khoảng zoom 10x, có thể sử dụng zoom 30x trong điều kiện ánh sáng tốt, còn zoom 100x mang tính chất lưu lại thông tin. Camera chính và camera tele hỗ trợ công nghệ chống rung quang học OIS.</p>
-        <p><img src="link-den-hinh-anh-camera-108MP.jpg" alt="Camera 108MP trên S22 Ultra"></p>
         <!-- Thêm nội dung tiếp theo ở đây -->
 
-        <h2>Đánh giá Samsung Galaxy S22 Ultra 5G</h2>
 
-        <p>Máy S22 Ultra 5G của Samsung thực sự là một sản phẩm ấn tượng trong phân khúc cao cấp. Dưới đây là những tính năng và điểm nổi bật khác của sản phẩm:</p>
+        
 
-        <h3>Khả năng chụp ảnh ban đêm</h3>
-        <p>S22 Ultra 5G mang đến khả năng chụp ảnh ban đêm đầy ấn tượng nhờ vào bộ xử lý hình ảnh AI và ống kính chất lượng. Người dùng có thể tạo ra những bức ảnh ban đêm sáng rõ, đầy chi tiết và không bị nhiễu. Công nghệ chống rung quang học OIS cũng đảm bảo rằng bạn có được hình ảnh ổn định.</p>
-
-        <h3>Màn hình AMOLED 120Hz</h3>
-        <p>Màn hình Quad HD+ AMOLED với tốc độ làm tươi 120Hz mang lại trải nghiệm mượt mà và sắc nét khi sử dụng điện thoại. Độ phân giải cao và hỗ trợ HDR10+ giúp hiển thị hình ảnh và video với chất lượng tuyệt vời.</p>
-        <p><img src="link-den-hinh-anh-man-hinh.jpg" alt="Màn hình Samsung S22 Ultra 5G"></p>
-
-        <h3>Bút S-Pen</h3>
-        <p>S22 Ultra 5G tương thích với bút S-Pen, giúp người dùng tạo nên những ghi chú, vẽ tranh, hoặc tương tác với màn hình một cách dễ dàng. Bút S-Pen là một công cụ hữu ích cho các công việc sáng tạo và ghi chú hàng ngày.</p>
-
-        <h3>Hiệu năng mạnh mẽ</h3>
-        <p>Được trang bị bộ xử lý mạnh mẽ và RAM lớn, S22 Ultra 5G chạy mượt mà và nhanh chóng. Người dùng có thể chơi game, xem video, và thực hiện nhiều tác vụ đồng thời mà không gặp trở ngại.</p>
-
-        <h3>Pin lớn</h3>
-        <p>Thiết bị có pin dung lượng lớn giúp bạn sử dụng thoải mái suốt cả ngày mà không cần lo lắng về việc sạc pin. Điều này rất hữu ích cho những người dùng có nhu cầu sử dụng điện thoại một cách tích cực.</p>
-
-        <p><img src="link-den-hinh-anh-pin.jpg" alt="Pin Samsung S22 Ultra 5G"></p>
-
-        <p>Trên đây là những thông tin chi tiết về Samsung Galaxy S22 Ultra 5G, một sản phẩm xuất sắc trong thế giới smartphone hiện đại. Điện thoại này kết hợp thiết kế đẹp mắt, hiệu năng mạnh mẽ, và khả năng chụp ảnh ấn tượng, làm cho nó trở thành một trong những lựa chọn hàng đầu trong phân khúc cao cấp.</p>
     </div>
     @*sanphamtuongtu*@
 

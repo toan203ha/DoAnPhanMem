@@ -1,35 +1,118 @@
-﻿@using Doanphanmem.Models
-@model IEnumerable<SanPham>
+﻿@model IEnumerable<Doanphanmem.Models.SanPham>
+
 @{
-    ViewBag.Title = "locgia";
+    ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@*san pham dd*@
-<div class="container-fluid mt-5">
-    <div class="text-center" style="background-color: var(--maudo); padding: 10px;">Sản phẩm</div>
 
+<style>
+    :root {
+        --maudo: RGB(255, 205, 210);
+    }
+</style>
+
+
+<div id="demo" class="carousel slide" data-bs-ride="carousel">
+
+
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
+        <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
+        <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+    </div>
+
+
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="~/Image/bg2.png" alt="" class="d-block w-100" style="height: 750px; object-position: center;">
+        </div>
+        <div class="carousel-item active">
+            <img src="~/Image/bg3.png" alt="" class="d-block w-100" style="height: 750px; object-position: center;">
+        </div>
+        <div class="carousel-item active">
+            <img src="~/Image/bg5.png" alt="" class="d-block w-100" style="height: 750px; object-position: center;">
+        </div>
+    </div>
+
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </button>
+</div>
+
+
+
+@*danh mục sản phâm*@
+@Html.Action("layloaisp", "SanPhams")
+
+@* loc san pham*@
+
+
+<div class="container-fluid mt-5">
+    <div class="container-fluid  p-3 text-center mt-4" style="background-color: #1A6DFF; color: white; font-size: 20px; font-weight: bold; ">Sản Phẩm</div>
+    <div style="margin-right:50px;margin-top:20px;margin-left:20px;">
+        <button>
+            <a href="@Url.Action("locgia", "SanPhams", new { gia = 4000 } )"><div class="btn">Dưới 4 triệu </div></a>
+        </button>
+        <button>
+            <a href="@Url.Action("locgia", "SanPhams", new { gia = 2000 } )"><div class="btn">Dưới 2 triệu </div></a>
+
+        </button>
+    </div>
     <div class="row mt-3 p-5">
         @foreach (var sp in Model)
         {
             <div class="col-sm-3 mb-4">
                 <div class="card">
-                    <a href="@Url.Action("laychitietsp", "SanPhams", new {id = sp.MaSP })"> <img src="~/Image/@sp.Hinh1" class="card-img-top" alt="Iphone"></a>
-                    <div class="card-body">
-                        <h5 class="card-title">@sp.TenSP</h5>
-                        <p class="card-text">@sp.Mota</p>
-                        <p class="card-text">@sp.GiaSp</p>
-                        <p class="card-text">Giá</p>
-                        <div class="row">
-                            <a href="#" class="btn btn-primary ">Đặt hàng</a>
-                            <a href="#" class="btn btn-success" style="margin-top: 10px">Thêm vào giỏ hàng</a>
+                    <a href="@Url.Action("SP_giamgia", "SanPhams", new { id = sp.MaSP })">
+                        <img src="~/Image/@sp.Hinh1" class="card-img-top" alt="Iphone">
+
+                        <div class="card-body">
+                            <h5 class="card-title">@sp.TenSP</h5>
+                            <p class="card-text">@sp.Mota</p>
+                            <p class="card-text">@sp.GiaSp</p>
+                            <p class="card-text">Giá</p>
+                            <div class="row">
+                                <a href="#" class="btn btn-success" style="margin-top: 10px">Thêm vào giỏ hàng</a>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             </div>
         }
-
-    </div>
     </div>
 
+    @*bai báo*@
+    <div class="container-fluid bg-light text-center " style="background-color: #1A6DFF;">Cửa hàng chuyên cung cấp các loại điện thoại mới nhất </div>
+
+    <div class="container pt-5">
+        <div class="row mt-4">
+            <div class="col-sm-6 ">
+                <div class="card">
+                    <img src="~/Image/iphone-14-pro-max-den.png" class="card-img-top" />
+                    <div class="card-body">
+                        <a href="https://vnexpress.net/iphone-15-pro-max-thua-galaxy-s23-ultra-khi-tha-roi-4660100.html" class="card-title ">iPhone 15 Pro Max thua Galaxy S23 Ultra khi thả rơi</a>
+                        <p>iPhone 15 Pro Max bị hư hại nhiều hơn Galaxy S23 Ultra sau bốn lần thả rơi ở các góc khác nhau xuống bề mặt bê tông và thép...</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 ">
+                <div class="card">
+                    <img src="~/Image/iphone-14-pro-max-den.png" class="card-img-top"> </img>
+                    <div class="card-body">
+                        <a href="https://vnexpress.net/iphone-15-pro-max-thua-galaxy-s23-ultra-khi-tha-roi-4660100.html" class="card-title ">iPhone 15 Pro Max thua Galaxy S23 Ultra khi thả rơi</a>
+                        <p>iPhone 15 Pro Max bị hư hại nhiều hơn Galaxy S23 Ultra sau bốn lần thả rơi ở các góc khác nhau xuống bề mặt bê tông và thép...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="p-5"></div>
 

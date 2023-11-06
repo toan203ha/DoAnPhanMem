@@ -35,7 +35,7 @@
         background-color: #333;
         color: #fff;
         padding: 10px 20px;
-        border: none;
+        border-radius: 5px;
         cursor: pointer;
     }
 
@@ -60,19 +60,24 @@
                 <img height="180" width="250" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHCBQVExgUFRUUGRQYGhgYGhsbGBgYGhUVGBgbGxoaGxodIS0kGx0qHxoYJTclKi4xNDQ0GiM6PzoyPi0zNDEBCwsLEA8QHxISHzMqJCozMzMzNDMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM//AABEIALcBEwMBIgACEQEDEQH/xAAcAAEAAQUBAQAAAAAAAAAAAAAABQIDBAYHAQj/xABGEAACAQICAwgOCQMEAwAAAAAAAQIDEQQhBRIxBkFRYXGBkbMTFCIyNVJUcnOSobGy0RUWQmKTwdLh8CS08QcjM4IlY6L/xAAbAQEAAwEBAQEAAAAAAAAAAAAABAUGAwIBB//EADURAAIBAgMGBAQEBwEAAAAAAAABAgMRBAUhEjFBYYGxE1FxoSIzkdEjsuHwFSRSYnLB8RT/2gAMAwEAAhEDEQA/AOzAAAAAAAAAAAAAAAAAAtV60YRc5yjGKzbk1FJcbewgqu7TR8XZ4mD81TkumMWjl/8AqnpupVrukpNU4TlGMU8rwspTfDJyulwKPGaG5u/fS9Znenh5TV0c51FF2Z9FfXjR/lC9Sp+k8+vGjvKF6lT9J841Kkt6UvWZblOfjy9Znp4WSPiqpn0m93OjvKY+rU/SU/XvR3lMfVqfpPmeVWW/KT52KtW77lyS5Xt6Tg4NOx0TPpn686O8oj6lT9I+vOjvKY+pU/SfNNBTnJRU55/elkt97TbtC6GpyV6ms1xylny5nmp8CuztQoyrS2Ynafrxo7yiPqVP0kvo/SdCvHWo1adRLbqyTtyrauc45R0Bhr91D/6nm7ZfaMbFaO7SxMcRgqlSKUlG0m3fWyje+2LlaLi/GurWOUaqbsSK2AqU4uWjt++J3kGHovGKtRp1lkqkIzS4NaKdvaZh1IQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB88bslfE1PSV+ukaxUjZ33jaN2Eb4mp6Sv1siLeCg6es3U/wCNzbtFJSUpxS47yhGK3+6b3i2w/wAhde7IFT5j6diGnFveLcab39hsFDQ8ex686kox1pLvdkUpJa1k3BtxeTWXORVejqzlGV7xbi1wNNp7Np6WzJ3R61Whhyjwb5a7H7jLlDg/jLE3n7Og8VYcWe4MvaMXdN2vlY6Do6Fqa4zSdC080+FnR8Nhlqpc3QVGNa2kuS99f9mgyiOjky1CbGks6V+CdHrYGVGCvaxb0rBdhvwTo9bAjQXxL1LTE/Kl6Pszoe4nwdhfQw9xOkFuK8HYX0MPhJ0lmVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPnrddK2Kqekr9bIxe1XqtU6ks6cHKKlLunOnKpq2S2LulbPvuNmVutjfFVPSV+ukQWq0758pdYS7ox69ytrtKq+nYksJo68o6lRx/43JptSjKpFNOKSVrJtb98tl8seehJ5Z31rO+rJaqlJqOtfZLLOL2PK5hOLZXQnq5PKL4k/YeasKkLyhry/fE6UpwnaM9Of74FzFaN7HrNzi9WSjJRTbTlNxior7TerN2+6yzidFaqbSqd+k9aNl3t5K626rsr7HfLYyVjo2FSneKtC+9l3SvtjsUrP9zL0XolQadirqY/a04rgW9LKp3TWqfE93PaJz15RdorLLfys/z5jbKMG8kWaLVklZWJbB0O51nzcfGV8pubuy/o0o0Keyi1DDWXGzD07G1D/vRt+NTJhNXfERO6CP8As3+/R66B6i/iR8ryvSn/AIvszc9wL/8AG4bzPdJpGxmubgPBuG8x/HI2MlGYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAbpo3xVTiqV+ukRkdns6SW3QRvi6npK3XSMF4Z7S/wHyF17so8dJKs0+XZEfUjnYsVKZJyoPPjLE4cRJlE5QqDROPdOdnnF5NG4UIxqR1o5cXKaFXpreJzc1pNxbg2uff8AkUWZ4LaXiwWq38zSZRmLg/Dm9Hu5G3YPCtzirbSelHVhyW9pi6NlFuLXD7yRrQTsr2W18i/yUUWaSrUvJJkfs+fGRenW+w5u/d0eupkljJJuy2L+e0wNMpdrvh16PXw+R7g7zXqfK/yZPk+zNx3AeDcN5j+ORsZBbifB2F9DD3E6TzMgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHDNJx/rK3n1uuZYdLgMzHL+sredV66ZQ4u+Re4F/gLr3ZlszlbFS6dkYkocKMapSyJGdGW0xqsGkSmyLCZE1YIwE3Cakt53JPEchg1Yo8yVyzozaN23Pabg1m1ZcLV/8AJOT0invnJHTSd02nxFcMTUWyczN4jKZ7T8Nq3kzWYXOaailVi21xR1KrjIxTbaSXDa3OaxpbdJGpOFClnB1KetPhtUi0o86NVk5T76TlxXbJjA6FnGMa1RaiU6WrFrupN1YK/ErM+RwMMOtqtLXgufDm/ZLezpVzCpiU40Y2S3t+XHkvdvcvM7TuEnfRuGfBTUfVbj+RsJru4OLWjcNfxL80pNr2NGxArwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADi9RLtyvfxq2z00yqcF/GUzV8biPOq/3Ei9OokvvPZxIucH8pde7Mbmzf8A7JW/t/KixOOVlvmDWgZdatlbnZhKnOb7iMpviWXzJE5xgrydjxhqM5ytFNvySuyNxCRH1Yo2unubrzfdWiuXe33we0zKG5iin3crvf226EVlXOMNT3Sv6ffd7mpwuTYme9bPr9tX7GiRpuTtGN3wWbfQTujNx+IrZyi4x402+aK/OxumGoU6afY4Qj/1SdveVzxdTxn0u3QVGIz6ctKat7v7ezL/AA2RQjrN7T+i+/uYmB3MwoWcYa0/GbTa5PF5jzTNJKjJya1tejZJ3t/vU8+grlWk7X3iP0rVfYrffo+ytAqoV3UrxlJtu63u/EtquH2MPKMbJKL3K3A6PuK8HYX0MPhJ0gtxXg7C+hh8JOl8ZYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4tVu8ZiF96t18y7GOerG2vLfbtqx4eJ75TJXxmIXHV5l2edy7OnfL7N78d+Et8M34KS59zI5lKKxstrdpp56ItSUIO0V2SabvJ96nxR3+c8rYitL7bit5K0UlyIuKnFbUVqllwr3Hp4enJ3mrvzev6LorHP+KVo6U3sryjdL2d31bfMwNevfKtLns17UYuI0piaffPWjs2Ik6kOgitK5pLn/I8zy/DyV3CP0ROwmcYvaS8SXV37k7ovH9kWds/b8iU7GaLonFODi03ZSa28Ofvv0m8RrXz5ODgXzMpmWCWHq2jue4/QstxbxFLae8udrrbbJkfp7DpUL7+vR9taGXGS0Zdzbj9n8bI3T8k6HLOh1sGR6MEpx9V3JFeb8OXo+zN33FeDsL6GHwk6QW4rwdhfQw+EnS8MyAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcZcv6zEctbr5mUmrcd/YYl129iL8NX+4kZsoItsL8pGKzh/wA5Pp+VFpxuVU42TzPVTtv2KdXWTedksuNklFdv9DHxT4LkRpCzbe8sujg5yRxNW6V9qyZC4+X2VtdkuVnVIs8JDVFrDQeouGc3Jc2Sy6TcVO0Ve+8r34Ek/wAzWcNB9ljBXWrZdGeZN1amy5mM5mp1VFcP+H6LkdJwo7T46/V3JehO8Xze5/sR2mK6dLVvn2Sjbk7LBleHq9y+X8mR2l5d7xypJ81WPyRXUofHH1LHEfLn6PsdQ3FeDsL6GHwk6QW4rwdhfQw+EnS0M4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcTxLtja/nVevmXlVa3y3Xa7cxF/Gqf3EyupSSV72LjCK9Jde5kM1aeLkny/Kirst9uw8rY+EYuKd/5mRmJxDS2kVXrN8S4yS7R1ZxoYLxGZ+Ix8ZN8e35ojKlbu4t7NeL5r7TGm+UtSvynyNaL3MvKeAcI6rTcbHgJd05b6b/Yy6tTNctzXcFjtV58FiRqYm6urmexuHaq34M2mArKdK3HiSuHq5SXI/yfvRY0hWUtXz6XWx/cj4Yqz25NWfFzcqQnXvKK/wDZS6yJHjTakjrXf4cvR9mdo3E+DsL6GHuJ0gtxXg7C+ih7idJJnwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADhukKmrja/nVevmWK+KduD3lWmJWxlbb31brpmBJptve974C9wVvAT9e7M9jaO3ipaeXZFFWTtrPmX5lilRcnd/x33rl+n3Unfm5ip2WX8yK3F4pzlsxNZleUqEVOe8rloqdm3GW/sWxLa78HGY89Fzd7Qll/kuyqPV2vp5f3Lc7tb/APOAhQuncunRja1l9P1MHE4SUHaSs8nZ8BahUlB7LoyasGs37SzInKpKStLVEV4SMXtR0fL7HnbC2bC7h5XqU/Pp9ZEsqBXhKVqlN/fh8cTy4Rs2fKu0oSTs9H5r7nfdxfg/Deih7idILcX4Pw3ooe4nSKUoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB8/7osQo4yrF5NyxFr77jXlly2fsKqmMh2FUkv9yzbyWd4pJbLqzTyvbMkf8AVnctVVWWIpwlKlKTnrRTfYpyS11K2ai3FSUtibZy/s2IT7+pfh1m/bckqtF0lCS3biM8OnV8R9elvsbjQbVug9mzTez4jxqvSx2xiPGqdLI/G5oo5lTjGyi/Y3KOz+cJUle3GaZ2xiPHq9LEcXiVmp1b8rPh9/idP+l+xvWNopty/wAK29ykdq53z3uDYavLGYp7alX1mUrE4hfbq9LOkJ7KsJZnTe5P2N60Ri6cJSc4a6dkslk9a7tk1sUls+0YlWvHs0LJR16sLK+1a8ZZcKVtpp6q1/GqdLNh3G6AxOLxEdRSlJZa7u4Uk8nOctl0ndR2t2DlHVo5VswjOm4JPy168Lvz4W5n0DuL8H4X0NP3E4Y2CwsaVOFOPewjGC5IpJe4yTmVQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI+pofDSd5UKLfC6cG+mwABT9BYTybD/AIUPkPoLCeTYf8KHyAAPfoLCeTYf8KHyPPoLCeTYf8KHyAAH0FhPJsP+FD5D6Cwnk2H/AAofIAA9+gsJ5Nh/wofIzaVOMVaMVGK3kkl0IAAuAAAAAAAAAAAAAAAAAAAAA//Z" alt="Sản phẩm của bạn">
             </div>
 
-            <div class="product-info">
+            <div class="product-info" style="margin-top:25px;">
                 <h1>@product.TenSP</h1>
-                <p> @product.GiaSp </p>
-                <p>màu sắc</p>
-                <p>số lượng còn lại</p>
-                <button class="buy-button">Thêm vào giỏ hàng</button>
+                <p>Gía Tiền: @product.GiaSp VNĐ</p>
             </div>
-            <td>
-                @if (Session["UserID"] != null)
-                {
-                    @Html.ActionLink("Xóa khỏi danh sách yêu thích", "AddToFavorite", "YeuThich", new { productId = product.MaSP }, new { @class = "btn btn-primary" })
-                }
-            </td>
+            <div style="margin-top:25px;">
+
+                <a  href="@Url.Action("AddProduct", "GioHang", new{ MaSP = product.MaSP })">
+                    <button class="buy-button">
+                        Thêm Vào Giỏ Hàng
+                    </button>
+                </a> 
+                <div class="product-favo">
+                    @if (Session["UserID"] != null)
+                    {
+                        @Html.ActionLink("Xóa khỏi danh sách yêu thích", "AddToFavorite", "YeuThich", new { productId = product.MaSP }, new { @class = "btn btn-primary" })
+                    }
+                </div>
+            </div>
         </div>
     }
 </div>

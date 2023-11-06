@@ -1,4 +1,5 @@
-﻿using Doanphanmem.Models;
+﻿using Antlr.Runtime.Tree;
+using Doanphanmem.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -55,19 +56,24 @@ namespace Doanphanmem.Controllers
             
             public ActionResult FavoriteList()
             {
-                // Lấy danh sách sản phẩm yêu thích của khách hàng từ cơ sở dữ liệu
-                int customerId = (int)Session["UserID"];
+            // Lấy danh sách sản phẩm yêu thích của khách hàng từ cơ sở dữ liệu
+            int customerId = (int)Session["UserID"];           
                 var favoriteProducts = db.YeuThiches
                     .Where(y => y.MaKH == customerId)
                     .Select(y => y.SanPham)
                     .ToList();
+                if (favoriteProducts == null || favoriteProducts.Count==0)
+                {
+                    return RedirectToAction("EmptyFavo","YeuThich");
+                }
+            return View(favoriteProducts);
+            }
 
-                return View(favoriteProducts);
-            }
-            public ActionResult EmptyFavo()
+   
+        public ActionResult EmptyFavo()
             {
-                return View();
-            }
+             return View();
+        }
         public ActionResult Delete(int? id)
         {
             if (id == null)
