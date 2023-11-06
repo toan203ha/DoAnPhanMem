@@ -291,15 +291,13 @@
     <Content Include="Views\SanPhams\Index.cshtml" />
     <Content Include="Views\SanPhams\SP_giamgia.cshtml" />
     <Content Include="Views\SanPhams\DonHangKH.cshtml" />
-<<<<<<< HEAD
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\Index_.cshtml" />
-=======
     <Content Include="Views\SanPhams\laychitietsp.cshtml" />
     <Content Include="Views\SanPhams\layloaisp.cshtml" />
     <Content Include="Views\SanPhams\laysanphamtt.cshtml" />
     <Content Include="Views\SanPhams\locgia.cshtml" />
->>>>>>> khoa
+    <Content Include="Views\SanPhams\IndexAdmin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -72,9 +73,20 @@ namespace Doanphanmem.Controllers
 
 
         // GET: SanPhams
-        public ActionResult Index()
+        public ActionResult Index(String SearchString)
         {
             var sanPham = db.SanPhams.Include(s => s.Mau).Include(s => s.PhanLoai);
+            if (!String.IsNullOrEmpty(SearchString))
+            {
+                sanPham = sanPham.Where(s => s.TenSP.Contains(SearchString));
+                
+               
+            }
+            else
+            {
+                Console.WriteLine("Không tìm thấy sản phẩm nào");
+
+            }
             return View(sanPham.ToList());
         }
 
@@ -106,13 +118,26 @@ namespace Doanphanmem.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MaSP,TenSP,GiaSp,GiaGiam,Hinh1,Hinh2,Hinh3,Hinh4,Mota,Thongso,MaLoai,MaMau")] SanPham sanPham)
+        public ActionResult Create([Bind(Include = "MaSP,TenSP,GiaSp,GiaGiam,Hinh1,Hinh2,Hinh3,Hinh4,Mota,Thongso,Soluongton,MaLoai,MaMau")] SanPham sanPham,
+            HttpPostedFileBase Hinh1)
         {
+
             if (ModelState.IsValid)
             {
+                if (Hinh1 != null)
+                {
+                    //Lấy tên file của hình được up lên
+                    var fileName = Path.GetFileName(Hinh1.FileName);
+                    //Tạo đường dẫn tới file
+                    var path = Path.Combine(Server.MapPath("~/Image"), fileName);
+                    //Lưu tên
+                    sanPham.Hinh1 = fileName;
+                    //Save vào Images Folder
+                    Hinh1.SaveAs(path);
+                }
                 db.SanPhams.Add(sanPham);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("IndexAdmin");
             }
 
             ViewBag.MaMau = new SelectList(db.Maus, "Mamau", "Tenmau", sanPham.Mamau);
@@ -142,13 +167,25 @@ namespace Doanphanmem.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MaSP,TenSP,GiaSp,GiaGiam,Hinh1,Hinh2,Hinh3,Hinh4,Mota,Thongso,MaLoai,MaMau")] SanPham sanPham)
+        public ActionResult Edit([Bind(Include = "MaSP,TenSP,GiaSp,GiaGiam,Hinh1,Hinh2,Hinh3,Hinh4,Mota,Thongso, Soluongton,MaLoai,MaMau")] SanPham sanPham,
+             HttpPostedFileBase Hinh1)
         {
             if (ModelState.IsValid)
             {
+                if (Hinh1 != null)
+                {
+                    //Lấy tên file của hình được up lên
+                    var fileName = Path.GetFileName(Hinh1.FileName);
+                    //Tạo đường dẫn tới file
+                    var path = Path.Combine(Server.MapPath("~/Image"), fileName);
+                    //Lưu tên
+                    sanPham.Hinh1 = fileName;
+                    //Save vào Images Folder
+                    Hinh1.SaveAs(path);
+                }
                 db.Entry(sanPham).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("IndexAdmin");
             }
             ViewBag.MaMau = new SelectList(db.Maus, "Mamau", "Tenmau", sanPham.Mamau);
             ViewBag.MaLoai = new SelectList(db.PhanLoais, "MaLoai", "Tenloai", sanPham.MaLoai);
@@ -178,7 +215,7 @@ namespace Doanphanmem.Controllers
             SanPham sanPham = db.SanPhams.Find(id);
             db.SanPhams.Remove(sanPham);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("IndexAdmin");
         }
 
         protected override void Dispose(bool disposing)
@@ -218,6 +255,12 @@ namespace Doanphanmem.Controllers
             {
                 return View("NoProductsFound");
             }
+        }
+
+        public ActionResult IndexAdmin()
+        {
+            var sp = db.SanPhams.Include(s => s.PhanLoai);
+            return View(sp.ToList());
         }
        
 

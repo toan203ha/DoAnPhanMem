@@ -60,7 +60,7 @@
           </Key>
           <Property Name="Tenloai" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="MaLoai" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="HinhLoai" Type="nchar" MaxLength="400" />
+          <Property Name="HinhLoai" Type="nvarchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <EntityType Name="SanPham">
           <Key>
@@ -110,18 +110,6 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__SanPham__Mamau__5629CD9C">
-          <End Role="Mau" Type="Self.Mau" Multiplicity="0..1" />
-          <End Role="SanPham" Type="Self.SanPham" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Mau">
-              <PropertyRef Name="Mamau" />
-            </Principal>
-            <Dependent Role="SanPham">
-              <PropertyRef Name="Mamau" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__SanPham__Mamau__619B8048">
           <End Role="Mau" Type="Self.Mau" Multiplicity="0..1" />
           <End Role="SanPham" Type="Self.SanPham" Multiplicity="*" />
           <ReferentialConstraint>
@@ -222,10 +210,6 @@
             <End Role="Mau" EntitySet="Mau" />
             <End Role="SanPham" EntitySet="SanPham" />
           </AssociationSet>
-          <AssociationSet Name="FK__SanPham__Mamau__619B8048" Association="Self.FK__SanPham__Mamau__619B8048">
-            <End Role="Mau" EntitySet="Mau" />
-            <End Role="SanPham" EntitySet="SanPham" />
-          </AssociationSet>
           <AssociationSet Name="FK__Vourcher__MaSP__60A75C0F" Association="Self.FK__Vourcher__MaSP__60A75C0F">
             <End Role="SanPham" EntitySet="SanPham" />
             <End Role="Vourcher" EntitySet="Vourcher" />
@@ -281,10 +265,6 @@
             <End Role="YeuThich" EntitySet="YeuThiches" />
           </AssociationSet>
           <AssociationSet Name="FK__SanPham__Mamau__5629CD9C" Association="QL_CHDTModel.FK__SanPham__Mamau__5629CD9C">
-            <End Role="Mau" EntitySet="Maus" />
-            <End Role="SanPham" EntitySet="SanPhams" />
-          </AssociationSet>
-          <AssociationSet Name="FK__SanPham__Mamau__619B8048" Association="QL_CHDTModel.FK__SanPham__Mamau__619B8048">
             <End Role="Mau" EntitySet="Maus" />
             <End Role="SanPham" EntitySet="SanPhams" />
           </AssociationSet>
@@ -356,7 +336,6 @@
           <Property Name="Tenmau" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="Mamau" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="SanPhams" Relationship="QL_CHDTModel.FK__SanPham__Mamau__5629CD9C" FromRole="Mau" ToRole="SanPham" />
-          <NavigationProperty Name="SanPhams1" Relationship="QL_CHDTModel.FK__SanPham__Mamau__619B8048" FromRole="Mau" ToRole="SanPham" />
         </EntityType>
         <EntityType Name="PhanLoai">
           <Key>
@@ -364,7 +343,7 @@
           </Key>
           <Property Name="Tenloai" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="MaLoai" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="HinhLoai" Type="String" MaxLength="400" FixedLength="true" Unicode="true" />
+          <Property Name="HinhLoai" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="SanPhams" Relationship="QL_CHDTModel.FK__SanPham__MaLoai__5535A963" FromRole="PhanLoai" ToRole="SanPham" />
         </EntityType>
         <EntityType Name="SanPham">
@@ -386,7 +365,6 @@
           <Property Name="Mamau" Type="Int32" />
           <NavigationProperty Name="CTDATHANGs" Relationship="QL_CHDTModel.FK_CTDatHang_Sach" FromRole="SanPham" ToRole="CTDATHANG" />
           <NavigationProperty Name="Mau" Relationship="QL_CHDTModel.FK__SanPham__Mamau__5629CD9C" FromRole="SanPham" ToRole="Mau" />
-          <NavigationProperty Name="Mau1" Relationship="QL_CHDTModel.FK__SanPham__Mamau__619B8048" FromRole="SanPham" ToRole="Mau" />
           <NavigationProperty Name="PhanLoai" Relationship="QL_CHDTModel.FK__SanPham__MaLoai__5535A963" FromRole="SanPham" ToRole="PhanLoai" />
           <NavigationProperty Name="Vourchers" Relationship="QL_CHDTModel.FK__Vourcher__MaSP__60A75C0F" FromRole="SanPham" ToRole="Vourcher" />
           <NavigationProperty Name="YeuThiches" Relationship="QL_CHDTModel.FK__YeuThich__MaSP__5CD6CB2B" FromRole="SanPham" ToRole="YeuThich" />
@@ -460,18 +438,6 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__SanPham__Mamau__5629CD9C">
-          <End Type="QL_CHDTModel.Mau" Role="Mau" Multiplicity="0..1" />
-          <End Type="QL_CHDTModel.SanPham" Role="SanPham" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Mau">
-              <PropertyRef Name="Mamau" />
-            </Principal>
-            <Dependent Role="SanPham">
-              <PropertyRef Name="Mamau" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__SanPham__Mamau__619B8048">
           <End Type="QL_CHDTModel.Mau" Role="Mau" Multiplicity="0..1" />
           <End Type="QL_CHDTModel.SanPham" Role="SanPham" Multiplicity="*" />
           <ReferentialConstraint>

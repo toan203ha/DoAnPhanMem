@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'D:\toan\Models\QL_CHDT.edmx'. 
+﻿// T4 code generation is enabled for model 'D:\Tai Lieu\Kien Thuc\Hoc ky 1 nam 3\DOANPM_LT\WEB_1_11_DT\Doanphanmem\Models\QL_CHDT.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.
