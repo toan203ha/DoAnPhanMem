@@ -256,6 +256,13 @@ namespace Doanphanmem.Controllers
             var loaisp = db.PhanLoais.ToList();
             return PartialView(loaisp);
         }
+
+        //
+        public ActionResult layloaisp_layout()
+        {
+            var loaisp = db.PhanLoais.ToList();
+            return PartialView(loaisp);
+        }
         public ActionResult locgia(int gia)
         {
             var sp = db.SanPhams.Where(s => s.GiaSp > 0 && s.GiaSp <= gia).ToList();

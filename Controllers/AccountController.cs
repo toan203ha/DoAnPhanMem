@@ -30,7 +30,6 @@ namespace Doanphanmem.Controllers
                 Session["UserID"] = user.MaKH;
                 Session["UserName"] = user.TenKH;
                 Session["UserRole"] = user.Roleuser;
-
                 return RedirectToAction("Index", "SanPhams"); 
             }
 
@@ -39,26 +38,16 @@ namespace Doanphanmem.Controllers
             return View(model);
         }
 
-
-        // Tạo action khác để đảm bảo người dùng đã đăng nhập (điều hướng từ action Login sau khi đăng nhập thành công)
-        //public ActionResult Dashboard()
-        //{
-        //    if (Session["UserID"] == null)
-        //    {
-        //        // Điều hướng về trang đăng nhập nếu người dùng chưa đăng nhập
-        //        return RedirectToAction("Login");
-        //    }
-
-        //    // Lấy thông tin người dùng từ Session và hiển thị trong section
-        //    var userModel = new UserModel
-        //    {
-        //        MaKH = (int)Session["UserID"],
-        //        TenKH = Session["UserName"].ToString(),
-        //        Roleuser = Session["UserRole"].ToString()
-        //    };
-
-        //    return View(userModel);
-        //}
+        public ActionResult Logout() 
+        {
+             
+            Session.Remove("UserID");
+            Session.Remove("UserName");
+            Session.Remove("UserRole");
+            Session.Remove("taikhoan");
+            return RedirectToAction("Index", "SanPhams");
+        }
+       
     }
 
 }

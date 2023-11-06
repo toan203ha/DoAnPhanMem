@@ -1,0 +1,53 @@
+﻿@using Doanphanmem.Models
+@model IEnumerable<PhanLoai>
+<style>
+    :root {
+        --maudo: RGB(255, 205, 210);
+    }
+
+    .danhmuc {
+        border: none;
+        background: transparent;
+        padding: 0;
+        cursor: pointer;
+        text-align: center;
+    }
+
+    .button-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .danhmuc-img {
+        height: 46px;
+        width: 46px;
+        border-radius: 50%;
+        border: 2px solid #333; /* Thay đổi màu viền theo mong muốn */
+        transition: transform 0.3s, border-color 0.3s;
+    }
+
+    .danhmuc-text {
+        font-size: 14px;
+        margin: 10px 0;
+    }
+
+    .danhmuc:hover .danhmuc-img {
+        transform: scale(1.1); /* Thay đổi kích thước ảnh khi hover */
+        border-color: #007bff; /* Thay đổi màu viền khi hover */
+    }
+</style>
+
+<div class="row p-4">
+    @foreach (var loai in Model)
+    {
+        <a href="~/SanPhams/getDanhsachLoaiSP/@loai.MaLoai">
+            <button class="col-12 col-sm-6 col-md-4 col-lg-3 danhmuc">
+                <div class="button-content">             
+                    <p class="danhmuc-text">@loai.Tenloai</p>
+                </div>
+            </button>
+        </a>
+    }
+</div>
+

@@ -119,6 +119,19 @@ namespace Doanphanmem.Controllers
             return TongTien;
         }
 
+        private double TinhTongTienvnd()
+        {
+            double TongTien = 0;
+            decimal b = 23000;
+            List<MatHangMua> gioHang = Index();
+            if (gioHang != null)
+            {
+                TongTien = gioHang.Sum(sp => sp.Total());
+            }
+            decimal c = (decimal)TongTien / b;
+            return (double)c;
+        }
+
         private int TinhTongSL()
         {
             int tongSL = 0;
@@ -144,7 +157,7 @@ namespace Doanphanmem.Controllers
                 if (productInDB != null)
                 {
                     // Giảm số lượng tồn kho đi số lượng sản phẩm đã đặt hàng
-                    productInDB.Soluongton = productInDB.Soluongton-sanpham.Soluong;
+                    productInDB.Soluongton = productInDB.Soluongton - sanpham.Soluong;
                 }
             }
             db.SaveChanges();
@@ -251,6 +264,35 @@ namespace Doanphanmem.Controllers
                 return View("FailureView");
             }
             //on successful payment, show success page to user.  
+            KhachHang kh = Session["taikhoan"] as KhachHang;
+            List<MatHangMua> giohang = Index();
+
+            // thêm dữ liệu vào đơn hàng
+            DONDATHANG donhang = new DONDATHANG();
+            donhang.MaKH = kh.MaKH;
+            donhang.NgayDH = DateTime.Now;
+            donhang.Trigia = (Decimal)TinhTongTien();
+            donhang.Dagiao = false;
+            donhang.Tennguoinhan = kh.TenKH;
+            donhang.Diachinhan = kh.DiaChi;
+            donhang.Dienthoainhan = kh.sdt.ToString();
+            donhang.HTThanhtoan = true;
+            donhang.HTGiaohang = false;
+            db.DONDATHANGs.Add(donhang);
+            db.SaveChanges();
+            // thêm vào chi tiết đơn hàng
+            foreach (var sanpham in giohang)
+            {
+                CTDATHANG ct = new CTDATHANG();
+                ct.SODH = donhang.SODH;
+                ct.MaSP = sanpham.MaDT;
+                ct.Soluong = sanpham.Soluong;
+                ct.Dongia = (decimal)TinhTongTien();
+                db.CTDATHANGs.Add(ct);
+            }
+            db.SaveChanges();
+            //xóa giỏ hàng
+            Session["GioHang"] = null;
             return View("HoanThanhDonHang");
         }
         private PayPal.Api.Payment payment;
@@ -279,7 +321,7 @@ namespace Doanphanmem.Controllers
 
                         name = "Item Name",
                         currency = "USD",
-                        price = TinhTongTien().ToString(),
+                        price = TinhTongTienvnd().ToString(),
                         quantity = TinhTongSL().ToString(),
                         sku = "sku"
                     }
@@ -301,13 +343,13 @@ namespace Doanphanmem.Controllers
             {
                 tax = "0", // Thay đổi nếu bạn có thuế
                 shipping = "0", // Thay đổi nếu bạn có phí vận chuyển
-                subtotal = TinhTongTien().ToString() // Tổng giá trị sản phẩm trong USD
+                subtotal = TinhTongTienvnd().ToString() // Tổng giá trị sản phẩm trong USD
             };
 
             var amount = new Amount
             {
                 currency = "USD",
-                total = TinhTongTien().ToString(), // Tổng giá trị thanh toán trong USD
+                total = TinhTongTienvnd().ToString(), // Tổng giá trị thanh toán trong USD
                 details = details
             };
 

@@ -306,23 +306,17 @@
     <Content Include="Views\SanPhams\layloaisp.cshtml" />
     <Content Include="Views\SanPhams\laysanphamtt.cshtml" />
     <Content Include="Views\SanPhams\locgia.cshtml" />
-
     <Content Include="Views\KhachHang\Edit.cshtml" />
     <Content Include="Views\GioHang\Paypal.cshtml" />
- 
     <Content Include="Views\Categories\Create.cshtml" />
     <Content Include="Views\Categories\Delete.cshtml" />
     <Content Include="Views\Categories\Details.cshtml" />
     <Content Include="Views\Categories\Edit.cshtml" />
     <Content Include="Views\Categories\Index.cshtml" />
-
     <Content Include="Views\SanPhams\IndexAdmin.cshtml" />
-
- 
     <Content Include="Views\SanPhams\getDanhsachLoaiSP.cshtml" />
     <Content Include="Views\Shared\_LayoutLogin.cshtml" />
-    <Content Include="Views\SanPhams\Index_.cshtml" />
- 
+    <Content Include="Views\SanPhams\layloaisp_layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

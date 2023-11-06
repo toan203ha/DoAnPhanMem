@@ -68,8 +68,23 @@
 
                 <label for="paypalPayment">Thanh Toán Qua PayPal</label>
                 <input type="radio" name="isDirectPayment" value="false" />
-                <input type="submit" value="Đặt hàng" />
+                @*<input type="submit" value="Đặt hàng" />*@
+
+                <button type="submit" class="btn btn-primary" onclick="return validateAndUpdateCart();">Đặt Hàng</button>
+
             }
         </td>
         </tr>
 </table>
+
+<script>
+    function validateAndUpdateCart() {
+        var isDirectPayment = document.querySelector('input[name="isDirectPayment"]:checked');
+        if (isDirectPayment === null) {
+            alert("Vui Lòng Chọn Hình Thức Thanh Toán.");
+            return false;
+        }
+        return true;
+    }
+
+</script>
