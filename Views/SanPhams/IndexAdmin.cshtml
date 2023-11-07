@@ -31,13 +31,7 @@
         box-shadow: 10px 10px 10px rgba(46, 54, 68, 0.03);
     }
 </style>
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index_</title>
-</head>
 <body>
     <p>
         @Html.ActionLink("Create New", "Create")
@@ -54,11 +48,7 @@
                                         <table class="table table-borderless mb-0">
                                             <thead>
                                                 <tr>
-                                                    <th scope="col">
-                                                        <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                                                        </div>
-                                                    </th>
+                
                                                     <th scope="col"> @Html.DisplayNameFor(model => model.TenSP)</th>
                                                     <th scope="col">@Html.DisplayNameFor(model => model.GiaSp)</th>
                                                     <th scope="col"> @Html.DisplayNameFor(model => model.Hinh1)</th>
@@ -73,11 +63,7 @@
                                                 @foreach (var item in Model)
                                                 {
                                                     <tr>
-                                                        <th scope="row">
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault1" checked />
-                                                            </div>
-                                                        </th>
+                                   
                                                         <td>
                                                             @Html.DisplayFor(modelItem => item.TenSP)
                                                         </td>
@@ -127,5 +113,4 @@
         </div>
     </section>
 </body>
-</html>
 

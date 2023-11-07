@@ -30,6 +30,18 @@ namespace Doanphanmem.Controllers
                 Session["UserID"] = user.MaKH;
                 Session["UserName"] = user.TenKH;
                 Session["UserRole"] = user.Roleuser;
+
+                // Kiểm tra vai trò của người dùng
+                if (user.Roleuser == "NhanVien")
+                {
+                    // Nếu là nhân viên, thiết lập tên mặc định
+                    Session["DisplayName"] = "NhanVien";
+                }
+                else
+                {
+                    // Nếu không phải nhân viên, để người dùng điền tên
+                    Session["DisplayName"] = "";
+                }
                 return RedirectToAction("Index", "SanPhams"); 
             }
 
@@ -37,6 +49,14 @@ namespace Doanphanmem.Controllers
             ViewBag.ErrorInfo = "Sai thông tin đăng nhập";
             return View(model);
         }
+
+        public ActionResult Chat()
+        {
+            return View();
+        }
+
+
+
 
         public ActionResult Logout() 
         {
@@ -47,7 +67,7 @@ namespace Doanphanmem.Controllers
             Session.Remove("taikhoan");
             return RedirectToAction("Index", "SanPhams");
         }
-       
+
     }
 
 }
