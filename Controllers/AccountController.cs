@@ -31,6 +31,21 @@ namespace Doanphanmem.Controllers
                 Session["UserName"] = user.TenKH;
                 Session["UserRole"] = user.Roleuser;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+                // Kiểm tra vai trò của người dùng
+                if (user.Roleuser == "NhanVien")
+                {
+                    // Nếu là nhân viên, thiết lập tên mặc định
+                    Session["DisplayName"] = "NhanVien";
+                }
+                else
+                {
+                    // Nếu không phải nhân viên, để người dùng điền tên
+                    Session["DisplayName"] = "";
+                }
+>>>>>>> Toan_7_11
                 return RedirectToAction("Index", "SanPhams"); 
 =======
                 if (user.Roleuser.ToString() == "Admin")
@@ -48,6 +63,17 @@ namespace Doanphanmem.Controllers
         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+        public ActionResult Chat()
+        {
+            return View();
+        }
+
+
+
+
+>>>>>>> Toan_7_11
         public ActionResult Logout() 
         {
              
@@ -57,6 +83,7 @@ namespace Doanphanmem.Controllers
             Session.Remove("taikhoan");
             return RedirectToAction("Index", "SanPhams");
         }
+<<<<<<< HEAD
        
 =======
         
@@ -80,6 +107,9 @@ namespace Doanphanmem.Controllers
         //    return View(userModel);
         //}
 >>>>>>> Tuan
+=======
+
+>>>>>>> Toan_7_11
     }
 
 }

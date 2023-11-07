@@ -276,7 +276,7 @@ namespace Doanphanmem.Controllers
             donhang.Tennguoinhan = kh.TenKH;
             donhang.Diachinhan = kh.DiaChi;
             donhang.Dienthoainhan = kh.sdt.ToString();
-            donhang.HTThanhtoan = true;
+            donhang.HTThanhtoan = false;
             donhang.HTGiaohang = false;
             db.DONDATHANGs.Add(donhang);
             db.SaveChanges();

@@ -51,7 +51,7 @@
         border: none;
         border-radius: 5px;
         cursor: pointer;
-        width: 155px;
+        width: 170px;
         height: 44px;
     }
     .wait-button {
@@ -64,7 +64,7 @@
         border: none;
         border-radius: 5px;
         cursor: pointer;
-        width: 155px;
+        width: 170px;
         height: 44px;
     }
     .paypal-button {
@@ -77,7 +77,21 @@
         border: none;
         border-radius: 5px;
         cursor: pointer;
-        width: 155px;
+        width: 170px;
+        height: 44px;
+    }
+
+    .none-paypal-button {
+        position: absolute;
+        top: 80px;
+        right: 20px;
+        background-color: navy;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 170px;
         height: 44px;
     }
     .payment_tm{
@@ -114,13 +128,14 @@
                             }
                         </p>
                         <p>
-                            <strong>HTTT:</strong> @if (order.HTThanhtoan == false)
+                            <strong>HTTT:</strong> @if (order.HTThanhtoan == true)
                             {
                                 <span class="payment_tm">Thanh Toán Bằng Tiền Mặt</span>
+                                <button class="none-paypal-button">Chưa Thanh Toán</button>
                             }
                             else
                             {
-                                <span  class="payment_pp">Thanh Toán Bằng PayPal</span>
+                                <span class="payment_pp">Thanh Toán Bằng PayPal</span>
                                 <button class="paypal-button">Đã Thanh Toán</button>
 
                             }
