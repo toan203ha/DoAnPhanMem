@@ -30,8 +30,12 @@ namespace Doanphanmem.Controllers
                 Session["UserID"] = user.MaKH;
                 Session["UserName"] = user.TenKH;
                 Session["UserRole"] = user.Roleuser;
-
-                return RedirectToAction("Index", "SanPhams"); 
+                if (user.Roleuser.ToString() == "Admin")
+                    return RedirectToAction("./index", "Admin");
+                else if (user.Roleuser.ToString() == "Customer")
+                    return RedirectToAction("Index", "SanPhams");
+                else
+                    return RedirectToAction("Login", "Account");
             }
 
             // Đăng nhập thất bại, hiển thị thông báo lỗi
@@ -39,7 +43,7 @@ namespace Doanphanmem.Controllers
             return View(model);
         }
 
-
+        
         // Tạo action khác để đảm bảo người dùng đã đăng nhập (điều hướng từ action Login sau khi đăng nhập thành công)
         //public ActionResult Dashboard()
         //{
