@@ -177,7 +177,7 @@ namespace Doanphanmem.Controllers
                 donhang.MaKH = kh.MaKH;
                 donhang.NgayDH = DateTime.Now;
                 donhang.Trigia = (Decimal)TinhTongTien();
-                donhang.Dagiao = false;
+                donhang.Dagiao = true;
                 donhang.Tennguoinhan = kh.TenKH;
                 donhang.Diachinhan = kh.DiaChi;
                 donhang.Dienthoainhan = kh.sdt.ToString();

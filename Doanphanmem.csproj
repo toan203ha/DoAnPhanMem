@@ -130,6 +130,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Admin\Controllers\AdminController.cs" />
+    <Compile Include="Admin\Controllers\DonHangAdminController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -317,6 +318,11 @@
     <Content Include="Views\SanPhams\getDanhsachLoaiSP.cshtml" />
     <Content Include="Views\Shared\_LayoutLogin.cshtml" />
     <Content Include="Views\SanPhams\layloaisp_layout.cshtml" />
+    <Content Include="Views\DonHangAdmin\Create.cshtml" />
+    <Content Include="Views\DonHangAdmin\Delete.cshtml" />
+    <Content Include="Views\DonHangAdmin\Details.cshtml" />
+    <Content Include="Views\DonHangAdmin\Edit.cshtml" />
+    <Content Include="Views\DonHangAdmin\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

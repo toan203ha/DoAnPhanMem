@@ -1,0 +1,132 @@
+﻿@model Doanphanmem.Models.DONDATHANG
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Admin/Layout/_LayoutPage1.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>DONDATHANG</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NgayDH)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgayDH)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dagiao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dagiao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ngaygiaohang)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ngaygiaohang)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tennguoinhan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tennguoinhan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Diachinhan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Diachinhan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Trigia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Trigia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dienthoainhan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dienthoainhan)
+        </dd>
+
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.Tinhtrang)*@
+            Tình trạng đơn hàng
+        </dt>
+
+        <dd>
+            @{
+                if (Model.Dagiao == true)
+                {
+                    <div style="color:red">Đang chờ xác nhận</div>
+                }
+                else if (Model.Dagiao == false)
+                {
+
+
+                    <div style="color:slateblue">Đã xác nhận</div>
+
+                }
+                else
+                {
+                    <div style="color:red">Đang chờ xác nhận</div>
+
+                }
+            }
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HTThanhtoan)
+        </dt>
+
+        <dd>
+            @{
+                if (Model.HTThanhtoan == true)
+                {
+                    <div style="color:red">Thanh toán tiền mặt</div>
+                }
+                else if (Model.HTThanhtoan == false)
+                {
+                    <div style="color:slateblue">Thanh toán chuyển khoản</div>
+
+                }
+            }
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KhachHang.TenKH)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KhachHang.TenKH)
+        </dd>
+
+    </dl>
+</div>
+@*<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.SODH }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>*@
+
+<p>
+    <button> @Html.ActionLink("Xác nhận đơn hàng", "Xacnhan", new { id = Model.SODH }) </button>
+</p>
