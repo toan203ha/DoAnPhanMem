@@ -30,10 +30,6 @@ namespace Doanphanmem.Controllers
                 Session["UserID"] = user.MaKH;
                 Session["UserName"] = user.TenKH;
                 Session["UserRole"] = user.Roleuser;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-
                 // Kiểm tra vai trò của người dùng
                 if (user.Roleuser == "NhanVien")
                 {
@@ -45,35 +41,22 @@ namespace Doanphanmem.Controllers
                     // Nếu không phải nhân viên, để người dùng điền tên
                     Session["DisplayName"] = "";
                 }
->>>>>>> Toan_7_11
-                return RedirectToAction("Index", "SanPhams"); 
-=======
                 if (user.Roleuser.ToString() == "Admin")
                     return RedirectToAction("./index", "Admin");
                 else if (user.Roleuser.ToString() == "Customer")
                     return RedirectToAction("Index", "SanPhams");
                 else
                     return RedirectToAction("Login", "Account");
->>>>>>> Tuan
             }
 
             // Đăng nhập thất bại, hiển thị thông báo lỗi
             ViewBag.ErrorInfo = "Sai thông tin đăng nhập";
             return View(model);
         }
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
         public ActionResult Chat()
         {
             return View();
         }
-
-
-
-
->>>>>>> Toan_7_11
         public ActionResult Logout() 
         {
              
@@ -83,9 +66,6 @@ namespace Doanphanmem.Controllers
             Session.Remove("taikhoan");
             return RedirectToAction("Index", "SanPhams");
         }
-<<<<<<< HEAD
-       
-=======
         
         // Tạo action khác để đảm bảo người dùng đã đăng nhập (điều hướng từ action Login sau khi đăng nhập thành công)
         //public ActionResult Dashboard()
@@ -106,10 +86,6 @@ namespace Doanphanmem.Controllers
 
         //    return View(userModel);
         //}
->>>>>>> Tuan
-=======
-
->>>>>>> Toan_7_11
     }
 
 }
