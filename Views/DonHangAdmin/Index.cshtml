@@ -19,11 +19,9 @@
             @Html.DisplayNameFor(model => model.Dagiao)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Ngaygiaohang)
+            @Html.DisplayNameFor(model => model.HTThanhtoan)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Tennguoinhan)
-        </th>
+
         <th>
             @Html.DisplayNameFor(model => model.Diachinhan)
         </th>
@@ -33,16 +31,10 @@
         <th>
             @Html.DisplayNameFor(model => model.Dienthoainhan)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.HTThanhtoan)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.HTGiaohang)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.KhachHang.TenKH)
-        </th>
-        <th></th>
+
+   
+        <th>Tên Khách Hàng</th>
+        <th>Xác Nhận Đơn Hàng</th>
     </tr>
 
 @foreach (var item in Model) {
@@ -53,28 +45,27 @@
         <td>
             @{ if (@item.Dagiao == true)
                 {
-                    <h5 style="color:red">Đang chờ xác nhận. </h5> }
+                    <h5 style="color:green">Đã xác nhận  </h5>
+
+
+                }
                 else if (@item.Dagiao == false)
                 {
-                    <h5 style="color:green">Đã xác nhận  </h5> }
-                else
-                {
-                    <h5 style="color:orangered">Đang chờ xác nhận </h5> } }
+                    <h5 style="color:red">Đang chờ xác nhận. </h5>
+                }
+            }
         </td>
         <td>
             @{ if (@item.HTThanhtoan == false)
                 {
-                    <div style="color:red">Thanh toán tiền mặt</div> }
+                    <div style="color:red">Thanh toán chuyển khoản</div> }
                 else if (@item.HTThanhtoan == true)
                 {
-                    <div style="color:brown">Thanh toán chuyển khoản</div> } }
+                    <div style="color:brown">Thanh toán tiền mặt</div> }
+                }
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Ngaygiaohang)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Tennguoinhan)
-        </td>
+
+ 
         <td>
             @Html.DisplayFor(modelItem => item.Diachinhan)
         </td>
@@ -84,18 +75,29 @@
         <td>
             @Html.DisplayFor(modelItem => item.Dienthoainhan)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HTThanhtoan)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HTGiaohang)
-        </td>
+
         <td>
             @Html.DisplayFor(modelItem => item.KhachHang.TenKH)
         </td>
         <td>
+
+            @{ if (@item.Dagiao == true)
+                {
+                    <p>
+                        <button> @Html.ActionLink("Hủy Đơn Hàng", "Xacnhan", new { id = item.SODH }) </button>
+                    </p>
+                }
+                else if (@item.Dagiao == false)
+                {
+                    <p>
+                        <button> @Html.ActionLink("Xác nhận đơn hàng", "Xacnhan", new { id = item.SODH }) </button>
+                    </p>
+                }
+            }
+        </td>
+        <td>
             @Html.ActionLink("Edit", "Edit", new { id = item.SODH }) |
-            @Html.ActionLink("Details", "Details", new { id = item.SODH }) |
+            @Html.ActionLink("DonHangChiTiet", "DonHangChiTiet", new { id = item.SODH }) |
             @Html.ActionLink("Delete", "Delete", new { id = item.SODH })
         </td>
     </tr>

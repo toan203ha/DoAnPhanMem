@@ -1,0 +1,27 @@
+﻿@model List<Doanphanmem.Models.CTDATHANG>
+
+<h2>Thông Tin Chi Tiết Đơn Hàng</h2>
+
+<table class="table">
+    <tr>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Unit Price</th>
+        <th>Total Price</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.SanPham.TenSP</td>
+            <td>@item.Soluong</td>
+            <td>@item.SanPham.GiaSp</td>
+            <td>@(item.Soluong * item.SanPham.GiaSp)</td>
+        </tr>
+    }
+    <tr>
+        Tổng số lượng sản phẩm: @Model.Sum(b => b.Soluong)
+    </tr>
+        <tr>Tổng Tiền Đơn Hàng: @Model.Sum(b => b.SanPham.GiaSp)</tr>
+</table>
+
+

@@ -9,6 +9,7 @@
 
 namespace Doanphanmem.Models
 {
+    using PayPal.Api;
     using System;
     using System.Collections.Generic;
     
@@ -35,5 +36,10 @@ namespace Doanphanmem.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CTDATHANG> CTDATHANGs { get; set; }
         public virtual KhachHang KhachHang { get; set; }
+
+        public static implicit operator DONDATHANG(Order v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

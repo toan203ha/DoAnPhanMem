@@ -11,7 +11,8 @@ namespace Doanphanmem.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class KhachHang
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,12 +23,22 @@ namespace Doanphanmem.Models
         }
     
         public int MaKH { get; set; }
+        [Required]
+        [StringLength(20)]
         public string TenKH { get; set; }
+        [Required]
         public int sdt { get; set; }
+        [StringLength(100)]
         public string email { get; set; }
+        [Required]
+        [StringLength(100)]
         public string DiaChi { get; set; }
         public Nullable<System.DateTime> NgaySinh { get; set; }
+        [Required]
+        [StringLength(20)]
         public string TK { get; set; }
+        [Required]
+        [StringLength(20)]
         public string Pass { get; set; }
         public string Roleuser { get; set; }
         public string Hinh { get; set; }

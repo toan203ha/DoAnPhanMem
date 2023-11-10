@@ -85,12 +85,12 @@
             var chat = $.connection.chatHub;
             // Create a function that the hub can call back to display messages.
             chat.client.addNewMessageToPage = function (name, message) {
-                if (name == "NhanVien") {
+                if (name == "Admin") {
                     // Add the message to the page.
                     $('#discussion').append('<p style="color:green;    background-color:white; text-align:left;"><strong><img = src="https://www.phplivesupport.com/pics/icons/avatars/public/avatar_7.png" title="NhanVien">'
                         + ' </strong> ' + htmlEncode(message) + '</p>');
                 }
-                else if (name != "NhanVien") {
+                else if (name != "Admin") {
                     // Add the message to the page.
                     $('#discussion').append('<p style="color:blue;text-align:right;background-color:white;">' +
                         '<strong>' + htmlEncode(message) + '</strong>' +
