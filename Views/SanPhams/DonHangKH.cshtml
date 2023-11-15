@@ -155,6 +155,16 @@
                                 <span>Đơn Hàng Đang Giao Đến Bạn</span>
                             }
                         </p>
+                        <p>
+                            <strong>Xác Nhận Đơn Hàng:</strong> @if (order.GiaoHang == false)
+                            {
+                                <button> @Html.ActionLink("Xác nhận đã nhận đơn hàng", "Xacnhan_dh", new { id = order.SODH }) </button>
+                            }
+                            else
+                            {
+                                <span>Đã xác nhận</span>
+                            }
+                        </p>
                         <p><strong>Date Order:</strong> @order.NgayDH</p>
                         <p><strong>Address Delivery:</strong> @order.Diachinhan</p>
                     </div>

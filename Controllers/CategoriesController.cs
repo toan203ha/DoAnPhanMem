@@ -15,10 +15,26 @@ namespace Doanphanmem.Controllers
         private QL_CHDTEntities db = new QL_CHDTEntities();
 
         // GET: Categories
-        public ActionResult Index()
+ 
+
+        public ActionResult Index(String SearchString)
         {
-            return View(db.PhanLoais.ToList());
+            if (Session["taikhoan"] == null)
+                return RedirectToAction("Login", "Account");
+ 
+            var phanloai = db.PhanLoais.Include(v => v.SanPhams);
+
+            if (!String.IsNullOrEmpty(SearchString))
+            {
+                phanloai = phanloai.Where(s => s.Tenloai.Contains(SearchString));
+            }
+            {
+                Console.WriteLine("Không tìm thấy sản phẩm nào");
+            }
+            return View(phanloai.ToList());
         }
+
+
 
         // GET: Categories/Details/5
         public ActionResult Details(int? id)

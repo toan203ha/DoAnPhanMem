@@ -15,9 +15,26 @@ namespace Doanphanmem.Admin.Controllers
         private QL_CHDTEntities db = new QL_CHDTEntities();
 
         // GET: DonHangAdmin
-        public ActionResult Index()
+        //public ActionResult Index()
+        //{
+        //    if (Session["taikhoan"] == null)
+        //        return RedirectToAction("Login", "Account");
+        //    var dONDATHANGs = db.DONDATHANGs.Include(d => d.KhachHang);
+        //    return View(dONDATHANGs.ToList());
+        //}
+
+        public ActionResult Index(String SearchString)
         {
+            if (Session["taikhoan"] == null)
+                return RedirectToAction("Login", "Account");
             var dONDATHANGs = db.DONDATHANGs.Include(d => d.KhachHang);
+            if (!String.IsNullOrEmpty(SearchString))
+            {
+                dONDATHANGs = dONDATHANGs.Where(s => s.Tennguoinhan.Contains(SearchString));
+            }
+            {
+                Console.WriteLine("Không tìm thấy sản phẩm nào");
+            }
             return View(dONDATHANGs.ToList());
         }
 
@@ -47,6 +64,9 @@ namespace Doanphanmem.Admin.Controllers
         // GET: DonHangAdmin/Details/5
         public ActionResult Details(int? id)
         {
+            if (Session["taikhoan"] == null)
+                return RedirectToAction("Login", "Account");
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -72,7 +92,8 @@ namespace Doanphanmem.Admin.Controllers
         public ActionResult DonHangChiTiet(int? id)
         {
             // Thực hiện truy vấn cơ sở dữ liệu để lấy danh sách chi tiết đơn hàng dựa vào SODH
-
+            if (Session["taikhoan"] == null)
+                return RedirectToAction("Login", "Account");
             var cTDATHANGs = db.CTDATHANGs.Include(c => c.DONDATHANG).Include(c => c.SanPham).Where(c => c.SODH == id);
             return View(cTDATHANGs.ToList());
         }
@@ -80,6 +101,8 @@ namespace Doanphanmem.Admin.Controllers
         // GET: DonHangAdmin/Create
         public ActionResult Create()
         {
+            if (Session["taikhoan"] == null)
+                return RedirectToAction("Login", "Account");
             ViewBag.MaKH = new SelectList(db.KhachHangs, "MaKH", "TenKH");
             return View();
         }
@@ -91,6 +114,7 @@ namespace Doanphanmem.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "SODH,MaKH,NgayDH,Dagiao,Ngaygiaohang,Tennguoinhan,Diachinhan,Trigia,Dienthoainhan,HTThanhtoan,HTGiaohang")] DONDATHANG dONDATHANG)
         {
+
             if (ModelState.IsValid)
             {
                 db.DONDATHANGs.Add(dONDATHANG);
@@ -105,6 +129,8 @@ namespace Doanphanmem.Admin.Controllers
         // GET: DonHangAdmin/Edit/5
         public ActionResult Edit(int? id)
         {
+            if (Session["taikhoan"] == null)
+                return RedirectToAction("Login", "Account");
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -138,6 +164,9 @@ namespace Doanphanmem.Admin.Controllers
         // GET: DonHangAdmin/Delete/5
         public ActionResult Delete(int? id)
         {
+            if (Session["taikhoan"] == null)
+                return RedirectToAction("Login", "Account");
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

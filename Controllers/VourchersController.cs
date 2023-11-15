@@ -15,15 +15,34 @@ namespace Doanphanmem.Controllers
         private QL_CHDTEntities db = new QL_CHDTEntities();
 
         // GET: Vourchers
-        public ActionResult Index()
+        //public ActionResult Index()
+        //{
+        //    var vourcher = db.Vourchers.Include(v => v.SanPham);
+        //    return View(vourcher.ToList());
+        //}
+
+        public ActionResult Index(String SearchString)
         {
+            if (Session["taikhoan"] == null)
+                return RedirectToAction("Login", "Account");
             var vourcher = db.Vourchers.Include(v => v.SanPham);
+            if (!String.IsNullOrEmpty(SearchString))
+            {
+                vourcher = vourcher.Where(s => s.SanPham.TenSP.Contains(SearchString));
+            }
+
+
+            {
+                Console.WriteLine("Không tìm thấy sản phẩm nào");
+            }
             return View(vourcher.ToList());
         }
 
         // GET: Vourchers/Details/5
         public ActionResult Details(int? id)
         {
+            if (Session["taikhoan"] == null)
+                return RedirectToAction("Login", "Account");
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -39,6 +58,8 @@ namespace Doanphanmem.Controllers
         // GET: Vourchers/Create
         public ActionResult Create()
         {
+            if (Session["taikhoan"] == null)
+                return RedirectToAction("Login", "Account");
             ViewBag.MaSP = new SelectList(db.SanPhams, "MaSP", "TenSP");
             return View();
         }
@@ -64,6 +85,8 @@ namespace Doanphanmem.Controllers
         // GET: Vourchers/Edit/5
         public ActionResult Edit(int? id)
         {
+            if (Session["taikhoan"] == null)
+                return RedirectToAction("Login", "Account");
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -97,6 +120,8 @@ namespace Doanphanmem.Controllers
         // GET: Vourchers/Delete/5
         public ActionResult Delete(int? id)
         {
+            if (Session["taikhoan"] == null)
+                return RedirectToAction("Login", "Account");
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

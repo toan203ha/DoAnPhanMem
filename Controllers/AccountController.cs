@@ -49,8 +49,6 @@ namespace Doanphanmem.Controllers
                 else
                     return RedirectToAction("Login", "Account");
             }
-
-            // Đăng nhập thất bại, hiển thị thông báo lỗi
             ViewBag.ErrorInfo = "Sai thông tin đăng nhập";
             return View(model);
         }

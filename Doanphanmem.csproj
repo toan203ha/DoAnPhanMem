@@ -152,6 +152,7 @@
     <Compile Include="Admin\Controllers\AdminController.cs" />
     <Compile Include="Admin\Controllers\CTDATHANGsController.cs" />
     <Compile Include="Admin\Controllers\DonHangAdminController.cs" />
+    <Compile Include="Admin\Controllers\QLKHController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -517,6 +518,11 @@
     <Content Include="Views\CTDATHANGs\Details.cshtml" />
     <Content Include="Views\CTDATHANGs\Edit.cshtml" />
     <Content Include="Views\CTDATHANGs\Index.cshtml" />
+    <Content Include="Views\QLKH\Create.cshtml" />
+    <Content Include="Views\QLKH\Delete.cshtml" />
+    <Content Include="Views\QLKH\Details.cshtml" />
+    <Content Include="Views\QLKH\Edit.cshtml" />
+    <Content Include="Views\QLKH\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
