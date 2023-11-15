@@ -40,17 +40,19 @@ namespace Doanphanmem.Controllers
                     // Nếu không phải nhân viên, để người dùng điền tên
                     Session["DisplayName"] = "";
                 }
-<<<<<<< HEAD
                 if (user.Roleuser.ToString() == "Admin")
                     return RedirectToAction("./index", "Admin");
                 else if (user.Roleuser.ToString() == "Customer")
-=======
                 if (Session["UserRole"] == null)
->>>>>>> 3c83ec93aa41123b464e14c6597ad4c1e5728094
                     return RedirectToAction("Index", "SanPhams");
                 //if (Session["UserRole"] == "Admin")
                 else if (user.Roleuser.ToString() == "Admin")
                             return RedirectToAction("./index", "Admin");
+                if (Session["UserRole"] == null)
+                    return RedirectToAction("Index", "SanPhams");
+                //if (Session["UserRole"] == "Admin")
+                else if (user.Roleuser.ToString() == "Admin")
+                    return RedirectToAction("./index", "Admin");
 
                 else
                     return RedirectToAction("Login", "Account");
@@ -60,8 +62,7 @@ namespace Doanphanmem.Controllers
             ViewBag.ErrorInfo = "Sai thông tin đăng nhập";
             return View(model);
         }
-<<<<<<< HEAD
-=======
+
         // Đăng ký
         public ActionResult Register()
         {
@@ -94,17 +95,11 @@ namespace Doanphanmem.Controllers
             return View(model);
         }
 
-
->>>>>>> 3c83ec93aa41123b464e14c6597ad4c1e5728094
         public ActionResult Chat()
         {
             return View();
         }
-<<<<<<< HEAD
-=======
 
-
->>>>>>> 3c83ec93aa41123b464e14c6597ad4c1e5728094
         public ActionResult Logout() 
         {
              
@@ -114,10 +109,7 @@ namespace Doanphanmem.Controllers
             Session.Remove("taikhoan");
             return RedirectToAction("Index", "SanPhams");
         }
-<<<<<<< HEAD
-=======
- 
->>>>>>> 3c83ec93aa41123b464e14c6597ad4c1e5728094
+
         
         // Tạo action khác để đảm bảo người dùng đã đăng nhập (điều hướng từ action Login sau khi đăng nhập thành công)
         //public ActionResult Dashboard()
@@ -137,11 +129,8 @@ namespace Doanphanmem.Controllers
         //    };
 
         //    return View(userModel);
-<<<<<<< HEAD
         //}
-=======
- 
->>>>>>> 3c83ec93aa41123b464e14c6597ad4c1e5728094
+
     }
 
 }
