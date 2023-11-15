@@ -108,7 +108,7 @@
     @foreach (var order in Model)
     {
         <div class="order-card">
-          
+
             @foreach (var detail in order.CTDATHANGs)
             {
                 var cus = db.SanPhams.Where(s => s.MaSP == detail.MaSP).Select(s => s.TenSP).FirstOrDefault();
@@ -118,8 +118,8 @@
                         <p><strong>Tên:</strong> @cus</p>
                         <p>
                             <strong>HTGH:</strong>
-                          @if (order.HTGiaohang == false)
-                          {
+                            @if (order.HTGiaohang == false)
+                            {
                                 <span>Giao Hàng Trực Tiếp</span>
                             }
                             else
@@ -142,6 +142,7 @@
                         </p>
                     </div>
                     <div>
+
                         <p>
                             <strong>TTDH:</strong> @if (order.Dagiao == false)
                             {
@@ -157,12 +158,13 @@
                         <p><strong>Date Order:</strong> @order.NgayDH</p>
                         <p><strong>Address Delivery:</strong> @order.Diachinhan</p>
                     </div>
-                    <div>
-                        <p><strong>Số lượng:</strong> @detail.Soluong</p>
-                        <p><strong>Đơn giá:</strong> @detail.Dongia VNĐ</p>
-                    </div>
+
                 </div>
+
             }
+            <div style="margin-left:14px;">
+                <p><strong>Đơn giá:</strong> @order.Trigia VNĐ</p>
+            </div>
         </div>
     }
 </div>

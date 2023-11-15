@@ -28,7 +28,15 @@ namespace Doanphanmem.Admin.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             DONDATHANG donhang = db.DONDATHANGs.Find(id);
-            donhang.Dagiao = false;
+            //donhang.Dagiao = true;
+            if (donhang.Dagiao == true)
+            {
+                donhang.Dagiao = false;
+            }
+            else if(donhang.Dagiao == false)
+            {
+                donhang.Dagiao = true;
+            }
             db.SaveChanges();
             if (donhang == null)
             {
@@ -49,6 +57,24 @@ namespace Doanphanmem.Admin.Controllers
                 return HttpNotFound();
             }
             return View(dONDATHANG);
+        }
+
+        //public ActionResult DonHangChiTiet(int iddonhang)
+        //{
+        //     var cTDATHANGs = db.CTDATHANGs
+        //            .Include(c => c.DONDATHANG)   
+        //            .Include(c => c.SanPham)
+        //            .Where(c => c.SODH == iddonhang)
+        //            .ToList();
+        //        return View(cTDATHANGs); 
+        //}
+
+        public ActionResult DonHangChiTiet(int? id)
+        {
+            // Thực hiện truy vấn cơ sở dữ liệu để lấy danh sách chi tiết đơn hàng dựa vào SODH
+
+            var cTDATHANGs = db.CTDATHANGs.Include(c => c.DONDATHANG).Include(c => c.SanPham).Where(c => c.SODH == id);
+            return View(cTDATHANGs.ToList());
         }
 
         // GET: DonHangAdmin/Create

@@ -14,13 +14,13 @@
 
                         <div class="card-body">
                             <h5 class="card-title">@sp.TenSP</h5>
-                            <p class="card-text">@sp.Mota</p>
                             <p class="card-text">@sp.GiaSp</p>
-                            <p class="card-text">Giá</p>
                             <div class="row">
-                                <a href="~/SanPhams/SP_giamgia/@sp.MaSP" class="btn btn-success" style="margin-top: 10px">Thêm vào giỏ hàng</a>
                             </div>
                         </div>
+                    </a>
+                    <a style="margin-bottom:0px;" href="@Url.Action("AddProduct", "GioHang", new{ MaSP = sp.MaSP })">
+                        Đặt mua
                     </a>
                 </div>
             </div>

@@ -114,7 +114,7 @@ namespace Doanphanmem.Controllers
             List<MatHangMua> gioHang = Index();
             if (gioHang != null)
             {
-                TongTien = gioHang.Sum(sp => sp.Total());
+                TongTien = (double)gioHang.Sum(sp => sp.Total());
             }
             return TongTien;
         }
@@ -126,12 +126,13 @@ namespace Doanphanmem.Controllers
             List<MatHangMua> gioHang = Index();
             if (gioHang != null)
             {
-                TongTien = gioHang.Sum(sp => sp.Total());
+                TongTien = (double)gioHang.Sum(sp => sp.Total());
             }
             decimal c = (decimal)TongTien / b;
-            return (double)c;
+            // Round the result to the nearest integer by casting to int
+            int roundedResult = (int)Math.Round((double)c);
+            return roundedResult;
         }
-
         private int TinhTongSL()
         {
             int tongSL = 0;
@@ -171,13 +172,12 @@ namespace Doanphanmem.Controllers
             {
                 KhachHang kh = Session["taikhoan"] as KhachHang;
                 List<MatHangMua> giohang = Index();
-
                 // thêm dữ liệu vào đơn hàng
                 DONDATHANG donhang = new DONDATHANG();
                 donhang.MaKH = kh.MaKH;
                 donhang.NgayDH = DateTime.Now;
                 donhang.Trigia = (Decimal)TinhTongTien();
-                donhang.Dagiao = true;
+                donhang.Dagiao = false;
                 donhang.Tennguoinhan = kh.TenKH;
                 donhang.Diachinhan = kh.DiaChi;
                 donhang.Dienthoainhan = kh.sdt.ToString();
@@ -263,7 +263,6 @@ namespace Doanphanmem.Controllers
             {
                 return View("FailureView");
             }
-            //on successful payment, show success page to user.  
             KhachHang kh = Session["taikhoan"] as KhachHang;
             List<MatHangMua> giohang = Index();
 
@@ -310,19 +309,16 @@ namespace Doanphanmem.Controllers
         }
         private Payment CreatePayment(APIContext apiContext, string redirectUrl)
         {
-
-
             var itemList = new ItemList
             {
                 items = new List<Item>
                 {
                     new Item
                     {
-
                         name = "Item Name",
                         currency = "USD",
                         price = TinhTongTienvnd().ToString(),
-                        quantity = TinhTongSL().ToString(),
+                        quantity = "1",
                         sku = "sku"
                     }
                 }
@@ -341,9 +337,9 @@ namespace Doanphanmem.Controllers
 
             var details = new Details
             {
-                tax = "0", // Thay đổi nếu bạn có thuế
-                shipping = "0", // Thay đổi nếu bạn có phí vận chuyển
-                subtotal = TinhTongTienvnd().ToString() // Tổng giá trị sản phẩm trong USD
+                tax = "0", 
+                shipping = "0", 
+                subtotal = TinhTongTienvnd().ToString() 
             };
 
             var amount = new Amount
@@ -371,7 +367,6 @@ namespace Doanphanmem.Controllers
                 transactions = transactionList,
                 redirect_urls = redirUrls
             };
-
             return payment.Create(apiContext);
         }
 

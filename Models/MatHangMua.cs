@@ -11,7 +11,7 @@ namespace Doanphanmem.Models
         public int MaDT { get; set; }
         public string Ten { get; set; }
         public string AnhBia { get; set; }
-        public int Dongia { get; set; }
+        public double Dongia { get; set; }
 
         public int Mamau { get; set; }
         public int MaLoai { get; set; }
@@ -31,12 +31,6 @@ namespace Doanphanmem.Models
             this.Dongia = int.Parse(getSP.GiaSp.ToString());
             this.Soluong = 1;
         }
-        public void UpdateTotal()
-        {
-            // Cập nhật giá trị Total() cho sản phẩm
-            int total = Soluong * Dongia;
-            // Cập nhật lại giá trị Total
-            // Có thể thêm các logic xử lý khác ở đây nếu cần
-        }
+  
     }
 }

@@ -56,11 +56,10 @@
     <div class="container-fluid  p-3 text-center mt-4" style="background-color: #1A6DFF; color: white; font-size: 20px; font-weight: bold; ">Sản Phẩm</div>
     <div style="margin-right:50px;margin-top:20px;margin-left:20px;">
         <button>
-            <a href="@Url.Action("locgia", "SanPhams", new { gia = 100 } )"><div class="btn">Dưới 2 triệu </div></a>
+            <a href="@Url.Action("locgia", "SanPhams", new { gia = 7000000 } )"><div class="btn">Dưới 7 triệu </div></a>
         </button>
         <button>
-            <a href="@Url.Action("locgia", "SanPhams", new { gia = 22000000 } )"><div class="btn">Dưới 4 triệu </div></a>
-
+            <a href="@Url.Action("locgia", "SanPhams", new { gia = 4000000 } )"><div class="btn">Dưới 4 triệu </div></a>
         </button>
     </div>
     <div class="row mt-3 p-5">
@@ -72,11 +71,14 @@
                             <img src="~/Image/@sp.Hinh1" class="card-img-top" alt="Iphone">
                             <div class="card-body">
                                 <h5 class="card-title">@sp.TenSP</h5>
-                                <p class="card-text">@sp.Mota</p>
+
                                 <p class="card-text">@sp.GiaSp</p>
-                                <p class="card-text">Giá</p>
+
                                 <div class="row">
-                                    <a href="#" class="btn btn-success" style="margin-top: 10px">Thêm vào giỏ hàng</a>
+              
+                                    <a class="btn btn-primary" href="@Url.Action("AddProduct", "GioHang", new{ MaSP = sp.MaSP })">
+                                        Thêm Vào Giỏ Hàng
+                                    </a>
                                 </div>
                             </div>
                         </a>

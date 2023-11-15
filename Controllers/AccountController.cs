@@ -21,7 +21,6 @@ namespace Doanphanmem.Controllers
         public ActionResult Login(UserModel model)
         {
             var user = db.KhachHangs.FirstOrDefault(u => u.TK == model.TK && u.Pass == model.Pass);
-
             if (user != null)
             {
                 ViewBag.ThongBao = "Chúc mừng đăng nhập thành công";
@@ -31,20 +30,22 @@ namespace Doanphanmem.Controllers
                 Session["UserName"] = user.TenKH;
                 Session["UserRole"] = user.Roleuser;
                 // Kiểm tra vai trò của người dùng
-                if (user.Roleuser == "NhanVien")
+                if (user.Roleuser == "Admin")
                 {
                     // Nếu là nhân viên, thiết lập tên mặc định
-                    Session["DisplayName"] = "NhanVien";
+                    Session["DisplayName"] = "Admin";
                 }
                 else
                 {
                     // Nếu không phải nhân viên, để người dùng điền tên
                     Session["DisplayName"] = "";
                 }
-                if (user.Roleuser.ToString() == "Admin")
-                    return RedirectToAction("./index", "Admin");
-                else if (user.Roleuser.ToString() == "Customer")
+                if (Session["UserRole"] == null)
                     return RedirectToAction("Index", "SanPhams");
+                //if (Session["UserRole"] == "Admin")
+                else if (user.Roleuser.ToString() == "Admin")
+                    return RedirectToAction("./index", "Admin");
+
                 else
                     return RedirectToAction("Login", "Account");
             }
@@ -53,10 +54,43 @@ namespace Doanphanmem.Controllers
             ViewBag.ErrorInfo = "Sai thông tin đăng nhập";
             return View(model);
         }
+        // Đăng ký
+        public ActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Register(KhachHang model)
+        {
+            if (ModelState.IsValid)
+            {
+                // Thực hiện kiểm tra và lưu thông tin đăng ký vào cơ sở dữ liệu
+                var existingUser = db.KhachHangs.FirstOrDefault(u => u.TK == model.TK);
+                if (existingUser != null)
+                {
+                    ModelState.AddModelError("", "Tài khoản đã tồn tại."); // Thông báo lỗi
+                }
+                else
+                {
+                    // Lưu đối tượng KhachHang vào cơ sở dữ liệu
+                    db.KhachHangs.Add(model);
+                    db.SaveChanges();
+
+                    ViewBag.ThongBao = "Chúc mừng, bạn đã đăng ký thành công!";
+                    return View("Login");
+                }
+            }
+
+            // Đăng ký thất bại, hiển thị thông báo lỗi
+            return View(model);
+        }
+
         public ActionResult Chat()
         {
             return View();
         }
+
         public ActionResult Logout() 
         {
              
