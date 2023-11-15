@@ -89,7 +89,6 @@ namespace Doanphanmem.Controllers
             else
             {
                 Console.WriteLine("Không tìm thấy sản phẩm nào");
-
             }
             return View(sanPham.ToList());
         }
