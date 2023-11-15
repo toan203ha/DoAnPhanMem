@@ -13,8 +13,8 @@
           <Property Name="SODH" Type="int" Nullable="false" />
           <Property Name="Soluong" Type="int" />
           <Property Name="MaSP" Type="int" Nullable="false" />
-          <Property Name="Dongia" Type="decimal" Precision="9" Scale="2" />
-          <Property Name="Thanhtien" Type="decimal" Precision="20" Scale="2" StoreGeneratedPattern="Computed" />
+          <Property Name="Dongia" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Thanhtien" Type="decimal" Precision="21" Scale="2" StoreGeneratedPattern="Computed" />
         </EntityType>
         <EntityType Name="DONDATHANG">
           <Key>
@@ -31,6 +31,7 @@
           <Property Name="Dienthoainhan" Type="varchar" MaxLength="15" />
           <Property Name="HTThanhtoan" Type="bit" />
           <Property Name="HTGiaohang" Type="bit" />
+          <Property Name="GiaoHang" Type="bit" />
         </EntityType>
         <EntityType Name="KhachHang">
           <Key>
@@ -289,8 +290,8 @@
           <Property Name="SODH" Type="Int32" Nullable="false" />
           <Property Name="Soluong" Type="Int32" />
           <Property Name="MaSP" Type="Int32" Nullable="false" />
-          <Property Name="Dongia" Type="Decimal" Precision="9" Scale="2" />
-          <Property Name="Thanhtien" Type="Decimal" Precision="20" Scale="2" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="Dongia" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Thanhtien" Type="Decimal" Precision="21" Scale="2" annotation:StoreGeneratedPattern="Computed" />
           <NavigationProperty Name="DONDATHANG" Relationship="QL_CHDTModel.FK_CTDatHang_DonDatHang" FromRole="CTDATHANG" ToRole="DONDATHANG" />
           <NavigationProperty Name="SanPham" Relationship="QL_CHDTModel.FK_CTDatHang_Sach" FromRole="CTDATHANG" ToRole="SanPham" />
         </EntityType>
@@ -309,6 +310,7 @@
           <Property Name="Dienthoainhan" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="HTThanhtoan" Type="Boolean" />
           <Property Name="HTGiaohang" Type="Boolean" />
+          <Property Name="GiaoHang" Type="Boolean" />
           <NavigationProperty Name="CTDATHANGs" Relationship="QL_CHDTModel.FK_CTDatHang_DonDatHang" FromRole="DONDATHANG" ToRole="CTDATHANG" />
           <NavigationProperty Name="KhachHang" Relationship="QL_CHDTModel.FK_DonDatHang_KhachHang" FromRole="DONDATHANG" ToRole="KhachHang" />
         </EntityType>
@@ -505,6 +507,7 @@
           <EntitySetMapping Name="DONDATHANGs">
             <EntityTypeMapping TypeName="QL_CHDTModel.DONDATHANG">
               <MappingFragment StoreEntitySet="DONDATHANG">
+                <ScalarProperty Name="GiaoHang" ColumnName="GiaoHang" />
                 <ScalarProperty Name="HTGiaohang" ColumnName="HTGiaohang" />
                 <ScalarProperty Name="HTThanhtoan" ColumnName="HTThanhtoan" />
                 <ScalarProperty Name="Dienthoainhan" ColumnName="Dienthoainhan" />

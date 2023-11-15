@@ -515,20 +515,17 @@
     <Content Include="Views\DonHangAdmin\Edit.cshtml" />
     <Content Include="Views\DonHangAdmin\Index.cshtml" />
     <Content Include="Views\Account\Chat.cshtml" />
-
     <Content Include="Views\DonHangAdmin\DonHangChiTiet.cshtml" />
     <Content Include="Views\CTDATHANGs\Create.cshtml" />
     <Content Include="Views\CTDATHANGs\Delete.cshtml" />
     <Content Include="Views\CTDATHANGs\Details.cshtml" />
     <Content Include="Views\CTDATHANGs\Edit.cshtml" />
     <Content Include="Views\CTDATHANGs\Index.cshtml" />
-
     <Content Include="Views\KhachHangAdmin\Create.cshtml" />
     <Content Include="Views\KhachHangAdmin\Delete.cshtml" />
     <Content Include="Views\KhachHangAdmin\Details.cshtml" />
     <Content Include="Views\KhachHangAdmin\Edit.cshtml" />
     <Content Include="Views\KhachHangAdmin\Index.cshtml" />
-
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -37,7 +37,7 @@ namespace Doanphanmem.Controllers
                     db.YeuThiches.Remove(existingFavorite);
                     //return RedirectToAction("Index","SanPhams");
                 }
-      
+
                 else
                 {
                     // Nếu sản phẩm chưa tồn tại trong danh sách yêu thích, thêm sản phẩm mới vào danh sách 

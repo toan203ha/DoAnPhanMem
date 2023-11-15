@@ -82,18 +82,35 @@ namespace Doanphanmem.Controllers
             var sanPham = db.SanPhams.Include(s => s.Mau).Include(s => s.PhanLoai);
             if (!String.IsNullOrEmpty(SearchString))
             {
-                sanPham = sanPham.Where(s => s.TenSP.Contains(SearchString));
-                
-               
+                sanPham = sanPham.Where(s => s.TenSP.Contains(SearchString));             
             }
-            else
+           
+
             {
                 Console.WriteLine("Không tìm thấy sản phẩm nào");
             }
             return View(sanPham.ToList());
         }
 
-
+        // xác nhận đơn ha ngf
+        public ActionResult Xacnhan_dh(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            DONDATHANG donhang = db.DONDATHANGs.Find(id);
+            if (donhang.GiaoHang == false)
+            {
+                donhang.GiaoHang = true;
+            }
+            db.SaveChanges();
+            if (donhang == null)
+            {
+                return HttpNotFound();
+            }
+            return RedirectToAction("Index");
+        }
 
 
         // GET: SanPhams/Details/5

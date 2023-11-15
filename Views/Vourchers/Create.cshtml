@@ -2,17 +2,21 @@
 
 @{
     ViewBag.Title = "Create";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+    Layout = "~/Admin/Layout/_LayoutPage1.cshtml";}
 
-<h2>Create</h2>
+<style>
+    .text-danger{
+
+    }
+</style>
+ 
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Vourcher</h4>
+        <h4>Tạo Vourcher</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -32,7 +36,8 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.MaSP, "MaSP", htmlAttributes: new { @class = "control-label col-md-2" })
+         
+            <p class="  control-label col-md-2">Chọn Sản Phẩm</p>
             <div class="col-md-10">
                 @Html.DropDownList("MaSP", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.MaSP, "", new { @class = "text-danger" })
@@ -41,12 +46,13 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input style="background-color:lawngreen; margin-top:20px;" type="submit" value="Create" class="btn btn-default" />
+            </div>
+            <div>
+                @Html.ActionLink("Back to List", "Index")
             </div>
         </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+ 

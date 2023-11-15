@@ -17,6 +17,8 @@ namespace Doanphanmem.Admin.Controllers
         // GET: CTDATHANGs
         public ActionResult Index(int? id)
         {
+            if (Session["taikhoan"] == null)
+                return RedirectToAction("Login", "Account");
             var cTDATHANGs = db.CTDATHANGs.Include(c => c.DONDATHANG).Include(c => c.SanPham).Where(c=>c.SODH==id);
             return View(cTDATHANGs.ToList());
         }
@@ -24,6 +26,8 @@ namespace Doanphanmem.Admin.Controllers
         // GET: CTDATHANGs/Details/5
         public ActionResult Details(int? id)
         {
+            if (Session["taikhoan"] == null)
+                return RedirectToAction("Login", "Account");
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -39,6 +43,8 @@ namespace Doanphanmem.Admin.Controllers
         // GET: CTDATHANGs/Create
         public ActionResult Create()
         {
+            if (Session["taikhoan"] == null)
+                return RedirectToAction("Login", "Account");
             ViewBag.SODH = new SelectList(db.DONDATHANGs, "SODH", "Tennguoinhan");
             ViewBag.MaSP = new SelectList(db.SanPhams, "MaSP", "TenSP");
             return View();
@@ -66,6 +72,8 @@ namespace Doanphanmem.Admin.Controllers
         // GET: CTDATHANGs/Edit/5
         public ActionResult Edit(int? id)
         {
+            if (Session["taikhoan"] == null)
+                return RedirectToAction("Login", "Account");
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -101,6 +109,8 @@ namespace Doanphanmem.Admin.Controllers
         // GET: CTDATHANGs/Delete/5
         public ActionResult Delete(int? id)
         {
+            if (Session["taikhoan"] == null)
+                return RedirectToAction("Login", "Account");
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

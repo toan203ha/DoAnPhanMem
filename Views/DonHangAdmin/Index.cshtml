@@ -5,102 +5,177 @@
     Layout = "~/Admin/Layout/_LayoutPage1.cshtml";
 }
 
-<h2>Index</h2>
+<style>
+    h5 {
+        font-size: 17px;
+    }
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.NgayDH)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Dagiao)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.HTThanhtoan)
-        </th>
+    th {
+        width: 140px;
+    }
 
-        <th>
-            @Html.DisplayNameFor(model => model.Diachinhan)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Trigia)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Dienthoainhan)
-        </th>
-
-   
-        <th>Tên Khách Hàng</th>
-        <th>Xác Nhận Đơn Hàng</th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.NgayDH)
-        </td>
-        <td>
-            @{ if (@item.Dagiao == true)
-                {
-                    <h5 style="color:green">Đã xác nhận  </h5>
-
-
-                }
-                else if (@item.Dagiao == false)
-                {
-                    <h5 style="color:red">Đang chờ xác nhận. </h5>
-                }
-            }
-        </td>
-        <td>
-            @{ if (@item.HTThanhtoan == false)
-                {
-                    <div style="color:red">Thanh toán chuyển khoản</div> }
-                else if (@item.HTThanhtoan == true)
-                {
-                    <div style="color:brown">Thanh toán tiền mặt</div> }
-                }
-        </td>
+    th {
+        text-align: center;
+    }
+</style>
+<form class="d-flex" role="search">
+    <input class="form-control me-2" type="text" name="SearchString" placeholder="Search" aria-label="Nhập từ khoá ">
+    <button class="btn btn-outline-success" type="submit">Search</button>
+</form>
+<h2>Danh Sách Đơn Đặt Hàng</h2>
 
  
-        <td>
-            @Html.DisplayFor(modelItem => item.Diachinhan)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Trigia)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Dienthoainhan)
-        </td>
+ 
+<style>
+    html,
+    body,
+    .intro {
+        height: 100%;
+    }
 
-        <td>
-            @Html.DisplayFor(modelItem => item.KhachHang.TenKH)
-        </td>
-        <td>
+    table td,
+    table th {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
 
-            @{ if (@item.Dagiao == true)
-                {
-                    <p>
-                        <button> @Html.ActionLink("Hủy Đơn Hàng", "Xacnhan", new { id = item.SODH }) </button>
-                    </p>
-                }
-                else if (@item.Dagiao == false)
-                {
-                    <p>
-                        <button> @Html.ActionLink("Xác nhận đơn hàng", "Xacnhan", new { id = item.SODH }) </button>
-                    </p>
-                }
-            }
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.SODH }) |
-            @Html.ActionLink("DonHangChiTiet", "DonHangChiTiet", new { id = item.SODH }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.SODH })
-        </td>
-    </tr>
-}
+    .card {
+        border-radius: .5rem;
+    }
 
-</table>
+    .mask-custom {
+        background: rgba(24, 24, 16, .2);
+        border-radius: 2em;
+        backdrop-filter: blur(25px);
+        border: 2px solid rgba(255, 255, 255, 0.05);
+        background-clip: padding-box;
+        box-shadow: 10px 10px 10px rgba(46, 54, 68, 0.03);
+    }
+</style>
+
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <section class="intro">
+        <div class="bg-image h-100" style="background-color: #6095F0;">
+            <div class="mask d-flex align-items-center h-100">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-12">
+                            <div class="card shadow-2-strong" style="background-color: #f5f7fa;">
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-borderless mb-0">
+                                            <thead>
+                                                <tr>
+                                                    <th>
+                                                        @Html.DisplayNameFor(model => model.NgayDH)
+                                                    </th>
+
+
+                                                    <th>
+                                                        @Html.DisplayNameFor(model => model.Diachinhan)
+                                                    </th>
+                                                    <th>
+                                                        @Html.DisplayNameFor(model => model.Trigia)
+                                                    </th>
+                                                    <th>
+                                                        @Html.DisplayNameFor(model => model.Dagiao)
+                                                    </th>
+                                                    <th>
+                                                        @Html.DisplayNameFor(model => model.HTThanhtoan)
+                                                    </th>
+                                                    <th>
+                                                        @Html.DisplayNameFor(model => model.Dienthoainhan)
+                                                    </th>
+                                                    <th>Tên Khách Hàng</th>
+                                                    <th>Xác Nhận Đơn Hàng</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+
+                                                @foreach (var item in Model)
+                                                {
+                                                    <tr>
+
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.NgayDH)
+                                                        </td>
+
+
+
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Diachinhan)
+                                                        </td>
+                                                        <td style="text-align:center;">
+                                                            @Html.DisplayFor(modelItem => item.Trigia)
+                                                        </td>
+                                                        <td>
+                                                            @{ if (@item.Dagiao == true)
+                                                                {
+                                                                    <h5 style="color:green">Đã xác nhận  </h5>
+
+
+                                                                }
+                                                                else if (@item.Dagiao == false)
+                                                                {
+                                                                    <h5 style="color:red">Đang chờ xác nhận. </h5>
+                                                                }
+                                                            }
+                                                        </td>
+                                                        <td>
+                                                            @{ if (@item.HTThanhtoan == false)
+                                                                {
+                                                                    <div style="color:red">Thanh toán chuyển khoản</div> }
+                                                                else if (@item.HTThanhtoan == true)
+                                                                {
+                                                                    <div style="color:brown">Thanh toán tiền mặt</div> }
+                                                            }
+                                                        </td>
+                                                        <td style="text-align:center;">
+                                                            @Html.DisplayFor(modelItem => item.Dienthoainhan)
+                                                        </td>
+
+                                                        <td style="text-align:center;">
+                                                            @Html.DisplayFor(modelItem => item.KhachHang.TenKH)
+                                                        </td>
+                                                        <td>
+                                                            @{ if (@item.Dagiao == true)
+                                                                {
+                                                                    <p>
+                                                                        <button> @Html.ActionLink("Hủy Đơn Hàng", "Xacnhan", new { id = item.SODH }) </button>
+                                                                    </p>
+                                                                }
+                                                                else if (@item.Dagiao == false)
+                                                                {
+                                                                    <p>
+                                                                        <button> @Html.ActionLink("Xác nhận đơn hàng", "Xacnhan", new { id = item.SODH }) </button>
+                                                                    </p>
+                                                                }
+                                                            }
+                                                        </td>
+                                                        <td>
+                                                            @Html.ActionLink("DonHangChiTiet", "DonHangChiTiet", new { id = item.SODH })
+                                                        </td>
+
+                                                    </tr>
+                                                }
+
+
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+

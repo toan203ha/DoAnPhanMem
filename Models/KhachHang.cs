@@ -37,11 +37,12 @@ namespace Doanphanmem.Models
         public string email { get; set; }
 
 
-        [Required]
         [StringLength(100)]
+
         public string DiaChi { get; set; }
 
         public Nullable<System.DateTime> NgaySinh { get; set; }
+
 
      
 
@@ -53,8 +54,6 @@ namespace Doanphanmem.Models
 
         [Required]
         //[RegularExpression(@"^(?=.*\d).{8,}$", ErrorMessage ="Password must have 1 number")]
-
-        [StringLength(20)]
         public string Pass { get; set; }
 
         public string Roleuser { get; set; }

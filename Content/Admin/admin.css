@@ -141,8 +141,7 @@ body {
     .page-header .admin-menu {
         display: flex;
         flex-direction: column;
-        flex-grow: 1;
-        margin-top: 35px;
+
     }
 
         .page-header .admin-menu li:nth-last-child(2) {

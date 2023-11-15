@@ -2,45 +2,114 @@
 
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+    Layout = "~/Admin/Layout/_LayoutPage1.cshtml";}
 
-<h2>Index</h2>
 
+<style>
+    h5 {
+        font-size: 17px;
+    }
+
+    th {
+        width: 140px;
+    }
+
+    th {
+        text-align: left;
+    }
+</style>
+<form class="d-flex" role="search">
+    <input class="form-control me-2" type="text" name="SearchString" placeholder="Search" aria-label="Nhập từ khoá ">
+    <button class="btn btn-outline-success" type="submit">Search</button>
+</form>
+
+<h2>Danh Sách Sản Phẩm Giảm Gía</h2>
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Uudai)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ThongTinUuDai)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SanPham.TenSP)
-        </th>
-        <th></th>
-    </tr>
+<style>
+    html,
+    body,
+    .intro {
+        height: 100%;
+    }
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Uudai)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ThongTinUuDai)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SanPham.TenSP)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.MaKM }) |
-            @Html.ActionLink("Details", "Details", new { id=item.MaKM }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.MaKM })
-        </td>
-    </tr>
-}
+    table td,
+    table th {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
 
-</table>
+    .card {
+        border-radius: .5rem;
+    }
+
+    .mask-custom {
+        background: rgba(24, 24, 16, .2);
+        border-radius: 2em;
+        backdrop-filter: blur(25px);
+        border: 2px solid rgba(255, 255, 255, 0.05);
+        background-clip: padding-box;
+        box-shadow: 10px 10px 10px rgba(46, 54, 68, 0.03);
+    }
+</style>
+
+<body>
+    <section class="intro">
+        <div class="bg-image h-100" style="background-color: #6095F0;">
+            <div class="mask d-flex align-items-center h-100">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-12">
+                            <div class="card shadow-2-strong" style="background-color: #f5f7fa;">
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-borderless mb-0">
+                                            <thead>
+                                                <tr>
+                                                    <th>
+                                                        @Html.DisplayNameFor(model => model.Uudai)
+                                                    </th>
+                                                    <th>
+                                                        @Html.DisplayNameFor(model => model.ThongTinUuDai)
+                                                    </th>
+                                                    <th>
+                                                        @Html.DisplayNameFor(model => model.SanPham.TenSP)
+                                                    </th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var item in Model)
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Uudai)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.ThongTinUuDai)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.SanPham.TenSP)
+                                                        </td>
+                                                        <td>
+                                                            @Html.ActionLink("Edit", "Edit", new { id = item.MaKM }) |
+                                                            @Html.ActionLink("Details", "Details", new { id = item.MaKM }) |
+                                                            @Html.ActionLink("Delete", "Delete", new { id = item.MaKM })
+                                                        </td>
+                                                    </tr>
+                                                }yy
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
