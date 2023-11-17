@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -62,10 +63,22 @@ namespace Doanphanmem.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Tenloai,MaLoai,HinhLoai")] PhanLoai phanLoai)
+        public ActionResult Create([Bind(Include = "Tenloai,MaLoai,HinhLoai")] PhanLoai phanLoai,
+            HttpPostedFileBase HinhLoai)
         {
             if (ModelState.IsValid)
             {
+                if(HinhLoai != null)
+                {
+                    //Lấy tên file của hình được up lên
+                    var fileNameLoai = Path.GetFileName(HinhLoai.FileName);
+                    //Tạo đường dẫn tới file
+                    var path = Path.Combine(Server.MapPath("~/Image/Loai"), fileNameLoai);
+                    //Lưu tên
+                    phanLoai.HinhLoai = fileNameLoai;
+                    //Save vào Images Folder
+                    HinhLoai.SaveAs(path);
+                }
                 db.PhanLoais.Add(phanLoai);
                 db.SaveChanges();
                 return RedirectToAction("Index");

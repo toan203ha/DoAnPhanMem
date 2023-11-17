@@ -1,4 +1,7 @@
-﻿@model IEnumerable<Doanphanmem.Models.SanPham>
+﻿@*@model IEnumerable<Doanphanmem.Models.SanPham>*@
+@using Doanphanmem.Models
+@using PagedList.Mvc
+@model PagedList.PagedList<SanPham>
 @{
     ViewBag.Title = "IndexAdmin";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
@@ -75,4 +78,22 @@
     </div>
 </div>
 
+<!-- Thêm mã phân trang -->
+<br />
+<div style="text-align:center">
+    Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+    <div class="MenuTrang">
+        @Html.PagedListPager(Model, page => Url.Action("IndexAdmin", new { page }))
+    </div>
+</div>
+<style>
+    .MenuTrang li {
+        display: inline;
+    }
+
+    td, th {
+        text-align: center;
+    }
+</style>
+<!-- Kết thúc -->
 <!-- Content Wrapper END -->

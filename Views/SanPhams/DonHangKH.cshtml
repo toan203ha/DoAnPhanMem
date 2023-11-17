@@ -6,175 +6,340 @@
     var db = new QL_CHDTEntities();
 }
 
-<style>
-    body {
-       
-        font-family: Arial, sans-serif;
-    }
+@*<style>
+        body {
 
-    .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        margin-top:20px;
-    }
-
-    .order-card {
-        background-color: #f9f9f9;
-        border: 1px solid #ddd;
-        margin: 20px 0;
-        padding: 20px;
-        border-radius: 5px;
-        position: relative;
-    }
-
-    .order-details {
-        display: flex;
-        flex-wrap: wrap;
-    }
-
-        .order-details > div {
-            flex: 1;
-            margin: 10px;
+            font-family: Arial, sans-serif;
         }
 
-        .order-details p {
-            margin: 5px 0;
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            margin-top:20px;
         }
 
-    .confirm-button {
-        position: absolute;
-        top: 30px;
-        right: 20px;
-        background-color: #4CAF50;
-        color: #fff;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        width: 170px;
-        height: 44px;
-    }
-    .wait-button {
-        position: absolute;
-        top: 30px;
-        right: 20px;
-        background-color: red;
-        color: #fff;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        width: 170px;
-        height: 44px;
-    }
-    .paypal-button {
-        position: absolute;
-        top: 80px;
-        right: 20px;
-        background-color:cornflowerblue;
-        color: #fff;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        width: 170px;
-        height: 44px;
-    }
+        .order-card {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 5px;
+            position: relative;
+        }
 
-    .none-paypal-button {
-        position: absolute;
-        top: 80px;
-        right: 20px;
-        background-color: navy;
-        color: #fff;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        width: 170px;
-        height: 44px;
-    }
-    .payment_tm{
-        color:blue;
-    }
-    .payment_pp{
-        color:blueviolet;
-    }
-</style>
+        .order-details {
+            display: flex;
+            flex-wrap: wrap;
+        }
 
-<div class="container">
-    <h1 style="text-align: center; font-size: 30px; font-weight: bold;">Danh sách đơn hàng đã đặt</h1>
-
-    @foreach (var order in Model)
-    {
-        <div class="order-card">
-
-            @foreach (var detail in order.CTDATHANGs)
-            {
-                var cus = db.SanPhams.Where(s => s.MaSP == detail.MaSP).Select(s => s.TenSP).FirstOrDefault();
-
-                <div class="order-details">
-                    <div>
-                        <p><strong>Tên:</strong> @cus</p>
-                        <p>
-                            <strong>HTGH:</strong>
-                            @if (order.HTGiaohang == false)
-                            {
-                                <span>Giao Hàng Trực Tiếp</span>
-                            }
-                            else
-                            {
-                                <span>Giao Hàng Trực Tiếp</span>
-                            }
-                        </p>
-                        <p>
-                            <strong>HTTT:</strong> @if (order.HTThanhtoan == true)
-                            {
-                                <span class="payment_tm">Thanh Toán Bằng Tiền Mặt</span>
-                                <button class="none-paypal-button">Chưa Thanh Toán</button>
-                            }
-                            else
-                            {
-                                <span class="payment_pp">Thanh Toán Bằng PayPal</span>
-                                <button class="paypal-button">Đã Thanh Toán</button>
-
-                            }
-                        </p>
-                    </div>
-                    <div>
-
-                        <p>
-                            <strong>TTDH:</strong> @if (order.Dagiao == false)
-                            {
-                                <span>Đơn Hàng Đang Chờ Duyệt</span>
-                                <button class="wait-button">Chưa xác nhận</button>
-                            }
-                            else
-                            {
-                                <button class="confirm-button">Đã xác nhận</button>
-                                <span>Đơn Hàng Đang Giao Đến Bạn</span>
-                            }
-                        </p>
-                        <p>
-                            <strong>Xác Nhận Đơn Hàng:</strong> @if (order.GiaoHang == false)
-                            {
-                                <button> @Html.ActionLink("Xác nhận đã nhận đơn hàng", "Xacnhan_dh", new { id = order.SODH }) </button>
-                            }
-                            else
-                            {
-                                <span>Đã xác nhận</span>
-                            }
-                        </p>
-                        <p><strong>Date Order:</strong> @order.NgayDH</p>
-                        <p><strong>Address Delivery:</strong> @order.Diachinhan</p>
-                    </div>
-
-                </div>
-
+            .order-details > div {
+                flex: 1;
+                margin: 10px;
             }
-            <div style="margin-left:14px;">
-                <p><strong>Đơn giá:</strong> @order.Trigia VNĐ</p>
+
+            .order-details p {
+                margin: 5px 0;
+            }
+
+        .confirm-button {
+            position: absolute;
+            top: 30px;
+            right: 20px;
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 170px;
+            height: 44px;
+        }
+        .wait-button {
+            position: absolute;
+            top: 30px;
+            right: 20px;
+            background-color: red;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 170px;
+            height: 44px;
+        }
+        .paypal-button {
+            position: absolute;
+            top: 80px;
+            right: 20px;
+            background-color:cornflowerblue;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 170px;
+            height: 44px;
+        }
+
+        .none-paypal-button {
+            position: absolute;
+            top: 80px;
+            right: 20px;
+            background-color: navy;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 170px;
+            height: 44px;
+        }
+        .payment_tm{
+            color:blue;
+        }
+        .payment_pp{
+            color:blueviolet;
+        }
+    </style>
+
+    <div class="container">
+        <h1 style="text-align: center; font-size: 30px; font-weight: bold;">Danh sách đơn hàng đã đặt</h1>
+
+        @foreach (var order in Model)
+        {
+            <div class="order-card">
+
+                @foreach (var detail in order.CTDATHANGs)
+                {
+                    var cus = db.SanPhams.Where(s => s.MaSP == detail.MaSP).Select(s => s.TenSP).FirstOrDefault();
+
+                    <div class="order-details">
+                        <div>
+                            <p><strong>Tên:</strong> @cus</p>
+                            <p>
+                                <strong>HTGH:</strong>
+                                @if (order.HTGiaohang == false)
+                                {
+                                    <span>Giao Hàng Trực Tiếp</span>
+                                }
+                                else
+                                {
+                                    <span>Giao Hàng Trực Tiếp</span>
+                                }
+                            </p>
+                            <p>
+                                <strong>HTTT:</strong> @if (order.HTThanhtoan == true)
+                                {
+                                    <span class="payment_tm">Thanh Toán Bằng Tiền Mặt</span>
+                                    <button class="none-paypal-button">Chưa Thanh Toán</button>
+                                }
+                                else
+                                {
+                                    <span class="payment_pp">Thanh Toán Bằng PayPal</span>
+                                    <button class="paypal-button">Đã Thanh Toán</button>
+
+                                }
+                            </p>
+                        </div>
+                        <div>
+
+                            <p>
+                                <strong>TTDH:</strong> @if (order.Dagiao == false)
+                                {
+                                    <span>Đơn Hàng Đang Chờ Duyệt</span>
+                                    <button class="wait-button">Chưa xác nhận</button>
+                                }
+                                else
+                                {
+                                    <button class="confirm-button">Đã xác nhận</button>
+                                    <span>Đơn Hàng Đang Giao Đến Bạn</span>
+                                }
+                            </p>
+                            <p>
+                                <strong>Xác Nhận Đơn Hàng:</strong> @if (order.GiaoHang == false)
+                                {
+                                    <button> @Html.ActionLink("Xác nhận đã nhận đơn hàng", "Xacnhan_dh", new { id = order.SODH }) </button>
+                                }
+                                else
+                                {
+                                    <span>Đã xác nhận</span>
+                                }
+                            </p>
+                            <p><strong>Date Order:</strong> @order.NgayDH</p>
+                            <p><strong>Address Delivery:</strong> @order.Diachinhan</p>
+                        </div>
+
+                    </div>
+
+                }
+                <div style="margin-left:14px;">
+                    <p><strong>Đơn giá:</strong> @order.Trigia VNĐ</p>
+                </div>
+            </div>
+        }
+    </div>*@
+
+
+<!-- ================ start banner area ================= -->
+<section class="blog-banner-area" id="category">
+    <div class="container h-100">
+        <div class="blog-banner">
+            <div class="text-center">
+                <h1>Lịch sử đơn hàng</h1>
             </div>
         </div>
-    }
-</div>
+    </div>
+</section>
+<!-- ================ end banner area ================= -->
+<!--================Order Details Area =================-->
+<section class="order_details section-margin--small">
+    <div class="container">
+        @foreach (var order in Model)
+        {
+            <div class="order_details_table ">
+                <h2>Chi tiết đơn hàng #@order.SODH</h2>
+
+                <div class="table-responsive  ">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Product</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">Total</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+                            @foreach (var detail in order.CTDATHANGs)
+                            {
+                                var cus = db.SanPhams.Where(s => s.MaSP == detail.MaSP).Select(s => s.TenSP).FirstOrDefault();
+                                var cus2 = db.CTDATHANGs.Where(s => s.SODH == detail.SODH).FirstOrDefault();
+                                <tr>
+                                    <td>
+                                        <p>@cus</p>
+                                    </td>
+                                    <td>
+                                        <h5>x @cus2.Soluong</h5>
+                                    </td>
+                                    <td>
+                                        <p>@string.Format("{0:#,##0} ₫", cus2.Dongia * 10) </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th><h4>Tổng tiền</h4></th>
+                                    <th></th>
+                                    <th>
+                                        @*<h6>@order.Trigia.Value.ToString("#,##") ₫ </h6>*@
+                                        @string.Format("{0:#,##0} ₫", order.Trigia * 10)
+                                    </th>
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h5>Hình thức thanh toán</h5>
+                                    </td>
+                                    <td></td>
+                                    <td>
+                                        @if (order.HTThanhtoan == true)
+                                        {
+                                            <p>Thanh toán bằng tiền mặt</p>
+                                        }
+                                        else
+
+                                        {
+                                            order.Dagiao = true;
+                                            <p>Thanh toán bằng Paypal</p>
+                                        }
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h5>Hình thức giao hàng</h5>
+                                    </td>
+                                    <td></td>
+                                    <td>
+                                        @if (order.HTGiaohang == false)
+                                        {
+                                            <p>Giao hàng trực tiếp</p>
+                                        }
+                                        else
+                                        {
+                                            <p>Giao hàng trực tiếp</p>
+                                        }
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h4>Trạng thái đơn hàng </h4>
+                                    </td>
+                                    <td>
+                                        <h5></h5>
+                                    </td>
+                                    <td>
+                                        <p>
+                                            @if (order.Dagiao == true)
+                                            {
+
+                                                <span>Đơn hàng đã được xác nhận</span>
+                                                @*<button class="wait-button">Chưa xác nhận</button>*@
+
+                                            }
+                                            else
+                                            {
+                                                @*<button class="confirm-button">Đã xác nhận</button>*@
+                                                <span>Đơn hàng đang chờ duyệt</span>
+                                            }
+
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    @if (order.Dagiao == true)
+                                    {
+                                        <td>
+                                            <h4>Trạng thái giao hàng </h4>
+                                        </td>
+                                        <td>
+                                            <h5></h5>
+                                        </td>
+                                        <td>
+
+                                            @if (order.GiaoHang == true)
+                                            {
+                                                <span>Đã nhận hàng</span>
+                                                @*<button class="wait-button">chưa xác nhận</button>*@
+
+                                            }
+                                            else
+                                            {
+                                                @*<button class="confirm-button">đã xác nhận</button>*@
+
+                                                <span>Đang chờ nhận hàng</span>
+
+                                                <p>
+                                                    <button class="btn btn-outline-primary" style="color:black"> @Html.ActionLink("Đã nhận hàng", "HoanThanhDH", new { id = order.SODH }) </button>
+                                                </p>
+                                            }
+
+
+                                        </td>
+                                    }
+
+                                </tr>
+                                <button class="btn-close-white" style="border-radius:5px">
+                                    @Html.ActionLink("Chi tiết đơn hàng", "DonHangChiTietKH", new { id = order.SODH })
+                                </button>
+
+
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        }
+    </div>
+</section>

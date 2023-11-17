@@ -6,7 +6,9 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI;
 using Doanphanmem.Models;
+using PagedList;
 
 namespace Doanphanmem.Admin.Controllers
 {
@@ -23,7 +25,7 @@ namespace Doanphanmem.Admin.Controllers
         //    return View(dONDATHANGs.ToList());
         //}
 
-        public ActionResult Index(String SearchString)
+        public ActionResult Index(String SearchString, int? page)
         {
             if (Session["taikhoan"] == null)
                 return RedirectToAction("Login", "Account");
@@ -31,11 +33,18 @@ namespace Doanphanmem.Admin.Controllers
             if (!String.IsNullOrEmpty(SearchString))
             {
                 dONDATHANGs = dONDATHANGs.Where(s => s.Tennguoinhan.Contains(SearchString));
+              
             }
             {
                 Console.WriteLine("Không tìm thấy sản phẩm nào");
             }
-            return View(dONDATHANGs.ToList());
+            //return View(dONDATHANGs.ToList());
+            var dsSach = dONDATHANGs.ToList();
+            //Tạo biến cho biết số sách mỗi trang
+            int pageSize = 7;
+            //Tạo biến số trang
+            int pageNum = (page ?? 1);
+            return View(dsSach.OrderBy(donhang => donhang.SODH).ToPagedList(pageNum, pageSize));
         }
 
         public ActionResult Xacnhan(int? id)

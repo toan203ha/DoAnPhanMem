@@ -46,13 +46,22 @@ namespace Doanphanmem.Controllers
             }
             ViewBag.TongSL = TinhTongSL();
             ViewBag.TongTien = TinhTongTien();
-
+            ViewBag.TongTiensp = TinhTongTiensp();
             //Session["totalCart"] = (Session["GioHang"] as List<MatHangMua>).Count;
 
             Session["totalCart"] = gioHang.Count;
             return View(gioHang);
         }
-
+        private double TinhTongTiensp()
+        {
+            double TongTien = 0;
+            List<MatHangMua> gioHang = Index();
+            if (gioHang != null)
+            {
+                TongTien = (double)gioHang.Sum(sp => sp.Total());
+            }
+            return TongTien*10;
+        }
 
         public ActionResult DeleteProduct(int MaSP)
         {

@@ -7,7 +7,9 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI;
 using Doanphanmem.Models;
+using PagedList;
 
 namespace Doanphanmem.Controllers
 {
@@ -77,7 +79,7 @@ namespace Doanphanmem.Controllers
 
 
         // GET: SanPhams
-        public ActionResult Index(String SearchString)
+        public ActionResult Index(String SearchString, int? page)
         {
             var sanPham = db.SanPhams.Include(s => s.Mau).Include(s => s.PhanLoai);
             if (!String.IsNullOrEmpty(SearchString))
@@ -89,8 +91,23 @@ namespace Doanphanmem.Controllers
             {
                 Console.WriteLine("Không tìm thấy sản phẩm nào");
             }
-            return View(sanPham.ToList());
+            var dsSach = sanPham.ToList();
+            //Tạo biến cho biết số sách mỗi trang
+            int pageSize = 7;
+            //Tạo biến số trang
+            int pageNum = (page ?? 1);
+            return View(dsSach.OrderBy(donhang => donhang.MaSP).ToPagedList(pageNum, pageSize));
+            //return View(sanPham.ToList());
         }
+
+        public ActionResult DonHangChiTietKH(int? id)
+        {
+            // Thực hiện truy vấn cơ sở dữ liệu để lấy danh sách chi tiết đơn hàng dựa vào SODH
+          
+            var cTDATHANGs = db.CTDATHANGs.Include(c => c.DONDATHANG).Include(c => c.SanPham).Where(c => c.SODH == id);
+            return View(cTDATHANGs.ToList());
+        }
+
 
         // xác nhận đơn ha ngf
         public ActionResult Xacnhan_dh(int? id)
@@ -293,10 +310,21 @@ namespace Doanphanmem.Controllers
             }
         }
 
-        public ActionResult IndexAdmin()
+        public ActionResult IndexAdmin(int? page)
         {
-            var sp = db.SanPhams.Include(s => s.PhanLoai);
-            return View(sp.ToList());
+            //if (Session["taikhoan"] == null)
+            ////    return RedirectToAction("Login", "Account");
+            //int pagesize = 5;
+            //int pageNum = (page ?? 1);
+            //var sp = db.SanPhams.Include(s => s.PhanLoai).ToList();
+            //return View(sp.ToList());
+
+            var dsSach = db.SanPhams.ToList();
+            //Tạo biến cho biết số sách mỗi trang
+            int pageSize = 7;
+            //Tạo biến số trang
+            int pageNum = (page ?? 1);
+            return View(dsSach.OrderBy(sach => sach.MaSP).ToPagedList(pageNum, pageSize));
         }
        
 

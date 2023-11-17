@@ -1,4 +1,7 @@
-﻿@model IEnumerable<Doanphanmem.Models.DONDATHANG>
+﻿@*@model IEnumerable<Doanphanmem.Models.DONDATHANG>*@
+@using Doanphanmem.Models
+@using PagedList.Mvc
+@model PagedList.PagedList<DONDATHANG>
 
 @{
     ViewBag.Title = "Index";
@@ -187,11 +190,11 @@
 <table class="table">
     <tr>
         <th>
-           
+
             <p>Ngày đặt hàng</p>
         </th>
         <th>
-           
+
             <p>Hình thức thanh toán</p>
         </th>
         @*<th>
@@ -201,8 +204,8 @@
             <p>Trạng thái</p>
         </th>
         @*<th>
-            <p>Giao hàng</p>
-        </th>*@
+                <p>Giao hàng</p>
+            </th>*@
         <th>
             @*@Html.DisplayNameFor(model => model.Diachinhan)*@
             <p>Địa chỉ nhận hàng</p>
@@ -239,7 +242,7 @@
                         <div style="color:brown">Thanh toán tiền mặt</div> }
                 }
             </td>
-          
+
             <td>
 
                 @{ if (@item.Dagiao == true)
@@ -282,3 +285,21 @@
 
 </table>
 
+<!-- Thêm mã phân trang -->
+<br />
+<div style="text-align:center">
+    Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+    <div class="MenuTrang">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+    </div>
+</div>
+<style>
+    .MenuTrang li {
+        display: inline;
+    }
+
+    td, th {
+        text-align: center;
+    }
+</style>
+<!-- Kết thúc -->

@@ -1,4 +1,7 @@
-﻿@model IEnumerable<Doanphanmem.Models.SanPham>
+﻿@*@model IEnumerable<Doanphanmem.Models.SanPham>*@
+@using Doanphanmem.Models
+@using PagedList.Mvc
+@model PagedList.PagedList<SanPham>
 
 @{
     ViewBag.Title = "Index";
@@ -10,6 +13,7 @@
     :root {
         --maudo: RGB(255, 205, 210);
     }
+
     .card-equal-height {
         display: flex;
         flex-direction: column;
@@ -19,20 +23,19 @@
         .card-equal-height .card-body {
             flex-grow: 1;
         }
- 
 </style>
 
 
 <div id="demo" class="carousel slide" data-bs-ride="carousel">
 
-    
+
     <div class="carousel-indicators">
         <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
         <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
         <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
     </div>
 
-   
+
     <div class="carousel-inner">
         <div class="carousel-item active">
             <img src="~/Image/bg2.png" alt="" class="d-block w-100" style="height: 750px; object-position: center;">
@@ -76,21 +79,41 @@
             <div class="col-sm-3 mb-4 product">
                 <div class="card card-equal-height">
                     <a href="@Url.Action("SP_giamgia", "SanPhams", new { id = sp.MaSP })">
-                        <img src="~/Image/@sp.Hinh1" class="card-img-top" alt="Iphone" height="187">
+                        <img src="~/Image/@sp.Hinh1" style="height:250px; width:250px" class="card-img-top" alt="Iphone" height="187">
                         <div class="card-body">
                             <h5 class="card-title">@sp.TenSP</h5>
-                            <p class="card-text">@sp.GiaSp VNĐ</p>
+                            @*<p class="card-text">(@sp.GiaSp*10) VNĐ</p>*@
+                            <p class="card-product__price"> @string.Format("{0:#,##0} VND", sp.GiaSp * 10)</p>
                             <div class="row">
                             </div>
                         </div>
-                    </a>    
-                        <a class="btn btn-primary" href="@Url.Action("AddProduct", "GioHang", new{ MaSP = sp.MaSP })">
-                            Đặt mua
-                        </a>                
+                    </a>
+                    <a class="btn btn-primary" href="@Url.Action("AddProduct", "GioHang", new{ MaSP = sp.MaSP })">
+                        Đặt mua
+                    </a>
                 </div>
             </div>
         }
     </div>
+
+    <!-- Thêm mã phân trang -->
+    <br />
+    <div style="text-align:center">
+        Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+        <div class="MenuTrang" style="margin-left:500px">
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+        </div>
+    </div>
+    <style>
+        .MenuTrang li {
+            display: inline;
+        }
+
+        td, th {
+            text-align: center;
+        }
+    </style>
+    <!-- Kết thúc -->
     @*bai báo*@
     <div class="container-fluid bg-light text-center " style="background-color: #1A6DFF;">Cửa hàng chuyên cung cấp các loại điện thoại mới nhất </div>
 
@@ -120,4 +143,6 @@
 </div>
 
 <div class="p-5"></div>
+
+
 

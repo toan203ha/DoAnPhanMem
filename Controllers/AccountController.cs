@@ -40,14 +40,6 @@ namespace Doanphanmem.Controllers
                     // Nếu không phải nhân viên, để người dùng điền tên
                     Session["DisplayName"] = "";
                 }
-                if (user.Roleuser.ToString() == "Admin")
-                    return RedirectToAction("./index", "Admin");
-                else if (user.Roleuser.ToString() == "Customer")
-                if (Session["UserRole"] == null)
-                    return RedirectToAction("Index", "SanPhams");
-                //if (Session["UserRole"] == "Admin")
-                else if (user.Roleuser.ToString() == "Admin")
-                            return RedirectToAction("./index", "Admin");
                 if (Session["UserRole"] == null)
                     return RedirectToAction("Index", "SanPhams");
                 //if (Session["UserRole"] == "Admin")
@@ -60,7 +52,6 @@ namespace Doanphanmem.Controllers
             ViewBag.ErrorInfo = "Sai thông tin đăng nhập";
             return View(model);
         }
-
         // Đăng ký
         public ActionResult Register()
         {
@@ -93,14 +84,16 @@ namespace Doanphanmem.Controllers
             return View(model);
         }
 
+
         public ActionResult Chat()
         {
             return View();
         }
 
-        public ActionResult Logout() 
+
+        public ActionResult Logout()
         {
-             
+
             Session.Remove("UserID");
             Session.Remove("UserName");
             Session.Remove("UserRole");
@@ -108,7 +101,7 @@ namespace Doanphanmem.Controllers
             return RedirectToAction("Index", "SanPhams");
         }
 
-        
+
         // Tạo action khác để đảm bảo người dùng đã đăng nhập (điều hướng từ action Login sau khi đăng nhập thành công)
         //public ActionResult Dashboard()
         //{
@@ -127,7 +120,6 @@ namespace Doanphanmem.Controllers
         //    };
 
         //    return View(userModel);
-        //}
 
     }
 

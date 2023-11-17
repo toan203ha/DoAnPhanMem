@@ -7,7 +7,7 @@
 
 
 
-<h3 style="text-align:center;  color:orangered">Bạn có muốn xóa sản phẩm này?</h3>
+@*<h3 style="text-align:center;  color:orangered">Bạn có muốn xóa sản phẩm này?</h3>
 <div>
    
     <hr />
@@ -110,4 +110,30 @@
             @Html.ActionLink("Back to List", "Index")
         </div>
     }
+</div>*@
+
+
+<div class="modal" style="position: relative;display: block;z-index: 0;overflow-y: hidden;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Xóa sản phẩm?</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <i class="anticon anticon-close"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Bạn có chắc xóa sản phẩm @Model.TenSP ?</p>
+            </div>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <div class="modal-footer">
+                    <a href="/SanPhams/IndexAdmin" type="button" class="btn btn-default m-r-10" data-dismiss="modal">Close</a>
+                    <input type="submit" value="Delete" class="btn btn-primary" />
+                </div>
+            }
+
+        </div>
+    </div>
 </div>

@@ -25,16 +25,18 @@
             <tr>
  
                 <td>@dt.Ten</td>
-                <td><img src="~/Image/@dt.AnhBia" style="width:100%" /></td>
+                <td><img src="~/Image/@dt.AnhBia" style="width:60px; height:60px" /></td>
                 <td>@dt.Soluong</td>
-                <td>@String.Format("{0:0,0}", dt.Dongia)</td>
-                <td>@String.Format("{0:0,0}", dt.Total())</td>
+                <td>@String.Format("{0:0,0}", dt.Dongia*10)</td>
+                <td>@String.Format("{0:0,0}", dt.Total()*10)</td>
             </tr>
         }
-        <tr style="font-weight:bold; text-align:right; color:red;">
-            <td colspan="4">Tổng số lượng: @ViewBag.TongSL</td>
-            <td colspan="5">Tổng tiền: @ViewBag.TongTien</td>
-        </tr>
+    <tr style="font-weight:bold; text-align:right; color:red;">
+        <td colspan="4">Tổng số lượng: @ViewBag.TongSL</td>
+        <td colspan="5">Tổng số tiền:@Model.Sum(i => i.Total()*10)</td>
+
+        <td colspan="6">Tổng tiền: @ViewBag.TongTiensp</td>
+    </tr>
     </tbody>
 </table>
 <h2 style="text-align:center">THÔNG TIN KHÁCH HÀNG</h2>
