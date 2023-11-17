@@ -2,17 +2,17 @@
 
 @{
     ViewBag.Title = "Create";
-    Layout = null;
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Create</h2>
+<h2 style="text-align:center">Thêm sản phẩm vào danh sách</h2>
 
 @using (Html.BeginForm("Create", "SanPhams", FormMethod.Post, new { enctype = "multipart/form-data" })) 
 {
                 @Html.AntiForgeryToken()
 
 <div class="form-horizontal">
-    <h4>SanPham</h4>
+   
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="form-group">

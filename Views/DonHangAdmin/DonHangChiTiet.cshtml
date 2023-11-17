@@ -2,96 +2,97 @@
 
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Admin/Layout/_LayoutPage1.cshtml";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
-<h2>Thông Tin Chi Tiết Đơn Hàng</h2>
-<style>
-    h5 {
-        font-size: 17px;
-    }
+@*<h2 style="text-align:center">Thông Tin Chi Tiết Đơn Hàng</h2>
+    <style>
+        h5 {
+            font-size: 17px;
+        }
 
-    th {
-        width: 140px;
-    }
+        th {
+            width: 140px;
+        }
 
-    th {
-        text-align: left;
-    }
-</style>
-<form class="d-flex" role="search">
-    <input class="form-control me-2" type="text" name="SearchString" placeholder="Search" aria-label="Nhập từ khoá ">
-    <button class="btn btn-outline-success" type="submit">Search</button>
-</form>
+        th {
+            text-align: left;
+        }
+    </style>
+    <form class="d-flex" role="search">
+        <input class="form-control me-2" type="text" name="SearchString" placeholder="Search" aria-label="Nhập từ khoá ">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
 
-<h2>Danh Sách Đơn Đặt Hàng</h2>
+    <h2>Danh Sách Đơn Đặt Hàng</h2>
 
-<style>
-    html,
-    body,
-    .intro {
-        height: 100%;
-    }
+    <style>
+        html,
+        body,
+        .intro {
+            height: 100%;
+        }
 
-    table td,
-    table th {
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        overflow: hidden;
-    }
+        table td,
+        table th {
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+        }
 
-    .card {
-        border-radius: .5rem;
-    }
+        .card {
+            border-radius: .5rem;
+        }
 
-    .mask-custom {
-        background: rgba(24, 24, 16, .2);
-        border-radius: 2em;
-        backdrop-filter: blur(25px);
-        border: 2px solid rgba(255, 255, 255, 0.05);
-        background-clip: padding-box;
-        box-shadow: 10px 10px 10px rgba(46, 54, 68, 0.03);
-    }
-</style>
+        .mask-custom {
+            background: rgba(24, 24, 16, .2);
+            border-radius: 2em;
+            backdrop-filter: blur(25px);
+            border: 2px solid rgba(255, 255, 255, 0.05);
+            background-clip: padding-box;
+            box-shadow: 10px 10px 10px rgba(46, 54, 68, 0.03);
+        }
+    </style>
 
-<body>
-    <section class="intro">
-        <div class="bg-image h-100" style="background-color: #6095F0;">
-            <div class="mask d-flex align-items-center h-100">
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-12">
-                            <div class="card shadow-2-strong" style="background-color: #f5f7fa;">
-                                <div class="card-body">
-                                    <div class="table-responsive">
-                                        <table class="table table-borderless mb-0">
-                                            <thead>
-                                                <tr>
-                                                    <th>Product</th>
-                                                    <th>Quantity</th>
-                                                    <th>Unit Price</th>
-                                                    <th>Total Price</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-
-
-                                                @foreach (var item in Model)
-                                                {
+    <body>
+        <section class="intro">
+            <div class="bg-image h-100" style="background-color: #6095F0;">
+                <div class="mask d-flex align-items-center h-100">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-12">
+                                <div class="card shadow-2-strong" style="background-color: #f5f7fa;">
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-borderless mb-0">
+                                                <thead>
                                                     <tr>
-                                                        <td>@item.SanPham.TenSP</td>
-                                                        <td>@item.Soluong</td>
-                                                        <td>@item.SanPham.GiaSp</td>
-                                                        <td>@(item.Soluong * item.SanPham.GiaSp)</td>
+                                                        <th>Product</th>
+                                                        <th>Quantity</th>
+                                                        <th>Unit Price</th>
+                                                        <th>Total Price</th>
                                                     </tr>
-                                                }
+                                                </thead>
+                                                <tbody>
 
-                                                <td>
-                                                    Tổng số lượng sản phẩm: @Model.Sum(b => b.Soluong)
-                                                </td>
-                                                <td>Tổng Tiền Đơn Hàng: @Model.Sum(b => b.SanPham.GiaSp)</td>
 
-                                            </tbody>
-                                        </table>
+                                                    @foreach (var item in Model)
+                                                    {
+                                                        <tr>
+                                                            <td>@item.SanPham.TenSP</td>
+                                                            <td>@item.Soluong</td>
+                                                            <td>@item.SanPham.GiaSp</td>
+                                                            <td>@(item.Soluong * item.SanPham.GiaSp)</td>
+                                                        </tr>
+                                                    }
+
+                                                    <td>
+                                                        Tổng số lượng sản phẩm: @Model.Sum(b => b.Soluong)
+                                                    </td>
+                                                    <td>Tổng Tiền Đơn Hàng: @Model.Sum(b => b.SanPham.GiaSp)</td>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -99,7 +100,32 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-</body>
+        </section>
+    </body>*@
+
+
+<h2 style="text-align:center">Thông Tin Chi Tiết Đơn Hàng</h2>
+
+<table class="table">
+    <tr>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Unit Price</th>
+        <th>Total Price</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.SanPham.TenSP</td>
+            <td>@item.Soluong</td>
+            <td>@item.SanPham.GiaSp</td>
+            <td>@(item.Soluong * item.SanPham.GiaSp)</td>
+        </tr>
+    }
+    <tr>
+        Tổng số lượng sản phẩm: @Model.Sum(b => b.Soluong)
+    </tr>
+    <tr>Tổng Tiền Đơn Hàng: @Model.Sum(b => b.SanPham.GiaSp)</tr>
+</table>
+
 

@@ -1,116 +1,78 @@
 ﻿@model IEnumerable<Doanphanmem.Models.SanPham>
 @{
     ViewBag.Title = "IndexAdmin";
-    Layout = "~/Admin/Layout/_LayoutPage1.cshtml";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<style>
-    html,
-    body,
-    .intro {
-        height: 100%;
-    }
-
-    table td,
-    table th {
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        overflow: hidden;
-    }
-
-    .card {
-        border-radius: .5rem;
-    }
-
-    .mask-custom {
-        background: rgba(24, 24, 16, .2);
-        border-radius: 2em;
-        backdrop-filter: blur(25px);
-        border: 2px solid rgba(255, 255, 255, 0.05);
-        background-clip: padding-box;
-        box-shadow: 10px 10px 10px rgba(46, 54, 68, 0.03);
-    }
-</style>
-
-<body>
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-    <section class="intro">
-        <div class="bg-image h-100" style="background-color: #6095F0;">
-            <div class="mask d-flex align-items-center h-100">
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-12">
-                            <div class="card shadow-2-strong" style="background-color: #f5f7fa;">
-                                <div class="card-body">
-                                    <div class="table-responsive">
-                                        <table class="table table-borderless mb-0">
-                                            <thead>
-                                                <tr>
-                
-                                                    <th scope="col"> @Html.DisplayNameFor(model => model.TenSP)</th>
-                                                    <th scope="col">@Html.DisplayNameFor(model => model.GiaSp)</th>
-                                                    <th scope="col"> @Html.DisplayNameFor(model => model.Hinh1)</th>
-                                                    <th scope="col"> @Html.DisplayNameFor(model => model.Soluongton)</th>
-                                                    <th scope="col"> @Html.DisplayNameFor(model => model.Mau.Tenmau)</th>
-                                                    <th scope="col"> @Html.DisplayNameFor(model => model.PhanLoai.Tenloai)</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-
-
-                                                @foreach (var item in Model)
-                                                {
-                                                    <tr>
-                                   
-                                                        <td>
-                                                            @Html.DisplayFor(modelItem => item.TenSP)
-                                                        </td>
-                                                        <td>
-                                                            @Html.DisplayFor(modelItem => item.GiaSp)
-                                                        </td>
-
-                                                        <td>
-                                                            @Html.DisplayFor(modelItem => item.Hinh1)
-                                                        </td>
-
-                                                        <td>
-                                                            @Html.DisplayFor(modelItem => item.Soluongton)
-                                                        </td>
-                                                        <td>
-                                                            @Html.DisplayFor(modelItem => item.Mau.Tenmau)
-                                                        </td>
-
-                                                        <td>
-                                                            @Html.DisplayFor(modelItem => item.PhanLoai.Tenloai)
-                                                        </td>
-                                                        <td>
-                                                            @Html.ActionLink("Edit", "Edit", new { id = item.MaSP }) |
-                                                            @Html.ActionLink("Details", "Details", new { id = item.MaSP }) |
-                                                            @Html.ActionLink("Delete", "Delete", new { id = item.MaSP })
-                                                        </td>
-                                                        <td>
-                                                            <button type="button" class="btn btn-danger btn-sm px-3">
-                                                                <i class="fas fa-times"></i>
-                                                            </button>
-                                                        </td>
-
-                                                    </tr>
-                                                }
-
-
-
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<!-- Content Wrapper START -->
+<div class="page-header">
+    <h2 class="header-title">Quản lý sản phẩm</h2>
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a href="/SanPhams/TrangChuAdmin" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Dashboard</a>
+            <span class="breadcrumb-item active">Quản lý sản phẩm</span>
+        </nav>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        <div class="row m-b-30">
+            <div class="col-lg-12 text-right">
+                <a href="/SanPhams/Create" class="btn btn-primary">
+                    <i class="anticon anticon-plus-circle m-r-5"></i>
+                    <span>Add Product</span>
+                </a>
             </div>
         </div>
-    </section>
-</body>
+        <div class="table-responsive">
+            <table class="table table-hover e-commerce-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Product</th>
+                        <th>Category</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Màu</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                #@item.MaSP
+                            </td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <img class="img-fluid rounded" src="assets/images/others/thumb-9.jpg" style="max-width: 60px" alt="">
+                                    <h6 class="m-b-0 m-l-10">@item.TenSP</h6>
+                                </div>
+                            </td>
+                            <td>@item.PhanLoai.Tenloai</td>
+                            <td>@item.GiaSp.Value.ToString("#,##") đ</td>
+                            <td>@item.Soluongton</td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <div>@item.Mau.Tenmau</div>
+                                </div>
+                            </td>
+                            <td class="text-right">
+                                <a href="/SanPhams/Edit/@item.MaSP" class="btn btn-icon btn-hover btn-sm btn-rounded pull-right">
+                                    <i class="anticon anticon-edit"></i>
+                                </a>
+                                <a href="/SanPhams/Delete/@item.MaSP" class="btn btn-icon btn-hover btn-sm btn-rounded">
+                                    <i class="anticon anticon-delete"></i>
+                                </a>
+                            </td>
+                        </tr>
 
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Content Wrapper END -->

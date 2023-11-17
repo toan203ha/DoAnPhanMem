@@ -171,47 +171,47 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\CTDATHANG.cs">
-      <DependentUpon>QL_CHDT.tt</DependentUpon>
+      <DependentUpon>QL_CHDTEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DONDATHANG.cs">
-      <DependentUpon>QL_CHDT.tt</DependentUpon>
+      <DependentUpon>QL_CHDTEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\KhachHang.cs">
-      <DependentUpon>QL_CHDT.tt</DependentUpon>
+      <DependentUpon>QL_CHDTEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MatHangMua.cs" />
     <Compile Include="Models\Mau.cs">
-      <DependentUpon>QL_CHDT.tt</DependentUpon>
+      <DependentUpon>QL_CHDTEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PaypalConfiguration.cs" />
     <Compile Include="Models\PhanLoai.cs">
-      <DependentUpon>QL_CHDT.tt</DependentUpon>
+      <DependentUpon>QL_CHDTEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ProductViewModel.cs" />
-    <Compile Include="Models\QL_CHDT.Context.cs">
+    <Compile Include="Models\QL_CHDTEntities.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>QL_CHDT.Context.tt</DependentUpon>
+      <DependentUpon>QL_CHDTEntities.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\QL_CHDT.cs">
+    <Compile Include="Models\QL_CHDTEntities.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>QL_CHDT.tt</DependentUpon>
+      <DependentUpon>QL_CHDTEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\QL_CHDT.Designer.cs">
+    <Compile Include="Models\QL_CHDTEntities.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>QL_CHDT.edmx</DependentUpon>
+      <DependentUpon>QL_CHDTEntities.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\SanPham.cs">
-      <DependentUpon>QL_CHDT.tt</DependentUpon>
+      <DependentUpon>QL_CHDTEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Models\Vourcher.cs">
-      <DependentUpon>QL_CHDT.tt</DependentUpon>
+      <DependentUpon>QL_CHDTEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\YeuThich.cs">
-      <DependentUpon>QL_CHDT.tt</DependentUpon>
+      <DependentUpon>QL_CHDTEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\YeuThichModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -414,15 +414,15 @@
     <Content Include="Image\sp92.jfif" />
     <Content Include="Image\sp93.jfif" />
     <Content Include="Image\Xám và Đen Ghi chú Mềm mại Hữu cơ Âm nhạc Biểu trưng.png" />
-    <Content Include="Models\QL_CHDT.Context.tt">
+    <Content Include="Models\QL_CHDTEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>QL_CHDT.edmx</DependentUpon>
-      <LastGenOutput>QL_CHDT.Context.cs</LastGenOutput>
+      <DependentUpon>QL_CHDTEntities.edmx</DependentUpon>
+      <LastGenOutput>QL_CHDTEntities.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\QL_CHDT.tt">
+    <Content Include="Models\QL_CHDTEntities.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>QL_CHDT.edmx</DependentUpon>
-      <LastGenOutput>QL_CHDT.cs</LastGenOutput>
+      <DependentUpon>QL_CHDTEntities.edmx</DependentUpon>
+      <LastGenOutput>QL_CHDTEntities.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\ADMIN.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -431,15 +431,15 @@
     <Content Include="Scripts\bootstrap.esm.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\QL_CHDT.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>QL_CHDT.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\QL_CHDT.edmx.diagram">
-      <DependentUpon>QL_CHDT.edmx</DependentUpon>
-    </Content>
     <Content Include="Admin\Layout\_LayoutPage1.cshtml" />
     <Content Include="Image\sp94.webp" />
+    <EntityDeploy Include="Models\QL_CHDTEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>QL_CHDTEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\QL_CHDTEntities.edmx.diagram">
+      <DependentUpon>QL_CHDTEntities.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.1.js" />
     <Content Include="Scripts\jquery-3.7.1.min.js" />
@@ -526,6 +526,7 @@
     <Content Include="Views\KhachHangAdmin\Details.cshtml" />
     <Content Include="Views\KhachHangAdmin\Edit.cshtml" />
     <Content Include="Views\KhachHangAdmin\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

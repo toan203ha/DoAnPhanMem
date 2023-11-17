@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c656c92fa31d4246b143a806b2f81966" Name="Diagram1">
+        <EntityTypeShape EntityType="QL_CHDTModel.CTDATHANG" Width="1.5" PointX="5.25" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_CHDTModel.DONDATHANG" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_CHDTModel.KhachHang" Width="1.5" PointX="3" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_CHDTModel.Mau" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_CHDTModel.PhanLoai" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_CHDTModel.SanPham" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_CHDTModel.Vourcher" Width="1.5" PointX="5.25" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_CHDTModel.YeuThich" Width="1.5" PointX="5.25" PointY="3.625" IsExpanded="true" />
+        <AssociationConnector Association="QL_CHDTModel.FK_CTDatHang_DonDatHang" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_CHDTModel.FK_CTDatHang_Sach" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_CHDTModel.FK_DonDatHang_KhachHang" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_CHDTModel.FK__YeuThich__MaKH__5EBF139D" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_CHDTModel.FK__SanPham__Mamau__571DF1D5" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_CHDTModel.FK__SanPham__MaLoai__5629CD9C" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_CHDTModel.FK__Vourcher__MaSP__619B8048" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_CHDTModel.FK__YeuThich__MaSP__5DCAEF64" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
