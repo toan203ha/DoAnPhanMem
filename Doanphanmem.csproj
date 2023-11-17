@@ -162,6 +162,7 @@
     <Compile Include="Admin\Controllers\CTDATHANGsController.cs" />
     <Compile Include="Admin\Controllers\DonHangAdminController.cs" />
     <Compile Include="Admin\Controllers\KhachHangAdminController.cs" />
+    <Compile Include="Admin\Controllers\ThongKeController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -536,6 +537,7 @@
     <Content Include="Views\KhachHangAdmin\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Views\SanPhams\DonHangChiTietKH.cshtml" />
+    <Content Include="Views\ThongKe\chart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
