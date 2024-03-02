@@ -1,0 +1,98 @@
+﻿@model Doanphanmem.Models.KhachHang
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>KhachHang</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.TenKH)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.TenKH)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.sdt)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.sdt)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.email)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.email)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.DiaChi)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.DiaChi)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.NgaySinh)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.NgaySinh)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.TK)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.TK)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Pass)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Pass)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Roleuser)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Roleuser)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Hinh)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Hinh)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.MaKH }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

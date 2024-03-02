@@ -17,7 +17,7 @@ namespace Doanphanmem.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public DONDATHANG()
         {
-            this.CTDATHANGs = new HashSet<CTDATHANG>();
+            this.CTDATHANG = new HashSet<CTDATHANG>();
         }
     
         public int SODH { get; set; }
@@ -34,7 +34,7 @@ namespace Doanphanmem.Models
         public Nullable<bool> GiaoHang { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CTDATHANG> CTDATHANGs { get; set; }
+        public virtual ICollection<CTDATHANG> CTDATHANG { get; set; }
         public virtual KhachHang KhachHang { get; set; }
     }
 }

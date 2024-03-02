@@ -29,7 +29,7 @@ namespace Doanphanmem.Admin.Controllers
         {
             if (Session["taikhoan"] == null)
                 return RedirectToAction("Login", "Account");
-            var dONDATHANGs = db.DONDATHANGs.Include(d => d.KhachHang);
+            var dONDATHANGs = db.DONDATHANG.Include(d => d.KhachHang);
             if (!String.IsNullOrEmpty(SearchString))
             {
                 dONDATHANGs = dONDATHANGs.Where(s => s.Tennguoinhan.Contains(SearchString));
@@ -53,7 +53,7 @@ namespace Doanphanmem.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DONDATHANG donhang = db.DONDATHANGs.Find(id);
+            DONDATHANG donhang = db.DONDATHANG.Find(id);
             //donhang.Dagiao = true;
             if (donhang.Dagiao == true)
             {
@@ -80,7 +80,7 @@ namespace Doanphanmem.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DONDATHANG dONDATHANG = db.DONDATHANGs.Find(id);
+            DONDATHANG dONDATHANG = db.DONDATHANG.Find(id);
             if (dONDATHANG == null)
             {
                 return HttpNotFound();
@@ -103,7 +103,7 @@ namespace Doanphanmem.Admin.Controllers
             // Thực hiện truy vấn cơ sở dữ liệu để lấy danh sách chi tiết đơn hàng dựa vào SODH
             if (Session["taikhoan"] == null)
                 return RedirectToAction("Login", "Account");
-            var cTDATHANGs = db.CTDATHANGs.Include(c => c.DONDATHANG).Include(c => c.SanPham).Where(c => c.SODH == id);
+            var cTDATHANGs = db.CTDATHANG.Include(c => c.DONDATHANG).Include(c => c.SanPham).Where(c => c.SODH == id);
             return View(cTDATHANGs.ToList());
         }
 
@@ -112,7 +112,7 @@ namespace Doanphanmem.Admin.Controllers
         {
             if (Session["taikhoan"] == null)
                 return RedirectToAction("Login", "Account");
-            ViewBag.MaKH = new SelectList(db.KhachHangs, "MaKH", "TenKH");
+            ViewBag.MaKH = new SelectList(db.KhachHang, "MaKH", "TenKH");
             return View();
         }
 
@@ -126,12 +126,12 @@ namespace Doanphanmem.Admin.Controllers
 
             if (ModelState.IsValid)
             {
-                db.DONDATHANGs.Add(dONDATHANG);
+                db.DONDATHANG.Add(dONDATHANG);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.MaKH = new SelectList(db.KhachHangs, "MaKH", "TenKH", dONDATHANG.MaKH);
+            ViewBag.MaKH = new SelectList(db.KhachHang, "MaKH", "TenKH", dONDATHANG.MaKH);
             return View(dONDATHANG);
         }
 
@@ -144,12 +144,12 @@ namespace Doanphanmem.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DONDATHANG dONDATHANG = db.DONDATHANGs.Find(id);
+            DONDATHANG dONDATHANG = db.DONDATHANG.Find(id);
             if (dONDATHANG == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.MaKH = new SelectList(db.KhachHangs, "MaKH", "TenKH", dONDATHANG.MaKH);
+            ViewBag.MaKH = new SelectList(db.KhachHang, "MaKH", "TenKH", dONDATHANG.MaKH);
             return View(dONDATHANG);
         }
 
@@ -166,7 +166,7 @@ namespace Doanphanmem.Admin.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.MaKH = new SelectList(db.KhachHangs, "MaKH", "TenKH", dONDATHANG.MaKH);
+            ViewBag.MaKH = new SelectList(db.KhachHang, "MaKH", "TenKH", dONDATHANG.MaKH);
             return View(dONDATHANG);
         }
 
@@ -180,7 +180,7 @@ namespace Doanphanmem.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DONDATHANG dONDATHANG = db.DONDATHANGs.Find(id);
+            DONDATHANG dONDATHANG = db.DONDATHANG.Find(id);
             if (dONDATHANG == null)
             {
                 return HttpNotFound();
@@ -193,8 +193,8 @@ namespace Doanphanmem.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            DONDATHANG dONDATHANG = db.DONDATHANGs.Find(id);
-            db.DONDATHANGs.Remove(dONDATHANG);
+            DONDATHANG dONDATHANG = db.DONDATHANG.Find(id);
+            db.DONDATHANG.Remove(dONDATHANG);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

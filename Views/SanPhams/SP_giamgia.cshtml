@@ -4,8 +4,41 @@
     ViewBag.Title = "laychitietsp";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<style>
+    .btn-mh {
+        width: 200px;
+        border-radius: 5px;
+        padding: 10px;
+        box-shadow: 0 0 10px rgba(220, 20, 60, 0.1);
+    }
 
- 
+        .btn-mh:hover {
+            border-radius: 5px;
+            background-color: red;
+        }
+
+    .t {
+        font-size: 40px;
+    }
+</style>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f5f5f5;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(220, 20, 60, 0.5);
+    }
+</style>
 <script src="https://kit.fontawesome.com/383abdf887.js" crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -44,30 +77,15 @@
         <h4 class="pb-2">
             @if (ViewBag.GiaSauGiamGia != null)
             {
-                <p>Giá: <del>@Model.GiaSp</del> Giá sau giảm giá: @ViewBag.GiaSauGiamGia</p>
+                <p>Giá: <del>   @String.Format("{0:0,0}", @Model.GiaSp) VNĐ</del> Giá sau giảm giá:   @String.Format("{0:0,0}", ViewBag.GiaSauGiamGia * 10) VNĐ </p>
+
             }
             else
             {
-                <p>Giá: @Model.GiaSp</p>
+                <p>Giá:  @String.Format("{0:0,0}", @Model.GiaSp) VNĐ</p>
             }
         </h4>
-        <style>
-            .btn-mh {
-                width: 200px;
-                border-radius: 5px;
-                padding: 10px;
-                box-shadow: 0 0 10px rgba(220, 20, 60, 0.1);
-            }
 
-                .btn-mh:hover {
-                    border-radius: 5px;
-                    background-color: red;
-                }
-
-            .t {
-                font-size: 40px;
-            }
-        </style>
         <div class="mb-3 mt-3 mr-5 mb-5">
             <a class="btn btn-primary" href="@Url.Action("AddProduct", "GioHang", new{ MaSP = Model.MaSP })">
                 Đặt mua
@@ -92,28 +110,7 @@
         <hr />
     </div>
 
-    @*gioithieu*@
     <div class="container-fluid  p-3 text-center mt-4" style="background-color: #1A6DFF; color: white; font-size: 20px; font-weight: bold; ">Thông Tin Chi Tiết Sản Phẩm</div>
-
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f5f5f5;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(220, 20, 60, 0.5);
-        }
-    </style>
-
-
     <div class="container ">
         <h1>Đánh giá @Model.TenSP</h1>
         <p>Những nâng cấp lớn về hiệu năng, dung lượng pin, và trên hết là camera sau chính là những điểm khiến nó trở thành siêu phẩm trong phân khúc cao cấp. Dưới đây là những thông tin cần biết về dòng điện thoại vừa ra mắt của Samsung.</p>
@@ -122,14 +119,7 @@
         <p>Samsung Galaxy S22 Ultra đi theo ngôn ngữ thiết kế nguyên khối - kính cao cấp và sang trọng, vốn đã làm nên sự thành công của model tiền nhiệm. Chiếc máy có thiết kế mặt lưng đơn sắc tối giản nhưng không kém phần tinh tế, và màn hình tràn viền bao phủ gần như toàn bộ mặt trước, tạo nên trải nghiệm quan sát rộng rãi trên một thiết bị di động nhỏ gọn vừa tay cầm.</p>
         <p>Độ bền của máy được đảm bảo tối ưu không chỉ qua lớp vỏ nhôm nguyên khối Amor đánh bóng, mà còn qua kính cường lực Corning Gorilla Glass Victus+ bao phủ hai mặt trước và sau. Khung nhôm và kính hoạt động như bộ giáp bảo vệ điện thoại an toàn. Chiếc máy còn có khả năng chống bụi/nước đạt chuẩn IP68 giúp người dùng luôn an tâm khi dùng máy trong những điều kiện môi trường khác nhau.</p>
         <p><img src="~/Image/ip5.jpg" style="max-height:400px" class="w-100"></p>
-        <!-- Thêm nội dung tiếp theo ở đây -->
-
-
-        
-
     </div>
-    @*sanphamtuongtu*@
 
     @Html.Action("laysanphamtt", "SanPhams")
-
-
+</div>

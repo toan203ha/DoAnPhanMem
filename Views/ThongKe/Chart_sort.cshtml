@@ -1,0 +1,162 @@
+﻿@using Newtonsoft.Json
+@using Doanphanmem.Models
+
+@{
+    var twelveMonthsData = ViewBag.TwelveMonthsData as Dictionary<string, decimal>;
+    var topKhachHang = ViewBag.Top10KhachHang as List<Doanphanmem.Models.TopKhachHangModel>;
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    var db = new QL_CHDTEntities();
+    int SoLuongDonHang = 0;
+    decimal TongTienMua = 0;
+    int i = 1;
+
+}
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+    .container {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-top: 20px;
+    }
+
+    h2 {
+        color: #007bff;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 12px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #343a40;
+        color: #fff;
+    }
+
+    tr:hover {
+        background-color: #f5f5f5;
+        transition: background-color 0.3s;
+    }
+
+    .text-center {
+        color: #007bff;
+        font-size: 20px;
+    }
+</style>
+
+<h1 style="color: aliceblue;font-size: 30px;text-align: center;background-color: #343a40;border-radius: 60px;">
+    THỐNG KÊ DOANH THU
+</h1>
+<div style="display:flex;">
+    <section id="myChartSection" class="container mt-4" style="background-color:white;width: 700px;height: 355px; margin-right:20px;">
+        <h1 class="text-center">Biều Đồ Doanh Thu</h1>
+        <canvas id="myChartDoanhThu" width="250" height="100"></canvas>
+    </section>
+    <section id="myChartSection" class="container mt-4" style="background-color:white;width: 650px;height: 355px;">
+        <h1 class="text-center">Tổng Quan</h1>
+        <table>
+            <tr>
+                <td><strong>Tổng Doanh Thu </strong></td>
+
+                <td>
+                    @String.Format("{0:0,0}", @ViewBag.TongTien) VNĐ
+
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Tổng Đơn Hàng </strong></td>
+                <td>@ViewBag.TongDH</td>
+            </tr>
+            <tr>
+                <td><strong>Tổng số lượng khách hàng </strong></td>
+                <td>@ViewBag.TongKH</td>
+            </tr>
+        </table>
+    </section>
+</div>
+<div class="container mt-4">
+    @if (ViewBag.Top10KhachHang != null)
+    {
+        <h2>Top 10 Khách Hàng Mua Nhiều Nhất</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Tên Khách Hàng</th>
+                    <th>Số Lượng Đơn Hàng</th>
+                    <th>Tổng Tiền Mua</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var khachHang in ViewBag.Top10KhachHang)
+                {
+                    <tr>
+                        <td>@khachHang.tenkh</td>
+
+
+                        <td>@khachHang.SoLuongDonHang</td>
+                        <td>
+                            @String.Format("{0:0,0}", @khachHang.TongTienMua) VNĐ
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
+<script>
+var doanhThuData = @Html.Raw(JsonConvert.SerializeObject(twelveMonthsData));
+
+    var ctxDoanhThu = document.getElementById('myChartDoanhThu').getContext('2d');
+    var myChartDoanhThu = new Chart(ctxDoanhThu, {
+        type: 'bar',
+        data: {
+            labels: Object.keys(doanhThuData).reverse(),
+            datasets: [{
+                label: 'Doanh thu',
+                data: Object.values(doanhThuData).reverse(),
+                backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    function applyFilters() {
+        var fromDate = document.getElementById('fromDate').value;
+        var toDate = document.getElementById('toDate').value;
+        event.preventDefault();
+
+        fetch(`/ThongKe/FilterData?fromDate=${fromDate}&toDate=${toDate}`)
+            .then(response => response.json())
+            .then(data => {
+                updateChartDoanhThu(data);
+            })
+            .catch(error => {
+                console.error('Có lỗi xảy ra:', error);
+            });
+    }
+    function updateChartDoanhThu(data) {
+        myChartDoanhThu.data.labels = Object.keys(data).reverse();
+        myChartDoanhThu.data.datasets[0].data = Object.values(data).reverse();
+        myChartDoanhThu.update();
+    }
+</script>
+

@@ -6,6 +6,11 @@
     KhachHang khach = Session["TaiKhoan"] as KhachHang;
 }
 
+<style>
+    th,td{
+        text-align:center:
+    }
+</style>
 <h2 style="text-align:center">THÔNG TIN GIỎ HÀNG</h2>
 <table class="table table-bordered">
     <thead>
@@ -27,15 +32,15 @@
                 <td>@dt.Ten</td>
                 <td><img src="~/Image/@dt.AnhBia" style="width:60px; height:60px" /></td>
                 <td>@dt.Soluong</td>
-                <td>@String.Format("{0:0,0}", dt.Dongia*10)</td>
-                <td>@String.Format("{0:0,0}", dt.Total()*10)</td>
+                <td>@String.Format("{0:0,0}", dt.Dongia*10) VNĐ</td>
+                <td>@String.Format("{0:0,0}", dt.Total()*10) VNĐ</td>
             </tr>
         }
     <tr style="font-weight:bold; text-align:right; color:red;">
         <td colspan="4">Tổng số lượng: @ViewBag.TongSL</td>
-        <td colspan="5">Tổng số tiền:@Model.Sum(i => i.Total()*10)</td>
-
-        <td colspan="6">Tổng tiền: @ViewBag.TongTiensp</td>
+        <td colspan="5">
+            Tổng số tiền:   @String.Format("{0:0,0}", Model.Sum(i => i.Total() * 10)) VNĐ
+        </td>
     </tr>
     </tbody>
 </table>
@@ -57,10 +62,7 @@
         <td>Ngày đặt: </td>
         <td>@DateTime.Now.ToShortDateString()</td>
     </tr>
-    <tr>
-        <td>Nhập mã giảm giá: </td>
-        <td>@DateTime.Now.ToShortDateString()</td>
-    </tr>
+
     <tr>
         <td colspan="2" style="text-align: center;">
             @using (Html.BeginForm("DongYDatHang", "GioHang", FormMethod.Post))
@@ -70,10 +72,7 @@
 
                 <label for="paypalPayment">Thanh Toán Qua PayPal</label>
                 <input type="radio" name="isDirectPayment" value="false" />
-                @*<input type="submit" value="Đặt hàng" />*@
-
                 <button type="submit" class="btn btn-primary" onclick="return validateAndUpdateCart();">Đặt Hàng</button>
-
             }
         </td>
         </tr>

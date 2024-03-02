@@ -24,7 +24,7 @@ namespace Doanphanmem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            KhachHang khachHang = db.KhachHangs.Find(id);
+            KhachHang khachHang = db.KhachHang.Find(id);
             if (khachHang == null)
             {
                 return HttpNotFound();

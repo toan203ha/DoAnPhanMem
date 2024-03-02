@@ -24,7 +24,7 @@ namespace CNPM_NC_DoAnNhanh.Controllers
         [HttpPost]
         public ActionResult LoginAccount(KhachHang _user)
         {
-            var check = db.KhachHangs.Where(s => s.TK == _user.TK && s.Pass == _user.Pass).FirstOrDefault();
+            var check = db.KhachHang.Where(s => s.TK == _user.TK && s.Pass == _user.Pass).FirstOrDefault();
             if (check == null)
             {
                 ViewBag.ErrorInfo = "Sai Info";

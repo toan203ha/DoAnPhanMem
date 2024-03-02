@@ -211,10 +211,10 @@
                         </thead>
 
                         <tbody>
-                            @foreach (var detail in order.CTDATHANGs)
+                            @foreach (var detail in order.CTDATHANG)
                             {
-                                var cus = db.SanPhams.Where(s => s.MaSP == detail.MaSP).Select(s => s.TenSP).FirstOrDefault();
-                                var cus2 = db.CTDATHANGs.Where(s => s.SODH == detail.SODH).FirstOrDefault();
+                                var cus = db.SanPham.Where(s => s.MaSP == detail.MaSP).Select(s => s.TenSP).FirstOrDefault();
+                                var cus2 = db.CTDATHANG.Where(s => s.SODH == detail.SODH).FirstOrDefault();
                                 <tr>
                                     <td>
                                         <p>@cus</p>
@@ -329,12 +329,13 @@
                                     }
 
                                 </tr>
-                                <button class="btn-close-white" style="border-radius:5px">
-                                    @Html.ActionLink("Chi tiết đơn hàng", "DonHangChiTietKH", new { id = order.SODH })
-                                </button>
+
 
 
                             }
+                            <button class="btn-close-white" style="border-radius:5px">
+                                @Html.ActionLink("Chi tiết đơn hàng", "DonHangChiTietKH", new { id = order.SODH })
+                            </button>
                         </tbody>
                     </table>
                 </div>

@@ -55,7 +55,7 @@
 
 <div class="chat-panel panel panel-default">
     <!-- /.panel-heading -->
-    <h2 style=" margin: auto; width: 50%;">Nhắn Tin</h2>
+    <h2 style=" margin: auto; width: 50%;margin-top:20px;">Nhắn Tin</h2>
     <div class="panel-body" id="chat" style="height: 250px; margin: auto; width: 50%; border: 3px solid gray; padding: 10px;margin-bottom:5px;">
         <input type="hidden" id="displayname" />
         <p id="discussion"></p>
@@ -63,7 +63,7 @@
     <!-- /.panel-body -->
     <div class="panel-footer" style=" margin: auto; width: 50%; margin-bottom: 20px;">
         <div class="input-group">
-            <input id="message" type="text" name="message" class="form-control input-sm" placeholder="Type your message here..." />
+            <input id="message" type="text" name="message" class="form-control input-sm" placeholder="Nhập Tin Nhắn..." />
             <span class="input-group-btn" style="margin-left:5px;">
                 <input type="button" class="btn btn-warning btn-sm" id="sendmessage" value="Send">
 
@@ -85,18 +85,24 @@
             var chat = $.connection.chatHub;
             // Create a function that the hub can call back to display messages.
             chat.client.addNewMessageToPage = function (name, message) {
-                if (name == "Admin") {
-                    // Add the message to the page.
-                    $('#discussion').append('<p style="color:green;    background-color:white; text-align:left;"><strong><img = src="https://www.phplivesupport.com/pics/icons/avatars/public/avatar_7.png" title="NhanVien">'
-                        + ' </strong> ' + htmlEncode(message) + '</p>');
+                if (message == "") {
+                    alert("Bạn chưa nhập tin nhắn");
                 }
-                else if (name != "Admin") {
-                    // Add the message to the page.
-                    $('#discussion').append('<p style="color:blue;text-align:right;background-color:white;">' +
-                        '<strong>' + htmlEncode(message) + '</strong>' +
-                        ' <img src="https://www.phplivesupport.com/pics/icons/avatars/public/avatar_71.png" title="KhachHang">' +
-                        '</p>');
+                else if (message != null ) {
+                    if (name == "Admin") {
+                        // Add the message to the page.
+                        $('#discussion').append('<p style="color:green;    background-color:white; text-align:left;"><strong><img = src="https://www.phplivesupport.com/pics/icons/avatars/public/avatar_7.png" title="NhanVien">'
+                            + ' </strong> ' + htmlEncode(message) + '</p>');
+                    }
+                    else if (name != "Admin") {
+                        // Add the message to the page.
+                        $('#discussion').append('<p style="color:blue;text-align:right;background-color:white;">' +
+                            '<strong>' + htmlEncode(message) + '</strong>' +
+                            ' <img src="https://www.phplivesupport.com/pics/icons/avatars/public/avatar_71.png" title="KhachHang">' +
+                            '</p>');
+                    }
                 }
+        
             };
 
              var userRole = "@Session["RoleUser"]";

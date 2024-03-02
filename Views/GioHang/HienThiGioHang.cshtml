@@ -17,7 +17,7 @@
         return true;
     }
 </script>
-<h2 style="text-align:center">THÔNG TIN GIỎ HÀNG</h2>
+<h2 style="text-align: center; margin-top: 20px;">THÔNG TIN GIỎ HÀNG</h2>
 <table class="table table-bordered">
     <thead>
         <tr>
@@ -34,11 +34,11 @@
     <tbody>
         @foreach (var sach in Model)
         {
-            var cus = db.SanPhams.Where(s => s.MaSP == sach.MaDT).Select(s => s.TenSP).FirstOrDefault();
+            var cus = db.SanPham.Where(s => s.MaSP == sach.MaDT).Select(s => s.TenSP).FirstOrDefault();
 
             <tr>
                 <td>@cus</td>
-                <td><img src="~/Image/@sach.AnhBia" style="width:100%" /></td>
+                <td><img src="~/Image/@sach.AnhBia" style="width:100%" height="100" width="150" /></td>
                 @using (Html.BeginForm("UpdateCart", "GioHang", new
                 {
                     MaSP =
@@ -49,8 +49,11 @@
                         <input type="number" min="1" value="@sach.Soluong" name="SoLuong" id="SoLuong" />
                     </td>
 
-                    <td>@sach.Dongia</td>
-                    <td>@sach.Total()</td>
+                    <td>
+                        @String.Format("{0:0,0}", @sach.Dongia *10) VNĐ
+                        
+                    </td>
+                    <td> @String.Format("{0:0,0}", @sach.Total()*10) VNĐ</td>
                     <td>
                         @Html.ActionLink("Chi tiết", "Details", "SanPhams", new
                         {

@@ -18,13 +18,20 @@
         <tr>
             <td>@item.SanPham.TenSP</td>
             <td>@item.Soluong</td>
-            <td>@item.SanPham.GiaSp</td>
-            <td>@(item.Soluong * item.SanPham.GiaSp)</td>
+            <td>
+                @String.Format("{0:0,0}", (item.SanPham.GiaSp)) VNĐ
+            </td>
+            <td>
+                @String.Format("{0:0,0}", (item.Soluong * item.SanPham.GiaSp)) VNĐ
+            </td>
         </tr>
     }
     <tr>
         Tổng số lượng sản phẩm: @Model.Sum(b => b.Soluong)
     </tr>
-    <tr>Tổng Tiền Đơn Hàng: @Model.Sum(b => b.SanPham.GiaSp)</tr>
+    <tr>Tổng Tiền Đơn Hàng:@String.Format("{0:0,0}", Model.Sum(b => b.SanPham.GiaSp)) VNĐ</tr>
+ 
+
+
 </table>
 

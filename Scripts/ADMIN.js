@@ -8,6 +8,7 @@ const switchLabel = document.querySelector(".switch label");
 const switchLabelText = switchLabel.querySelector("span:last-child");
 const collapsedClass = "collapsed";
 const lightModeClass = "light-mode";
+ 
 
 /*TOGGLE HEADER STATE*/
 collapseBtn.addEventListener("click", function () {

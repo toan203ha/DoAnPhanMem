@@ -60,7 +60,16 @@
       <HintPath>packages\Microsoft.AspNet.SignalR.SystemWeb.2.4.3\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Bcl.AsyncInterfaces.6.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Extensions.DependencyInjection, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.DependencyInjection.6.0.0\lib\net461\Microsoft.Extensions.DependencyInjection.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.DependencyInjection.Abstractions.6.0.0\lib\net461\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Owin, Version=4.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Owin.4.2.2\lib\net45\Microsoft.Owin.dll</HintPath>
       <Private>True</Private>
@@ -74,7 +83,16 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>packages\Newtonsoft.Json.13.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Open.Serialization, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Open.Serialization.3.0.0\lib\netstandard2.0\Open.Serialization.dll</HintPath>
+    </Reference>
+    <Reference Include="Open.Serialization.Json, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Open.Serialization.Json.3.0.0\lib\netstandard2.0\Open.Serialization.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Open.Serialization.Json.Newtonsoft, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Open.Serialization.Json.Newtonsoft.3.0.0\lib\netstandard2.0\Open.Serialization.Json.Newtonsoft.dll</HintPath>
     </Reference>
     <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
       <HintPath>packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
@@ -88,11 +106,33 @@
     <Reference Include="PayPal, Version=1.9.1.0, Culture=neutral, PublicKeyToken=5b4afc1ccaef40fb, processorArchitecture=MSIL">
       <HintPath>packages\PayPal.1.9.1\lib\net451\PayPal.dll</HintPath>
     </Reference>
+    <Reference Include="Serilog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>packages\Serilog.3.1.1\lib\net471\Serilog.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=7.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Diagnostics.DiagnosticSource.7.0.2\lib\net462\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -162,10 +202,16 @@
     <Compile Include="Admin\Controllers\CTDATHANGsController.cs" />
     <Compile Include="Admin\Controllers\DonHangAdminController.cs" />
     <Compile Include="Admin\Controllers\KhachHangAdminController.cs" />
+    <Compile Include="Admin\Controllers\MauAdminController.cs" />
+    <Compile Include="Admin\Controllers\QLNVController.cs" />
     <Compile Include="Admin\Controllers\ThongKeController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Chain\Handle\AddToCartHandler.cs" />
+    <Compile Include="Chain\Handle\CartHandle.cs" />
+    <Compile Include="Chain\Handle\PaymentHandler.cs" />
+    <Compile Include="Chain\Handle\PaymentProcessor.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\GioHangController.cs" />
@@ -178,49 +224,55 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\CTDATHANG.cs">
-      <DependentUpon>QL_CHDTEntities.tt</DependentUpon>
+      <DependentUpon>QL_CHDT.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DONDATHANG.cs">
-      <DependentUpon>QL_CHDTEntities.tt</DependentUpon>
+      <DependentUpon>QL_CHDT.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\KhachHang.cs">
-      <DependentUpon>QL_CHDTEntities.tt</DependentUpon>
+      <DependentUpon>QL_CHDT.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MatHangMua.cs" />
     <Compile Include="Models\Mau.cs">
-      <DependentUpon>QL_CHDTEntities.tt</DependentUpon>
+      <DependentUpon>QL_CHDT.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PaypalConfiguration.cs" />
     <Compile Include="Models\PhanLoai.cs">
-      <DependentUpon>QL_CHDTEntities.tt</DependentUpon>
+      <DependentUpon>QL_CHDT.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ProductViewModel.cs" />
-    <Compile Include="Models\QL_CHDTEntities.Context.cs">
+    <Compile Include="Models\QL_CHDT.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>QL_CHDTEntities.Context.tt</DependentUpon>
+      <DependentUpon>QL_CHDT.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\QL_CHDTEntities.cs">
+    <Compile Include="Models\QL_CHDT.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>QL_CHDTEntities.tt</DependentUpon>
+      <DependentUpon>QL_CHDT.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\QL_CHDTEntities.Designer.cs">
+    <Compile Include="Models\QL_CHDT.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>QL_CHDTEntities.edmx</DependentUpon>
+      <DependentUpon>QL_CHDT.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\SanPham.cs">
-      <DependentUpon>QL_CHDTEntities.tt</DependentUpon>
+      <DependentUpon>QL_CHDT.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\TopKhachHangModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Models\Vourcher.cs">
-      <DependentUpon>QL_CHDTEntities.tt</DependentUpon>
+      <DependentUpon>QL_CHDT.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\YeuThich.cs">
-      <DependentUpon>QL_CHDTEntities.tt</DependentUpon>
+      <DependentUpon>QL_CHDT.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\YeuThichModel.cs" />
+    <Compile Include="Pattern\SanPham\Builder.cs" />
+    <Compile Include="Pattern\SanPham\composite.cs" />
+    <Compile Include="Pattern\SanPham\Prototype.cs" />
+    <Compile Include="Pattern\SanPham\Responsibility.cs" />
+    <Compile Include="Pattern\SanPham\Strategy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="signalr\hubs\ChatHub.cs" />
     <Compile Include="Startup.cs" />
@@ -423,15 +475,15 @@
     <Content Include="Image\sp92.jfif" />
     <Content Include="Image\sp93.jfif" />
     <Content Include="Image\Xám và Đen Ghi chú Mềm mại Hữu cơ Âm nhạc Biểu trưng.png" />
-    <Content Include="Models\QL_CHDTEntities.Context.tt">
+    <Content Include="Models\QL_CHDT.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>QL_CHDTEntities.edmx</DependentUpon>
-      <LastGenOutput>QL_CHDTEntities.Context.cs</LastGenOutput>
+      <DependentUpon>QL_CHDT.edmx</DependentUpon>
+      <LastGenOutput>QL_CHDT.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\QL_CHDTEntities.tt">
+    <Content Include="Models\QL_CHDT.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>QL_CHDTEntities.edmx</DependentUpon>
-      <LastGenOutput>QL_CHDTEntities.cs</LastGenOutput>
+      <DependentUpon>QL_CHDT.edmx</DependentUpon>
+      <LastGenOutput>QL_CHDT.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\ADMIN.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -442,12 +494,12 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Admin\Layout\_LayoutPage1.cshtml" />
     <Content Include="Image\sp94.webp" />
-    <EntityDeploy Include="Models\QL_CHDTEntities.edmx">
+    <EntityDeploy Include="Models\QL_CHDT.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>QL_CHDTEntities.Designer.cs</LastGenOutput>
+      <LastGenOutput>QL_CHDT.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\QL_CHDTEntities.edmx.diagram">
-      <DependentUpon>QL_CHDTEntities.edmx</DependentUpon>
+    <Content Include="Models\QL_CHDT.edmx.diagram">
+      <DependentUpon>QL_CHDT.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.1.js" />
@@ -489,11 +541,6 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\GioHang\DatHang.cshtml" />
     <Content Include="Views\GioHang\HoanThanhDonHang.cshtml" />
-    <Content Include="Views\Vourchers\Create.cshtml" />
-    <Content Include="Views\Vourchers\Delete.cshtml" />
-    <Content Include="Views\Vourchers\Details.cshtml" />
-    <Content Include="Views\Vourchers\Edit.cshtml" />
-    <Content Include="Views\Vourchers\Index.cshtml" />
     <Content Include="Views\SanPhams\Create.cshtml" />
     <Content Include="Views\SanPhams\Delete.cshtml" />
     <Content Include="Views\SanPhams\Details.cshtml" />
@@ -538,6 +585,21 @@
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Views\SanPhams\DonHangChiTietKH.cshtml" />
     <Content Include="Views\ThongKe\chart.cshtml" />
+    <Content Include="Views\QLNV\Index.cshtml" />
+    <Content Include="Views\Vourchers\Index.cshtml" />
+    <Content Include="Views\Vourchers\Details.cshtml" />
+    <Content Include="Views\Vourchers\Create.cshtml" />
+    <Content Include="Views\Vourchers\Edit.cshtml" />
+    <Content Include="Views\Vourchers\Delete.cshtml" />
+    <Content Include="Views\ThongKe\Chart_sort.cshtml" />
+    <Content Include="Views\ThongKe\Top10KhachHangMuaNhieuNhat.cshtml" />
+    <Content Include="Views\QLNV\Create.cshtml" />
+    <Content Include="Views\QLNV\Edit.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\KhachHangs\Delete.cshtml" />
+    <Content Include="Views\KhachHangs\Details.cshtml" />
+    <Content Include="Views\KhachHangs\Edit.cshtml" />
+    <Content Include="Views\SanPhams\EditClone.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

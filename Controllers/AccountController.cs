@@ -20,7 +20,7 @@ namespace Doanphanmem.Controllers
         [HttpPost]
         public ActionResult Login(UserModel model)
         {
-            var user = db.KhachHangs.FirstOrDefault(u => u.TK == model.TK && u.Pass == model.Pass);
+            var user = db.KhachHang.FirstOrDefault(u => u.TK == model.TK && u.Pass == model.Pass);
             if (user != null)
             {
                 ViewBag.ThongBao = "Chúc mừng đăng nhập thành công";
@@ -45,7 +45,6 @@ namespace Doanphanmem.Controllers
                 //if (Session["UserRole"] == "Admin")
                 else if (user.Roleuser.ToString() == "Admin")
                     return RedirectToAction("./index", "Admin");
-
                 else
                     return RedirectToAction("Login", "Account");
             }
@@ -53,47 +52,34 @@ namespace Doanphanmem.Controllers
             return View(model);
         }
         // Đăng ký
-        public ActionResult Register()
-        {
-            return View();
-        }
-
         [HttpPost]
         public ActionResult Register(KhachHang model)
         {
             if (ModelState.IsValid)
             {
                 // Thực hiện kiểm tra và lưu thông tin đăng ký vào cơ sở dữ liệu
-                var existingUser = db.KhachHangs.FirstOrDefault(u => u.TK == model.TK);
+                var existingUser = db.KhachHang.FirstOrDefault(u => u.TK == model.TK);
                 if (existingUser != null)
                 {
-                    ModelState.AddModelError("", "Tài khoản đã tồn tại."); // Thông báo lỗi
+                    ModelState.AddModelError("", "Tài khoản đã tồn tại.");  
                 }
                 else
                 {
                     // Lưu đối tượng KhachHang vào cơ sở dữ liệu
-                    db.KhachHangs.Add(model);
+                    db.KhachHang.Add(model);
                     db.SaveChanges();
-
                     ViewBag.ThongBao = "Chúc mừng, bạn đã đăng ký thành công!";
                     return View("Login");
                 }
             }
-
-            // Đăng ký thất bại, hiển thị thông báo lỗi
-            return View(model);
+            return View("Register", model);
         }
-
-
         public ActionResult Chat()
         {
             return View();
         }
-
-
         public ActionResult Logout()
         {
-
             Session.Remove("UserID");
             Session.Remove("UserName");
             Session.Remove("UserRole");

@@ -7,9 +7,7 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<!-- Content Wrapper START -->
-<div class="page-header">
-    <h2 class="header-title">Quản lý sản phẩm</h2>
+ <div class="page-header">
     <div class="header-sub-title">
         <nav class="breadcrumb breadcrumb-dash">
             <a href="/SanPhams/TrangChuAdmin" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Dashboard</a>
@@ -18,7 +16,14 @@
     </div>
 </div>
 <div class="card">
+
     <div class="card-body">
+        <h2 class="header-title" style="text-align:center;">Quản lý sản phẩm</h2>
+
+        <form class="d-flex" role="search" style="margin-bottom:40px;">
+            <input class="form-control me-2" type="text" name="SearchString" placeholder="Search" aria-label="Nhập từ khoá ">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
         <div class="row m-b-30">
             <div class="col-lg-12 text-right">
                 <a href="/SanPhams/Create" class="btn btn-primary">

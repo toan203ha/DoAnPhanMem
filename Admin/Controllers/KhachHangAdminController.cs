@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Doanphanmem.Models;
+using PagedList;
 
 namespace Doanphanmem.Admin.Controllers
 {
@@ -15,11 +16,19 @@ namespace Doanphanmem.Admin.Controllers
         private QL_CHDTEntities db = new QL_CHDTEntities();
 
         // GET: KhachHangAdmin
-        public ActionResult Index()
+        public ActionResult Index(String SearchString)
         {
-            return View(db.KhachHangs.ToList());
-        }
+            var x = db.KhachHang.Where(v => v.Roleuser != "Admin");
+            if (!String.IsNullOrEmpty(SearchString))
+            {
+                x = x.Where(s => s.TenKH.Contains(SearchString));
 
+            }
+            {
+                Console.WriteLine("Không tìm thấy sản phẩm nào");
+            }
+            return View(x.ToList());
+        }
         // GET: KhachHangAdmin/Details/5
         public ActionResult Details(int? id)
         {
@@ -27,7 +36,7 @@ namespace Doanphanmem.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            KhachHang khachHang = db.KhachHangs.Find(id);
+            KhachHang khachHang = db.KhachHang.Find(id);
             if (khachHang == null)
             {
                 return HttpNotFound();
@@ -50,7 +59,7 @@ namespace Doanphanmem.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.KhachHangs.Add(khachHang);
+                db.KhachHang.Add(khachHang);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -65,7 +74,7 @@ namespace Doanphanmem.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            KhachHang khachHang = db.KhachHangs.Find(id);
+            KhachHang khachHang = db.KhachHang.Find(id);
             if (khachHang == null)
             {
                 return HttpNotFound();
@@ -96,7 +105,7 @@ namespace Doanphanmem.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            KhachHang khachHang = db.KhachHangs.Find(id);
+            KhachHang khachHang = db.KhachHang.Find(id);
             if (khachHang == null)
             {
                 return HttpNotFound();
@@ -109,8 +118,8 @@ namespace Doanphanmem.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            KhachHang khachHang = db.KhachHangs.Find(id);
-            db.KhachHangs.Remove(khachHang);
+            KhachHang khachHang = db.KhachHang.Find(id);
+            db.KhachHang.Remove(khachHang);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

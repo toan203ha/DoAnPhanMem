@@ -27,8 +27,6 @@
 
 
 <div id="demo" class="carousel slide" data-bs-ride="carousel">
-
-
     <div class="carousel-indicators">
         <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
         <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
@@ -66,12 +64,24 @@
 <div class="container-fluid mt-5">
     <div class="container-fluid  p-3 text-center mt-4" style="background-color: #1A6DFF; color: white; font-size: 20px; font-weight: bold; ">Sản Phẩm</div>
     <div style="margin-right:50px;margin-top:20px;margin-left:20px;">
-        <button>
-            <a href="@Url.Action("locgia", "SanPhams", new { gia = 7000000 } )"><div class="btn">Dưới 7 triệu </div></a>
-        </button>
-        <button>
-            <a href="@Url.Action("locgia", "SanPhams", new { gia = 4000000 } )"><div class="btn">Dưới 4 triệu </div></a>
-        </button>
+        @*<button>
+                <a href="@Url.Action("locgia", "SanPhams", new { gia = 7000000 } )"><div class="btn">Dưới 7 triệu </div></a>
+            </button>
+            <button>
+                <a href="@Url.Action("locgia", "SanPhams", new { gia = 4000000 } )"><div class="btn">Dưới 4 triệu </div></a>
+            </button>*@
+
+        @using (Html.BeginForm("Index", "SanPhams", FormMethod.Get))
+        {
+            <p>
+                Tên sản phẩm: @Html.TextBox("name")
+                Giá từ: @Html.TextBox("minPrice")
+                Giá đến: @Html.TextBox("maxPrice")
+                Màu sắc: @Html.DropDownList("colorId", ViewBag.MaMau as SelectList, "Chọn màu")
+                Loại sản phẩm: @Html.DropDownList("categoryId", ViewBag.MaLoai as SelectList, "Chọn loại")
+                <input type="submit" value="Tìm kiếm" class="btn btn-primary" />
+            </p>
+        }
     </div>
     <div class="row mt-3 p-5">
         @foreach (var sp in Model)
@@ -81,9 +91,104 @@
                     <a href="@Url.Action("SP_giamgia", "SanPhams", new { id = sp.MaSP })">
                         <img src="~/Image/@sp.Hinh1" style="height:250px; width:250px" class="card-img-top" alt="Iphone" height="187">
                         <div class="card-body">
-                            <h5 class="card-title">@sp.TenSP</h5>
+                            <h5 class="card-title">
+                                @sp.TenSP -
+                                @if (sp.Mamau == 1)
+                                {
+                                    <p>Trắng</p>
+
+
+                                }
+                                @if (sp.Mamau == 2)
+                                {
+                                    <p>
+                                        Đen
+
+                                    </p>
+
+                                }
+                                @if (sp.Mamau == 3)
+                                {
+                                    <p>
+                                        Trắng
+                                   
+                                    </p>
+
+                                }
+                                @if (sp.Mamau == 4)
+                                {
+                                    <p>
+                                        Đỏ
+                                
+
+                                    </p>
+                                }
+                                @if (sp.Mamau == 5)
+                                {
+                                    <p>
+                                        Xanh dương
+                                   
+
+                                    </p>
+                                }
+                                @if (sp.Mamau == 6)
+                                {
+                                    <p>
+                                        Xanh lá cây
+                                      
+
+                                    </p>
+                                }
+                                @if (sp.Mamau == 7)
+                                {
+                                    <p>
+                                        Vàng
+                                     
+
+                                    </p>
+                                }
+                                @if (sp.Mamau == 8)
+                                {
+                                    <p>
+                                        Hồng
+                                   
+
+                                    </p>
+                                }
+                                @if (sp.Mamau == 9)
+                                {
+                                    <p>
+                                        Cam
+                                  
+
+                                    </p>
+                                }
+                                @if (sp.Mamau == 10)
+                                {
+                                    <p>
+                                        Tím
+                                  
+
+                                    </p>
+                                }
+                                @if (sp.Mamau == 11)
+                                {
+                                    <p>
+                                        Xanh đen
+                                  
+
+                                    </p>
+                                }
+                                @if (sp.Mamau == 12)
+                                {
+                                    <p>
+                                        Xám
+
+                                    </p>
+                                }
+                            </h5>
                             @*<p class="card-text">(@sp.GiaSp*10) VNĐ</p>*@
-                            <p class="card-product__price"> @string.Format("{0:#,##0} VND", sp.GiaSp * 10)</p>
+                            <p class="card-product__price"> @string.Format("{0:#,##0} VND", sp.GiaSp)</p>
                             <div class="row">
                             </div>
                         </div>
@@ -95,7 +200,7 @@
             </div>
         }
     </div>
-
+ 
     <!-- Thêm mã phân trang -->
     <br />
     <div style="text-align:center">

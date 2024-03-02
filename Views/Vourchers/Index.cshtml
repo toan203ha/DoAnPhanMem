@@ -2,114 +2,69 @@
 
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Admin/Layout/_LayoutPage1.cshtml";}
-
-
-<style>
-    h5 {
-        font-size: 17px;
-    }
-
-    th {
-        width: 140px;
-    }
-
-    th {
-        text-align: left;
-    }
-</style>
-<form class="d-flex" role="search">
-    <input class="form-control me-2" type="text" name="SearchString" placeholder="Search" aria-label="Nhập từ khoá ">
-    <button class="btn btn-outline-success" type="submit">Search</button>
-</form>
-
-<h2>Danh Sách Sản Phẩm Giảm Gía</h2>
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<style>
-    html,
-    body,
-    .intro {
-        height: 100%;
-    }
-
-    table td,
-    table th {
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        overflow: hidden;
-    }
-
-    .card {
-        border-radius: .5rem;
-    }
-
-    .mask-custom {
-        background: rgba(24, 24, 16, .2);
-        border-radius: 2em;
-        backdrop-filter: blur(25px);
-        border: 2px solid rgba(255, 255, 255, 0.05);
-        background-clip: padding-box;
-        box-shadow: 10px 10px 10px rgba(46, 54, 68, 0.03);
-    }
-</style>
-
-<body>
-    <section class="intro">
-        <div class="bg-image h-100" style="background-color: #6095F0;">
-            <div class="mask d-flex align-items-center h-100">
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-12">
-                            <div class="card shadow-2-strong" style="background-color: #f5f7fa;">
-                                <div class="card-body">
-                                    <div class="table-responsive">
-                                        <table class="table table-borderless mb-0">
-                                            <thead>
-                                                <tr>
-                                                    <th>
-                                                        @Html.DisplayNameFor(model => model.Uudai)
-                                                    </th>
-                                                    <th>
-                                                        @Html.DisplayNameFor(model => model.ThongTinUuDai)
-                                                    </th>
-                                                    <th>
-                                                        @Html.DisplayNameFor(model => model.SanPham.TenSP)
-                                                    </th>
-                                                    <th></th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach (var item in Model)
-                                                {
-                                                    <tr>
-                                                        <td>
-                                                            @Html.DisplayFor(modelItem => item.Uudai)
-                                                        </td>
-                                                        <td>
-                                                            @Html.DisplayFor(modelItem => item.ThongTinUuDai)
-                                                        </td>
-                                                        <td>
-                                                            @Html.DisplayFor(modelItem => item.SanPham.TenSP)
-                                                        </td>
-                                                        <td>
-                                                            @Html.ActionLink("Edit", "Edit", new { id = item.MaKM }) |
-                                                            @Html.ActionLink("Details", "Details", new { id = item.MaKM }) |
-                                                            @Html.ActionLink("Delete", "Delete", new { id = item.MaKM })
-                                                        </td>
-                                                    </tr>
-                                                }yy
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div class="page-header">
+     <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a href="~/Admin/" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Dashboard</a>
+            <span class="breadcrumb-item active">Quản lý giảm giá sản phẩm</span>
+        </nav>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        <h2 class="header-title" style="text-align:center;">Quản lý danh sách sản phẩm giảm giá</h2>
+        <div class="row m-b-30">
+            <div class="col-lg-12 text-right">
+                <a href="~/Vourchers/Create" class="btn btn-primary">
+                    <i class="anticon anticon-plus-circle m-r-5"></i>
+                    <span>Thêm mới</span>
+                </a>
             </div>
         </div>
-    </section>
-</body>
+        <div class="table-responsive">
+            <table class="table table-hover e-commerce-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>
+                            Gía Trị Ưu Đãi
+                        </th>
+                        <th>
+                            Thông Tin Ưu Đãi
+                        </th>
+                        <th>
+                            Tên Sản Phẩm
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                #@item.MaKM
+                            </td>
+                            <td>
+                                @item.Uudai
+                            </td>
+                            <td>@item.ThongTinUuDai</td>
+                            <td>@item.SanPham.TenSP</td>
 
+                            <td class="text-right">
+                                <a href="/Vourchers/Edit/@item.MaKM" class="btn btn-icon btn-hover btn-sm btn-rounded pull-right">
+                                    <i class="anticon anticon-edit"></i>
+                                </a>
+                                <a href="/Vourchers/Delete/@item.MaKM" class="btn btn-icon btn-hover btn-sm btn-rounded">
+                                    <i class="anticon anticon-delete"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Doanphanmem.Models.TopKhachHangModel>
+
+@{
+    ViewBag.Title = "Top10KhachHangMuaNhieuNhat";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Top10KhachHangMuaNhieuNhat</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Mã Khách Hàng</th>
+            <th>Số Lượng Đơn Hàng</th>
+            <th>Tổng Tiền Mua</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var khachHang in Model)
+        {
+            <tr>
+                <td>@(khachHang.MaKH != null ? khachHang.MaKH.ToString() : "N/A")</td>
+                <td>@khachHang.SoLuongDonHang</td>
+                <td>@khachHang.TongTienMua</td>
+            </tr>
+        }
+
+    </tbody>
+</table>

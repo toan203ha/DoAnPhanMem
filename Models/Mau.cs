@@ -11,22 +11,19 @@ namespace Doanphanmem.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
+    
     public partial class Mau
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Mau()
         {
-            this.SanPhams = new HashSet<SanPham>();
+            this.SanPham = new HashSet<SanPham>();
         }
-        [Required(ErrorMessage = "Color name is required")]
-        [StringLength(20, ErrorMessage = "Color name can't exceed 20 characters!")]
+    
         public string Tenmau { get; set; }
-
-        [Range(1, int.MaxValue, ErrorMessage = "Color ID must be positive numbers!")]
         public int Mamau { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SanPham> SanPhams { get; set; }
+        public virtual ICollection<SanPham> SanPham { get; set; }
     }
 }

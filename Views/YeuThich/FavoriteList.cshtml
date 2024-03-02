@@ -1,11 +1,7 @@
 ﻿@model List<Doanphanmem.Models.SanPham>
-
-
-
-<h1>Danh sách sản phẩm yêu thích</h1>
+<h1s style="text-align:center">Danh sách sản phẩm yêu thích</h1s>
 <style>
-    /* Thiết lập kiểu chữ và màu sắc chung */
-    body {
+     body {
         font-family: Arial, sans-serif;
         background-color: #f0f0f0;
         margin: 0;
@@ -66,7 +62,7 @@
             </div>
             <div style="margin-top:25px;">
 
-                <a  href="@Url.Action("AddProduct", "GioHang", new{ MaSP = product.MaSP })">
+                <a style="margin-bottom:10px;" href="@Url.Action("AddProduct", "GioHang", new{ MaSP = product.MaSP })">
                     <button class="buy-button">
                         Thêm Vào Giỏ Hàng
                     </button>

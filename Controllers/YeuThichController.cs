@@ -29,12 +29,12 @@ namespace Doanphanmem.Controllers
             {
             // Lấy thông tin khách hàng đang đăng nhập từ Session hoặc cách xác thực khác.
             int customerId = (int)Session["UserID"];
-            var existingFavorite = db.YeuThiches.FirstOrDefault(y => y.MaSP == productId && y.MaKH == customerId);
+            var existingFavorite = db.YeuThich.FirstOrDefault(y => y.MaSP == productId && y.MaKH == customerId);
 
                 if (existingFavorite != null)
                 {
                     // Nếu sản phẩm đã tồn tại trong danh sách yêu thích, bạn có thể xử lý lệnh xóa sản phẩm ra khỏi danh sách yêu thích ở đây.
-                    db.YeuThiches.Remove(existingFavorite);
+                    db.YeuThich.Remove(existingFavorite);
                     //return RedirectToAction("Index","SanPhams");
                 }
 
@@ -46,7 +46,7 @@ namespace Doanphanmem.Controllers
                         MaSP = productId,
                         MaKH = customerId
                     };
-                    db.YeuThiches.Add(newFavorite);
+                    db.YeuThich.Add(newFavorite);
                 }
  
                 db.SaveChanges(); // Lưu thay đổi vào cơ sở dữ liệu.
@@ -58,7 +58,7 @@ namespace Doanphanmem.Controllers
             {
             // Lấy danh sách sản phẩm yêu thích của khách hàng từ cơ sở dữ liệu
             int customerId = (int)Session["UserID"];           
-                var favoriteProducts = db.YeuThiches
+                var favoriteProducts = db.YeuThich
                     .Where(y => y.MaKH == customerId)
                     .Select(y => y.SanPham)
                     .ToList();
@@ -80,7 +80,7 @@ namespace Doanphanmem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            YeuThich yeuThich = db.YeuThiches.Find(id);
+            YeuThich yeuThich = db.YeuThich.Find(id);
             if (yeuThich == null)
             {
                 return HttpNotFound();

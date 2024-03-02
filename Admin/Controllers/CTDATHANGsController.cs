@@ -19,7 +19,7 @@ namespace Doanphanmem.Admin.Controllers
         {
             if (Session["taikhoan"] == null)
                 return RedirectToAction("Login", "Account");
-            var cTDATHANGs = db.CTDATHANGs.Include(c => c.DONDATHANG).Include(c => c.SanPham).Where(c=>c.SODH==id);
+            var cTDATHANGs = db.CTDATHANG.Include(c => c.DONDATHANG).Include(c => c.SanPham).Where(c=>c.SODH==id);
             return View(cTDATHANGs.ToList());
         }
 
@@ -32,7 +32,7 @@ namespace Doanphanmem.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CTDATHANG cTDATHANG = db.CTDATHANGs.Find(id);
+            CTDATHANG cTDATHANG = db.CTDATHANG.Find(id);
             if (cTDATHANG == null)
             {
                 return HttpNotFound();
@@ -45,8 +45,8 @@ namespace Doanphanmem.Admin.Controllers
         {
             if (Session["taikhoan"] == null)
                 return RedirectToAction("Login", "Account");
-            ViewBag.SODH = new SelectList(db.DONDATHANGs, "SODH", "Tennguoinhan");
-            ViewBag.MaSP = new SelectList(db.SanPhams, "MaSP", "TenSP");
+            ViewBag.SODH = new SelectList(db.DONDATHANG, "SODH", "Tennguoinhan");
+            ViewBag.MaSP = new SelectList(db.SanPham, "MaSP", "TenSP");
             return View();
         }
 
@@ -59,13 +59,13 @@ namespace Doanphanmem.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.CTDATHANGs.Add(cTDATHANG);
+                db.CTDATHANG.Add(cTDATHANG);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.SODH = new SelectList(db.DONDATHANGs, "SODH", "Tennguoinhan", cTDATHANG.SODH);
-            ViewBag.MaSP = new SelectList(db.SanPhams, "MaSP", "TenSP", cTDATHANG.MaSP);
+            ViewBag.SODH = new SelectList(db.DONDATHANG, "SODH", "Tennguoinhan", cTDATHANG.SODH);
+            ViewBag.MaSP = new SelectList(db.SanPham, "MaSP", "TenSP", cTDATHANG.MaSP);
             return View(cTDATHANG);
         }
 
@@ -78,13 +78,13 @@ namespace Doanphanmem.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CTDATHANG cTDATHANG = db.CTDATHANGs.Find(id);
+            CTDATHANG cTDATHANG = db.CTDATHANG.Find(id);
             if (cTDATHANG == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.SODH = new SelectList(db.DONDATHANGs, "SODH", "Tennguoinhan", cTDATHANG.SODH);
-            ViewBag.MaSP = new SelectList(db.SanPhams, "MaSP", "TenSP", cTDATHANG.MaSP);
+            ViewBag.SODH = new SelectList(db.DONDATHANG, "SODH", "Tennguoinhan", cTDATHANG.SODH);
+            ViewBag.MaSP = new SelectList(db.SanPham, "MaSP", "TenSP", cTDATHANG.MaSP);
             return View(cTDATHANG);
         }
 
@@ -101,8 +101,8 @@ namespace Doanphanmem.Admin.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.SODH = new SelectList(db.DONDATHANGs, "SODH", "Tennguoinhan", cTDATHANG.SODH);
-            ViewBag.MaSP = new SelectList(db.SanPhams, "MaSP", "TenSP", cTDATHANG.MaSP);
+            ViewBag.SODH = new SelectList(db.DONDATHANG, "SODH", "Tennguoinhan", cTDATHANG.SODH);
+            ViewBag.MaSP = new SelectList(db.SanPham, "MaSP", "TenSP", cTDATHANG.MaSP);
             return View(cTDATHANG);
         }
 
@@ -115,7 +115,7 @@ namespace Doanphanmem.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CTDATHANG cTDATHANG = db.CTDATHANGs.Find(id);
+            CTDATHANG cTDATHANG = db.CTDATHANG.Find(id);
             if (cTDATHANG == null)
             {
                 return HttpNotFound();
@@ -128,8 +128,8 @@ namespace Doanphanmem.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            CTDATHANG cTDATHANG = db.CTDATHANGs.Find(id);
-            db.CTDATHANGs.Remove(cTDATHANG);
+            CTDATHANG cTDATHANG = db.CTDATHANG.Find(id);
+            db.CTDATHANG.Remove(cTDATHANG);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "Create";
-    Layout = "~/Admin/Layout/_LayoutPage1.cshtml";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
 <h2>Create</h2>
@@ -71,23 +71,6 @@
                 @Html.ValidationMessageFor(model => model.Pass, "", new { @class = "text-danger" })
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Roleuser, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Roleuser, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Roleuser, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Hinh, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Hinh, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Hinh, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default" />

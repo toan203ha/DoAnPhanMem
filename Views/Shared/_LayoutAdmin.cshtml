@@ -1,35 +1,43 @@
-﻿<!DOCTYPE html>
+﻿ 
 
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Enlink - Admin Dashboard Template</title>
-
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="~/Content/Admin/assets/images/logo/favicon.png">
-
-    <!-- page css -->
-    <!-- Core css -->
+    <title>HOME -ADMIN</title>
     <link href="~/Content/Admin/assets/css/app.min.css" rel="stylesheet">
-    @*PageList css*@
-<link href="~/Content/PagedList.css" rel="stylesheet" />
+    <link href="~/Content/PagedList.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .nav-item:hover {
+            background-color: lightblue;
+        }
+
+        .menu:hover {
+            background-color: white;
+        }
+    </style>
 </head>
 <body>
+    @if (Session["UserRole"] == null)
+    {
+        string loginUrl = Url.Action("Login", "Account");
+        Response.Redirect(loginUrl);
+    }
     <div class="app">
         <div class="layout">
-            <!-- Header START -->
             <div class="header">
                 <div class="logo logo-dark">
-                    <a href="/Admin/Index">
+                    <a href="#">
                         <img src="~/Image/Xám và Đen Ghi chú Mềm mại Hữu cơ Âm nhạc Biểu trưng.png" style="height:90px; width:95px" alt="Logo">
-                        <img class="logo-fold" src="~/Content/Admin/assets/images/logo/logo-fold.png" alt="Logo">
-                    </a>
+                     </a>
                 </div>
+
                 <div class="logo logo-white">
-                    <a href="~/Content/Admin/index.html">
-                        <img src="~/Content/Admin/assets/images/logo/logo-white.png" alt="Logo">
-                        <img class="logo-fold" src="~/Content/Admin/assets/images/logo/logo-fold-white.png" alt="Logo">
+                    <a href="#">
+                        <img src="~/Image/Xám và Đen Ghi chú Mềm mại Hữu cơ Âm nhạc Biểu trưng.png" style="height:90px; width:95px" alt="Logo">
+                        <img src="~/Image/Xám và Đen Ghi chú Mềm mại Hữu cơ Âm nhạc Biểu trưng.png" style="height:90px; width:95px" alt="Logo">
                     </a>
                 </div>
                 <div class="nav-wrap">
@@ -50,6 +58,7 @@
                             </a>
                         </li>
                     </ul>
+
                     <ul class="nav-right">
                         <li class="dropdown dropdown-animated scale-left">
                             <a href="javascript:void(0);" data-toggle="dropdown">
@@ -171,16 +180,11 @@
                                 </a>
                             </div>
                         </li>
-                        @*<li>
-                            <a href="javascript:void(0);" data-toggle="modal" data-target="#quick-view">
-                                <i class="anticon anticon-appstore"></i>
-                            </a>
-                        </li>*@
+
                     </ul>
                 </div>
             </div>
-            <!-- Header END -->
-            <!-- Side Nav START -->
+
             <div class="side-nav">
                 <div class="side-nav-inner">
                     <ul class="side-nav-menu scrollable">
@@ -196,11 +200,13 @@
                         <li class="nav-item dropdown">
                             <a class="dropdown-toggle" href="/SanPhams/IndexAdmin">
                                 <span class="icon-holder">
-                                    <i class="anticon anticon-dashboard"></i>
+                                    <i class="anticon anticon-project"></i>
                                 </span>
+                      
                                 <span class="title">Quản lý sản phẩm</span>
                             </a>
                         </li>
+
                         <li class="nav-item dropdown">
                             <a class="dropdown-toggle" href="/Categories/Index">
                                 <span class="icon-holder">
@@ -217,22 +223,41 @@
                                 <span class="title">Quản lý đơn hàng</span>
                             </a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="dropdown-toggle" href="/ChiTietDonHang/Index">
-                                <span class="icon-holder">
-                                    <i class="anticon anticon-hdd"></i>
-                                </span>
-                                <span class="title">Quản lý chi tiết đơn hàng</span>
-                            </a>
-                        </li>
+
                         <li class="nav-item dropdown">
                             <a class="dropdown-toggle" href="/KhachHangAdmin/Index">
                                 <span class="icon-holder">
-                                    <i class="anticon anticon-form"></i>
-                                </span>
+                                    <i class="anticon anticon-team"></i>
+                                 </span>
                                 <span class="title">Quản lý tài khoản</span>
                             </a>
                         </li>
+                        <li class="nav-item dropdown">
+                            <a class="dropdown-toggle" href="/MauAdmin/Index">
+                                <span class="icon-holder">
+                                    <i class="anticon anticon-bg-colors"></i>
+                                </span>
+                                <span class="title">Quản lý màu sản phẩm</span>
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="dropdown-toggle" href="/Vourchers/Index">
+                                <span class="icon-holder">
+                                    <i class="anticon anticon-property-safety"></i>
+
+                                </span>
+                                 <span class="title">Giảm Giá Sản Phẩm</span>
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="dropdown-toggle" href="/ThongKe/Chart_sort">
+                                <span class="icon-holder">
+                                    <i class="anticon anticon-bar-chart"></i>
+                                </span>
+                                <span class="title">Thống Kê Doanh Thu</span>
+                            </a>
+                        </li>
+
                         <li class="nav-item dropdown">
                             <a class="dropdown-toggle" href="javascript:void(0);">
                                 <span class="icon-holder">
@@ -244,34 +269,28 @@
                                 </span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li>
-                                    <a href="/UserIDs/Index">Quản lý nhân viên</a>
-                                </li>
-                                <li>
-                                    <a href="~/Content/Admin/data-table.html">Data Table</a>
+                                <li class="menu">
+                                    <a href="/QLNV/Index">
+                                        <span class="icon-holder">
+                                            <i class="anticon anticon-user"></i>
+                                        </span>
+                                        <span class="title">
+                                            Quản lý nhân viên
+                                        </span>
+                                    </a>
                                 </li>
                             </ul>
                         </li>
                     </ul>
                 </div>
             </div>
-            <!-- Side Nav END -->
-            <!-- Page Container START -->
+
             <div class="page-container">
-                <!-- Content Wrapper START -->
                 <div class="main-content">
                     @RenderBody()
                 </div>
-                <!-- Content Wrapper END -->
-                <!-- Footer START -->
+
                 <footer class="footer">
-                    <div class="footer-content">
-                        <p class="m-b-0">Copyright © 2019 Theme_Nate. All rights reserved.</p>
-                        <span>
-                            <a href="" class="text-gray m-r-15">Term &amp; Conditions</a>
-                            <a href="" class="text-gray">Privacy &amp; Policy</a>
-                        </span>
-                    </div>
                 </footer>
                 <!-- Footer END -->
 
